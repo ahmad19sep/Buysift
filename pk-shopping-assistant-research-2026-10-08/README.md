@@ -47,7 +47,7 @@ Source access dates are not publication/effective dates. Statistics retain their
 
 ## Next action
 
-Review the narrow experiment and the source-access gate. Customer/task research and merchant permission remain consequential. Foundation, domain/fixtures, the local extension slice and local comparison/history are complete; the **next software milestone** is the private hardening lane of [08 — Release hardening](prompts/08-release-hardening.md). Completing local rules does not unlock live sources or public distribution.
+Review the narrow experiment and the source-access gate. Customer/task research and merchant permission remain consequential. Foundation, domain/fixtures, the local extension slice, local comparison/history and automated private hardening are complete; see the [private release candidate](docs/release/release-candidate.md). **No further software stage is eligible until a retailer gives written permission**; the next action is the founder's outreach in [data access](docs/02-data-access.md) section 6. Completing local rules does not unlock live sources or public distribution.
 
 Retailer adapters, a hosted feed service, public comparison/history, affiliates and background alerts cannot be unlocked just by reaching their prompt number. Each prompt lists its own prerequisites and stop conditions.
 

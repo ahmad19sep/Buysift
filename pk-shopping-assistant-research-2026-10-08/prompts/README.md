@@ -1,6 +1,6 @@
 # Implementation prompts
 
-**Status: research output, with subsequent implementation updates on 8 October 2026.** Stages 01–03 and the local lane of 06 were executed after separate implementation requests; their outcomes are recorded in the [foundation](../docs/research/test-results/2026-10-08-foundation.md), [domain](../docs/research/test-results/2026-10-08-domain-and-fixtures.md), [local slice](../docs/research/test-results/2026-10-08-local-extension-slice.md) and [local comparison/history](../docs/research/test-results/2026-10-08-comparison-and-history-local.md) reports. Stages 04, 05, 07, 08 and the live lane of 06 have not been executed. Each prompt becomes implementation instructions when the founder requests the relevant stage and its dependencies are met.
+**Status: research output, with subsequent implementation updates on 8 October 2026.** Stages 01–03, the local lane of 06 and the automated private lane of 08 were executed after separate implementation requests; their outcomes are recorded in the [foundation](../docs/research/test-results/2026-10-08-foundation.md), [domain](../docs/research/test-results/2026-10-08-domain-and-fixtures.md), [local slice](../docs/research/test-results/2026-10-08-local-extension-slice.md), [local comparison/history](../docs/research/test-results/2026-10-08-comparison-and-history-local.md) and [private hardening](../docs/research/test-results/2026-10-08-private-hardening.md) reports. Stages 04, 05, 07, the live lane of 06 and the public lane of 08 have not been executed. Each prompt becomes implementation instructions when the founder requests the relevant stage and its dependencies are met.
 
 Copy one complete prompt into the coding session whose workspace contains this document pack. Start by reading the project `AGENTS.md`. Preserve existing files and reconcile any conflicting specifications before edits. Resolve dependency versions from current official provenance at implementation time; this research's release observations are not a lockfile.
 
@@ -13,7 +13,7 @@ Copy one complete prompt into the coding session whose workspace contains this d
 | 05 | [Optional backend](05-optional-backend.md) | **BLOCKED:** no qualifying feed/service decision |
 | 06 | [Comparison and history](06-comparison-and-history.md) | Local lane completed (71 tests, benchmark, build, scripted browser run); live lane remains blocked |
 | 07 | [Achievable alerts](07-achievable-alerts.md) | **DEFERRED:** not part of P0 |
-| 08 | [Release hardening](08-release-hardening.md) | Private lane follows local slice/history; public lane needs all public gates |
+| 08 | [Release hardening](08-release-hardening.md) | Private lane: automated checks done (reproducible build, holdout 80/80); installed-browser checks pending. Public lane needs all public gates |
 
 The first local sequence is **01 → 02 → 03 → 06 local → 08 private**. The numbering does not require a backend before local history. P1 uses an eligible reader or human-reviewed merchant-file research/manual entry, without customer import or a hosted API. Public P2 may be a one-merchant explainer after its value/release gates; cross-store comparisons additionally need two independent eligible merchant/source integrations with overlap, not merely two marketplace sellers.
 

@@ -50,6 +50,16 @@ Comparison cards now show source, seller, region/pack, eligibility and recorded 
 
 Actual outcomes: typecheck passed; `npm test` passed 71 tests with zero failures; `npm run benchmark` reproduced all 120 development labels; the build passed; a scripted headless Chromium 141 run of the new flows recorded no external requests and no page errors. Details are in the [local comparison/history report](test-results/2026-10-08-comparison-and-history-local.md). The live lane remains blocked by the source gate.
 
+## Subsequent implementation — private hardening (automated checks)
+
+In the same request, the automated parts of the private lane of [08 — Release hardening](../../prompts/08-release-hardening.md) were completed. The user said they will not test by hand, so no manual browser or accessibility work was planned for them.
+
+Actual outcomes: a clean archive of the commit rebuilt byte-identically. The bundle contains only project source. All development tools are MIT or Apache-2.0. `npm audit` reported zero vulnerabilities. No secrets or source maps were found. The sealed holdout (`npm run benchmark:holdout`) ran once, with the comparison rules unchanged since stage 02: 80/80 synthetic cases matched and there were zero critical false positives. The private candidate record, with checksums, permission rationale, limitations and rollback plan, is [release-candidate.md](../release/release-candidate.md). Details are in the [private hardening report](test-results/2026-10-08-private-hardening.md).
+
+NOT EXECUTED: installed Chrome 155 toolbar-popup use, accessibility measurement, a Windows/Node 24 hash comparison and the entire public lane. Nothing was published, submitted, deployed, paid for or sent to third parties.
+
+Every software stage that needs no retailer permission is now done. The remaining steps depend on the founder: send the retailer outreach in [data access](../02-data-access.md) section 6, obtain written grants, then revisit prompts 04/05 and the public lane of 08.
+
 ## Inputs and operating boundaries
 
 The supplied brief, master prompt, pasted prompt text and ZIP archive were inspected from the provided local copies. Existing inputs were preserved. The brief's founder context was treated as the scenario for this separate research project; no unrelated personal account profile or memory was used or updated.
@@ -112,7 +122,7 @@ Final document checks cover required files, local Markdown targets and source an
 | --- | --- | --- |
 | 1 | Validate the narrow job against normal shopping behavior. | Real qualified participants, consent, task outcomes/critical errors, effort and actual future purchase occasions, using [the study instruments](../09-validation-and-growth.md). |
 | 1 | Obtain sustainable data access for any live integration. | Signed or otherwise verifiable scoped permission, exact methods/fields/uses/retention/costs, representative sample and a revocation contact. |
-| 1 | Continue the selected private prototype one milestone at a time. | Foundation, domain/fixtures, the local extension slice and local comparison/history are complete; private hardening (prompt 08) is next. |
+| 1 | Continue the selected private prototype one milestone at a time. | Foundation, domain/fixtures, the local slice, local comparison/history and automated private hardening are complete; further work waits on retailer permission. |
 | 2 | Complete installed-browser and private-slice verification. | Build, domain/storage/UI tests, the synthetic development benchmark and a scripted Chromium 141 smoke test passed. Installed Chrome 155 popup, accessibility and sealed holdout checks remain pending. |
 | 2 | Resolve public release privacy/protection and operational details. | Named operator/support contact, reviewable implementation, protection/key-management decision, accurate notices, source grants, release and budget gates. |
 | 3 | Verify business inputs. | Approved traffic and exact SKU rates, qualifying benefit/flow, attribution/reversal terms, payout route/threshold/settlement and real willingness to pay. |
@@ -121,6 +131,6 @@ Final document checks cover required files, local Markdown targets and source an
 
 ## Continuation point
 
-Read [the decision brief](../00-decision-brief.md) and [access gate](../02-data-access.md) first. Foundation, domain/fixtures and the local extension slice have been completed in subsequent tasks; local comparison/history is also complete; the next eligible prompt is the private lane of [08 — Release hardening](../../prompts/08-release-hardening.md). Follow **01 → 02 → 03 → 06 → 08** for the private local lane; the numbered adapter, backend and alert prompts remain gated independently. Reverify changing technical dependencies/policies before relying on them.
+Read [the decision brief](../00-decision-brief.md) and [access gate](../02-data-access.md) first. Foundation, domain/fixtures and the local extension slice have been completed in subsequent tasks; local comparison/history and automated private hardening are also complete. No further stage is eligible until a retailer grant arrives; then revisit [04](../../prompts/04-eligible-retailer-adapter.md). Follow **01 → 02 → 03 → 06 → 08** for the private local lane; the numbered adapter, backend and alert prompts remain gated independently. Reverify changing technical dependencies/policies before relying on them.
 
 The founder can reject, narrow or stop the experiment. Completing the documentation establishes a reviewable plan; it does not establish customer value, a legal integration or a viable startup.
