@@ -1,0 +1,963 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PK Shopping Assistant</title>
+    <link rel="stylesheet" href="./index.css" />
+    <script type="module" src="./index.js"></script>
+  </head>
+  <body>
+    <main id="app" class="popup" aria-labelledby="app-title" data-app-state="loading">
+      <header class="app-header" aria-label="PK Shopping Assistant, private prototype">
+        <span class="brand-mark" aria-hidden="true">PK</span>
+        <div class="app-identity">
+          <h1 id="app-title">PK Shopping Assistant</h1>
+          <p>Private prototype</p>
+        </div>
+      </header>
+
+      <p
+        id="app-status"
+        class="sr-only"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+      ></p>
+
+      <section id="loading-view" class="view loading-view" aria-labelledby="loading-title">
+        <p class="eyebrow">Local notebook</p>
+        <h2 id="loading-title">Opening your saved offers&hellip;</h2>
+        <p>This version works with details stored in this browser profile.</p>
+      </section>
+
+      <section id="onboarding-view" class="view onboarding-view" aria-labelledby="onboarding-title" hidden>
+        <p class="eyebrow">For new branded wireless mice</p>
+        <h2 id="onboarding-title">Compare the offers you choose, with the details that matter.</h2>
+        <p class="lead">
+          Enter details yourself. This version saves them on this device and does not check shop
+          prices automatically.
+        </p>
+
+        <div class="notice-card">
+          <h3>Before you start</h3>
+          <p>
+            You can export or delete your entries at any time. Avoid account, payment or personal
+            information.
+          </p>
+          <details id="data-handling-notice" class="notice-details">
+            <summary>How your data is handled</summary>
+            <div class="notice-copy">
+              <p>
+                Offer facts, reference links, observations and valid drafts you enter are stored in
+                this browser&rsquo;s local extension storage. Example data is labeled as synthetic.
+              </p>
+              <p>
+                The extension does not automatically read retailer pages, monitor your browsing or
+                send your notebook to a server. Observations older than the 90-day analysis window
+                remain stored until you delete them and still count toward notebook limits.
+              </p>
+              <p>
+                Exported JSON files remain under your control. Opening a retailer link is a separate
+                action and the retailer&rsquo;s privacy policy applies there.
+              </p>
+            </div>
+          </details>
+        </div>
+
+        <p id="notice-error" class="message message-error" role="alert" hidden>
+          This choice could not be saved. Try again before entering offer details.
+        </p>
+        <div class="button-group button-group-primary">
+          <button id="start-button" class="button button-primary" type="button">
+            Start local notebook
+          </button>
+          <button id="cancel-onboarding-button" class="button button-quiet" type="button">
+            Cancel
+          </button>
+        </div>
+      </section>
+
+      <section id="declined-view" class="view compact-view" aria-labelledby="declined-title" hidden>
+        <p class="eyebrow">No notebook started</p>
+        <h2 id="declined-title">No shopping data was saved.</h2>
+        <p>You can close the popup or read the explanation again.</p>
+        <button id="return-onboarding-button" class="button button-secondary" type="button">
+          Review the explanation
+        </button>
+      </section>
+
+      <div id="notebook-shell" hidden>
+        <p id="read-only-notice" class="message message-warning" role="status" hidden>
+          Your notebook opened in recovery mode. You can review, export or delete records, but new
+          changes are unavailable until the storage problem is resolved.
+        </p>
+
+        <nav id="primary-navigation" class="primary-navigation" aria-label="Notebook sections">
+          <button
+            id="nav-saved"
+            class="nav-button"
+            type="button"
+            data-route="saved"
+            aria-current="page"
+          >
+            Saved
+          </button>
+          <button id="nav-compare" class="nav-button" type="button" data-route="compare">
+            Compare <span id="nav-compare-count" aria-label="0 selected">0</span>
+          </button>
+          <button id="nav-data" class="nav-button" type="button" data-route="data">Data</button>
+        </nav>
+
+        <section id="saved-view" class="view" data-view="saved" aria-labelledby="saved-title" hidden>
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Your local notebook</p>
+              <h2 id="saved-title">Saved offers</h2>
+            </div>
+            <output id="offer-count-badge" class="count-badge" aria-label="0 of 25 offers">0/25</output>
+          </div>
+          <p class="section-intro">
+            This version uses details you enter. Saved offers are available offline.
+          </p>
+
+          <div class="action-grid">
+            <button id="add-offer-button" class="button button-primary" type="button">
+              Add an offer
+            </button>
+            <button id="open-sample-button" class="button button-secondary" type="button">
+              Try a sample
+              <span class="button-note">Invented prices</span>
+            </button>
+          </div>
+
+          <p id="storage-warning" class="message message-warning" role="status" hidden>
+            Your notebook is nearly full. Export or manage local data before adding more.
+          </p>
+          <p id="offer-limit-message" class="message message-warning" role="status" hidden>
+            Your 25 saved offers are full. You can record an observation for an existing offer when
+            other limits permit, or export and delete an offer first.
+          </p>
+          <p id="observation-limit-message" class="message message-warning" role="status" hidden>
+            Your 500 saved observations are full. Export or delete entries before recording another.
+          </p>
+
+          <div id="empty-notebook" class="empty-state">
+            <h3>No offers saved yet.</h3>
+            <p>Add an offer yourself or try the clearly labeled synthetic sample.</p>
+          </div>
+          <ul id="offer-list" class="offer-list" aria-label="Saved offers" hidden></ul>
+
+          <template id="offer-card-template">
+            <li class="offer-card">
+              <div class="offer-card-heading">
+                <div>
+                  <p class="card-source" data-field="source">Entered by you</p>
+                  <h3 data-field="model">Saved mouse</h3>
+                </div>
+                <p class="card-price" data-field="price">Price not available</p>
+              </div>
+              <p class="card-meta" data-field="identity">Identity details not entered</p>
+              <p class="card-meta" data-field="price-summary">Price details not entered</p>
+              <p class="card-meta" data-field="recorded-at">Recorded time unavailable</p>
+              <p class="record-state" data-field="record-state">Saved &mdash; details needed.</p>
+              <div class="card-actions">
+                <button class="button button-secondary" type="button" data-action="open-offer">
+                  View offer
+                </button>
+                <label class="compare-choice">
+                  <input type="checkbox" data-action="toggle-comparison" />
+                  <span>Add to comparison</span>
+                </label>
+              </div>
+            </li>
+          </template>
+        </section>
+
+        <section
+          id="offer-form-view"
+          class="view"
+          data-view="offer-form"
+          aria-labelledby="offer-form-title"
+          hidden
+        >
+          <div class="back-row">
+            <button id="offer-form-back-button" class="back-button" type="button">
+              <span aria-hidden="true">&larr;</span> Back to saved offers
+            </button>
+          </div>
+          <p class="eyebrow">Entered by you</p>
+          <h2 id="offer-form-title">Add a manual offer</h2>
+          <p class="section-intro">
+            Copy facts from the offer. The extension does not inspect or check the page.
+          </p>
+
+          <form id="offer-form" novalidate autocomplete="off">
+            <input id="offer-id" name="offerId" type="hidden" />
+            <div id="form-error-summary" class="message message-error" role="alert" tabindex="-1" hidden>
+              Check the fields marked below. Your other entries are still here.
+              <ul id="form-error-list"></ul>
+            </div>
+
+            <fieldset class="form-section">
+              <legend>Offer source</legend>
+              <p class="fieldset-help">Use public product details only. Do not enter account or checkout links.</p>
+
+              <div class="field">
+                <label for="retailer-label">Shop or marketplace <span aria-hidden="true">*</span></label>
+                <input
+                  id="retailer-label"
+                  name="retailerLabel"
+                  type="text"
+                  maxlength="180"
+                  required
+                  aria-describedby="retailer-label-help retailer-label-error"
+                />
+                <p id="retailer-label-help" class="field-help">For example, the retailer name shown to you.</p>
+                <p id="retailer-label-error" class="field-error" data-field-error="retailerLabel" hidden></p>
+              </div>
+
+              <div class="field">
+                <label for="product-url">Public product link <span aria-hidden="true">*</span></label>
+                <input
+                  id="product-url"
+                  name="productUrl"
+                  type="url"
+                  inputmode="url"
+                  maxlength="2048"
+                  placeholder="https://shop.example/product"
+                  required
+                  aria-describedby="product-url-help product-url-error"
+                />
+                <p id="product-url-help" class="field-help">
+                  Use an HTTPS product page. Personal query details are removed before saving.
+                </p>
+                <p id="product-url-error" class="field-error" data-field-error="productUrl" hidden></p>
+              </div>
+
+              <div class="field">
+                <label for="seller-state">Seller</label>
+                <select id="seller-state" name="sellerState" aria-describedby="seller-state-help">
+                  <option value="unknown">Seller not entered</option>
+                  <option value="known">Enter the seller</option>
+                </select>
+                <p id="seller-state-help" class="field-help">
+                  The seller can differ from the marketplace and affects comparison.
+                </p>
+              </div>
+              <div id="seller-label-field" class="field conditional-field" hidden>
+                <label for="seller-label">Seller name</label>
+                <input
+                  id="seller-label"
+                  name="sellerLabel"
+                  type="text"
+                  maxlength="180"
+                  aria-describedby="seller-label-error"
+                />
+                <p id="seller-label-error" class="field-error" data-field-error="sellerLabel" hidden></p>
+              </div>
+            </fieldset>
+
+            <fieldset class="form-section">
+              <legend>Mouse identity</legend>
+              <p class="fieldset-help">Identity details appear before any price comparison.</p>
+
+              <div class="field-grid">
+                <div class="field">
+                  <label for="brand">Brand <span aria-hidden="true">*</span></label>
+                  <input
+                    id="brand"
+                    name="brand"
+                    type="text"
+                    maxlength="180"
+                    required
+                    aria-describedby="brand-error"
+                  />
+                  <p id="brand-error" class="field-error" data-field-error="brand" hidden></p>
+                </div>
+                <div class="field">
+                  <label for="model">Model <span aria-hidden="true">*</span></label>
+                  <input
+                    id="model"
+                    name="model"
+                    type="text"
+                    maxlength="100"
+                    required
+                    aria-describedby="model-help model-error"
+                  />
+                  <p id="model-help" class="field-help">Keep size or suffixes such as &ldquo;L&rdquo;.</p>
+                  <p id="model-error" class="field-error" data-field-error="model" hidden></p>
+                </div>
+              </div>
+
+              <details class="optional-details">
+                <summary>Add identity details</summary>
+                <div class="details-content">
+                  <div class="field">
+                    <label for="mpn-state">Manufacturer part number</label>
+                    <select id="mpn-state" name="mpnState">
+                      <option value="unknown">Not entered</option>
+                      <option value="known">Enter a part number</option>
+                    </select>
+                  </div>
+                  <div id="mpn-field" class="field conditional-field" hidden>
+                    <label for="mpn">Manufacturer part number</label>
+                    <input id="mpn" name="mpn" type="text" maxlength="100" aria-describedby="mpn-error" />
+                    <p id="mpn-error" class="field-error" data-field-error="mpn" hidden></p>
+                  </div>
+
+                  <div class="field-grid">
+                    <div class="field">
+                      <label for="size">Mouse size</label>
+                      <select id="size" name="size">
+                        <option value="unknown">Not entered</option>
+                        <option value="small_medium">Small / medium</option>
+                        <option value="large">Large</option>
+                      </select>
+                    </div>
+                    <div class="field">
+                      <label for="handedness">Handedness</label>
+                      <select id="handedness" name="handedness">
+                        <option value="unknown">Not entered</option>
+                        <option value="right">Right hand</option>
+                        <option value="left">Left hand</option>
+                        <option value="ambidextrous">Ambidextrous</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="field-grid">
+                    <div class="field">
+                      <label for="color">Color</label>
+                      <input id="color" name="color" type="text" maxlength="180" placeholder="Not entered" />
+                    </div>
+                    <div class="field">
+                      <label for="region">Region</label>
+                      <input id="region" name="region" type="text" maxlength="180" placeholder="Not entered" />
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label for="receiver-pack">Receiver or pack</label>
+                    <input
+                      id="receiver-pack"
+                      name="receiverPack"
+                      type="text"
+                      maxlength="180"
+                      placeholder="Not entered"
+                      aria-describedby="receiver-pack-help"
+                    />
+                    <p id="receiver-pack-help" class="field-help">For example, USB receiver included or a two-pack.</p>
+                  </div>
+                </div>
+              </details>
+            </fieldset>
+
+            <fieldset class="form-section">
+              <legend>Offer terms</legend>
+
+              <div class="field">
+                <label for="condition">Condition</label>
+                <select id="condition" name="condition">
+                  <option value="unknown">Not entered</option>
+                  <option value="new">New</option>
+                  <option value="refurbished">Refurbished</option>
+                  <option value="used">Used</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="warranty-state">Warranty</label>
+                <select id="warranty-state" name="warrantyState" aria-describedby="warranty-help">
+                  <option value="unknown">Provider not entered</option>
+                  <option value="known">Enter warranty details</option>
+                </select>
+                <p id="warranty-help" class="field-help">Warranty provider and type can change whether offers are equivalent.</p>
+              </div>
+              <div id="warranty-fields" class="conditional-group" hidden>
+                <div class="field">
+                  <label for="warranty-provider">Warranty provider</label>
+                  <input
+                    id="warranty-provider"
+                    name="warrantyProvider"
+                    type="text"
+                    maxlength="180"
+                    aria-describedby="warranty-provider-error"
+                  />
+                  <p id="warranty-provider-error" class="field-error" data-field-error="warrantyProvider" hidden></p>
+                </div>
+                <div class="field-grid">
+                  <div class="field">
+                    <label for="warranty-kind">Warranty type</label>
+                    <select id="warranty-kind" name="warrantyKind">
+                      <option value="manufacturer">Manufacturer</option>
+                      <option value="seller">Seller</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label for="warranty-months">Months</label>
+                    <input
+                      id="warranty-months"
+                      name="warrantyMonths"
+                      type="number"
+                      inputmode="numeric"
+                      min="0"
+                      max="1200"
+                      step="1"
+                      aria-describedby="warranty-months-error"
+                    />
+                    <p id="warranty-months-error" class="field-error" data-field-error="warrantyMonths" hidden></p>
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="warranty-scope">Warranty scope</label>
+                  <input
+                    id="warranty-scope"
+                    name="warrantyScope"
+                    type="text"
+                    maxlength="180"
+                    placeholder="Not entered"
+                  />
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="eligibility">Who can use this price?</label>
+                <select id="eligibility" name="eligibility">
+                  <option value="unknown">Not entered</option>
+                  <option value="public">Anyone under the entered conditions</option>
+                  <option value="conditional">Requires a stated condition</option>
+                  <option value="personalized">Personalized price</option>
+                </select>
+              </div>
+              <div id="eligibility-details-field" class="field conditional-field" hidden>
+                <label for="eligibility-details">Price conditions</label>
+                <input
+                  id="eligibility-details"
+                  name="eligibilityDetails"
+                  type="text"
+                  maxlength="180"
+                  aria-describedby="eligibility-details-help eligibility-details-error"
+                />
+                <p id="eligibility-details-help" class="field-help">Describe the card, membership or other condition without personal details.</p>
+                <p id="eligibility-details-error" class="field-error" data-field-error="eligibilityDetails" hidden></p>
+              </div>
+            </fieldset>
+
+            <fieldset class="form-section">
+              <legend>Price and availability</legend>
+              <p class="fieldset-help">Enter the payable item price, not a monthly installment.</p>
+
+              <div class="field">
+                <label for="item-price">Item price in PKR <span aria-hidden="true">*</span></label>
+                <div class="money-input">
+                  <span aria-hidden="true">PKR</span>
+                  <input
+                    id="item-price"
+                    name="itemPrice"
+                    type="text"
+                    inputmode="decimal"
+                    maxlength="20"
+                    placeholder="7,000"
+                    required
+                    aria-describedby="item-price-help item-price-error"
+                  />
+                </div>
+                <p id="item-price-help" class="field-help">Use no more than two decimal places.</p>
+                <p id="item-price-error" class="field-error" data-field-error="itemPrice" hidden></p>
+              </div>
+
+              <details class="optional-details">
+                <summary>Add delivery and payment details</summary>
+                <div class="details-content">
+                  <div class="field">
+                    <label for="shipping-state">Delivery cost</label>
+                    <select id="shipping-state" name="shippingState">
+                      <option value="unknown">Not entered</option>
+                      <option value="free">Free, explicitly confirmed</option>
+                      <option value="amount">Enter an amount</option>
+                    </select>
+                  </div>
+                  <div id="shipping-amount-field" class="field conditional-field" hidden>
+                    <label for="shipping-amount">Delivery amount in PKR</label>
+                    <input
+                      id="shipping-amount"
+                      name="shippingAmount"
+                      type="text"
+                      inputmode="decimal"
+                      maxlength="20"
+                      aria-describedby="shipping-amount-error"
+                    />
+                    <p id="shipping-amount-error" class="field-error" data-field-error="shippingAmount" hidden></p>
+                  </div>
+
+                  <div class="field">
+                    <label for="tax-state">Tax</label>
+                    <select id="tax-state" name="taxState">
+                      <option value="unknown">Not entered</option>
+                      <option value="included">Included in item price</option>
+                      <option value="additional">Additional tax amount</option>
+                    </select>
+                  </div>
+                  <div id="tax-amount-field" class="field conditional-field" hidden>
+                    <label for="tax-amount">Additional tax in PKR</label>
+                    <input
+                      id="tax-amount"
+                      name="taxAmount"
+                      type="text"
+                      inputmode="decimal"
+                      maxlength="20"
+                      aria-describedby="tax-amount-error"
+                    />
+                    <p id="tax-amount-error" class="field-error" data-field-error="taxAmount" hidden></p>
+                  </div>
+
+                  <div class="field">
+                    <label class="check-row" for="fees-complete">
+                      <input id="fees-complete" name="feesComplete" type="checkbox" />
+                      <span>I entered every mandatory fee, including none</span>
+                    </label>
+                    <p class="field-help">Leave unchecked when the fee list is not confirmed complete.</p>
+                  </div>
+
+                  <div class="field-grid">
+                    <div class="field">
+                      <label for="cod-fee-state">COD fee</label>
+                      <select id="cod-fee-state" name="codFeeState">
+                        <option value="unknown">Not entered</option>
+                        <option value="none">None, confirmed</option>
+                        <option value="amount">Enter an amount</option>
+                      </select>
+                    </div>
+                    <div id="cod-fee-amount-field" class="field conditional-field" hidden>
+                      <label for="cod-fee-amount">COD fee in PKR</label>
+                      <input
+                        id="cod-fee-amount"
+                        name="codFeeAmount"
+                        type="text"
+                        inputmode="decimal"
+                        maxlength="20"
+                        aria-describedby="cod-fee-amount-error"
+                      />
+                      <p id="cod-fee-amount-error" class="field-error" data-field-error="codFeeAmount" hidden></p>
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label for="discount-state">Additional discount</label>
+                    <select id="discount-state" name="discountState">
+                      <option value="unknown">Not confirmed</option>
+                      <option value="none">None, confirmed</option>
+                      <option value="amount">Enter a separate discount</option>
+                    </select>
+                  </div>
+                  <div id="discount-fields" class="conditional-group" hidden>
+                    <div class="field">
+                      <label for="discount-amount">Discount amount in PKR</label>
+                      <input
+                        id="discount-amount"
+                        name="discountAmount"
+                        type="text"
+                        inputmode="decimal"
+                        maxlength="20"
+                        aria-describedby="discount-amount-error"
+                      />
+                      <p id="discount-amount-error" class="field-error" data-field-error="discountAmount" hidden></p>
+                    </div>
+                    <div class="field">
+                      <label for="discount-conditions">Discount conditions</label>
+                      <input id="discount-conditions" name="discountConditions" type="text" maxlength="180" />
+                    </div>
+                  </div>
+
+                  <div class="field-grid">
+                    <div class="field">
+                      <label for="location-scope">Delivery area</label>
+                      <input
+                        id="location-scope"
+                        name="locationScope"
+                        type="text"
+                        maxlength="180"
+                        placeholder="Not entered"
+                        aria-describedby="location-scope-help"
+                      />
+                      <p id="location-scope-help" class="field-help">Use a city or broad area, not a street address.</p>
+                    </div>
+                    <div class="field">
+                      <label for="payment-context">Payment method</label>
+                      <select id="payment-context" name="paymentContext">
+                        <option value="unknown">Not entered</option>
+                        <option value="standard">Standard payment</option>
+                        <option value="cod">Cash on delivery</option>
+                        <option value="specified_card">Specified card</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </details>
+
+              <div class="field">
+                <label for="stock">Availability</label>
+                <select id="stock" name="stock">
+                  <option value="unknown">Availability not confirmed</option>
+                  <option value="in_stock">In stock, per your entry</option>
+                  <option value="out_of_stock">Not available in the recorded offer</option>
+                  <option value="preorder">Preorder</option>
+                </select>
+              </div>
+            </fieldset>
+
+            <section class="review-panel" aria-labelledby="price-review-title">
+              <h3 id="price-review-title">Price conclusion</h3>
+              <output id="offer-price-preview" aria-live="polite">
+                Enter an item price to review the known amount and missing components.
+              </output>
+              <p>This conclusion is based only on your entries and is not an automatic price check.</p>
+            </section>
+
+            <p id="draft-status" class="draft-status" role="status" aria-live="polite">
+              Valid draft changes are saved separately. Wait for &ldquo;Saved&rdquo; before closing.
+            </p>
+            <div class="button-group button-group-primary form-actions">
+              <button id="save-offer-button" class="button button-primary" type="submit">
+                Save offer
+              </button>
+              <button id="cancel-offer-button" class="button button-quiet" type="button">Cancel</button>
+            </div>
+          </form>
+        </section>
+
+        <section
+          id="offer-detail-view"
+          class="view"
+          data-view="offer-detail"
+          aria-labelledby="offer-detail-title"
+          hidden
+        >
+          <div class="back-row">
+            <button id="offer-detail-back-button" class="back-button" type="button">
+              <span aria-hidden="true">&larr;</span> Back to saved offers
+            </button>
+          </div>
+          <div class="section-heading">
+            <div>
+              <p id="offer-detail-source" class="eyebrow">Entered by you</p>
+              <h2 id="offer-detail-title">Saved offer</h2>
+            </div>
+            <button id="edit-offer-button" class="button button-small button-secondary" type="button">
+              Edit
+            </button>
+          </div>
+
+          <p id="offer-detail-state" class="record-state">Saved &mdash; details needed.</p>
+          <dl id="offer-detail-facts" class="fact-list">
+            <div>
+              <dt>Identity</dt>
+              <dd data-detail="identity">Not entered</dd>
+            </div>
+            <div>
+              <dt>Offer terms</dt>
+              <dd data-detail="terms">Not entered</dd>
+            </div>
+            <div>
+              <dt>Item price</dt>
+              <dd data-detail="item-price">Not entered</dd>
+            </div>
+            <div>
+              <dt>Components</dt>
+              <dd data-detail="components">Not entered</dd>
+            </div>
+            <div class="fact-highlight">
+              <dt>Price conclusion</dt>
+              <dd data-detail="price-conclusion">Not enough information yet</dd>
+            </div>
+            <div>
+              <dt>Recorded</dt>
+              <dd data-detail="recorded-at">Time unavailable</dd>
+            </div>
+          </dl>
+
+          <section class="attention-panel" aria-labelledby="attention-title">
+            <h3 id="attention-title">Details needing attention</h3>
+            <ul id="offer-attention-list">
+              <li>Identity and price details have not been loaded.</li>
+            </ul>
+          </section>
+
+          <div class="button-group">
+            <button id="record-observation-button" class="button button-primary" type="button">
+              Save observation
+            </button>
+            <button id="detail-compare-button" class="button button-secondary" type="button">
+              Add to comparison
+            </button>
+          </div>
+
+          <section class="history-panel" aria-labelledby="history-title">
+            <h3 id="history-title">Your saved observations</h3>
+            <p id="history-summary">No observations yet.</p>
+            <ol id="observation-list" class="observation-list"></ol>
+            <p id="history-limitation" class="field-help">
+              These are your entries. Shop prices may have changed.
+            </p>
+          </section>
+
+          <section id="delete-offer-panel" class="danger-zone" aria-labelledby="delete-offer-title">
+            <h3 id="delete-offer-title">Remove this offer</h3>
+            <button id="show-delete-offer-button" class="button button-danger-quiet" type="button">
+              Delete offer and observations
+            </button>
+            <div id="delete-offer-confirmation" class="inline-confirmation" hidden>
+              <p>
+                Delete <strong id="delete-offer-name">this offer</strong>, its observations and its
+                draft from this browser profile? Exported JSON files are not removed.
+              </p>
+              <div class="button-group">
+                <button id="confirm-delete-offer-button" class="button button-danger" type="button">
+                  Delete local offer
+                </button>
+                <button id="cancel-delete-offer-button" class="button button-quiet" type="button">
+                  Cancel
+                </button>
+              </div>
+            </div>
+            <p id="delete-offer-status" class="message message-error" role="status" hidden></p>
+          </section>
+        </section>
+
+        <section
+          id="comparison-view"
+          class="view"
+          data-view="compare"
+          aria-labelledby="comparison-title"
+          hidden
+        >
+          <p class="eyebrow">Based on your entries</p>
+          <h2 id="comparison-title">Compare saved offers</h2>
+          <p class="section-intro">
+            Select two or three offers. Identity and offer terms are checked before prices.
+          </p>
+
+          <form id="comparison-form">
+            <fieldset class="comparison-picker">
+              <legend>Offers to compare <span id="comparison-count">0 of 3 selected</span></legend>
+              <ul id="comparison-selection-list" class="selection-list"></ul>
+            </fieldset>
+            <p id="comparison-empty" class="empty-state compact-empty">
+              Save at least two manual offers to compare them.
+            </p>
+            <p id="comparison-limit-message" class="message message-warning" role="status" hidden>
+              You can compare up to three offers. Remove one before selecting another.
+            </p>
+            <p id="comparison-selection-error" class="message message-error" role="alert" hidden>
+              Select two or three offers to compare.
+            </p>
+            <button id="compare-button" class="button button-primary button-full" type="submit">
+              Compare selected offers
+            </button>
+          </form>
+
+          <section id="comparison-result" class="comparison-result" aria-labelledby="comparison-result-title" hidden>
+            <div class="result-heading">
+              <p class="eyebrow">Provisional comparison</p>
+              <h3 id="comparison-result-title">What differs</h3>
+            </div>
+            <div id="comparison-summary" class="message message-info">
+              A complete comparison needs more entered details.
+            </div>
+            <ul id="comparison-differences" class="difference-list"></ul>
+            <div id="comparison-offers" class="comparison-offers"></div>
+            <p class="comparison-limitation">
+              This comparison uses facts you entered. It does not verify current shop prices or
+              availability.
+            </p>
+          </section>
+
+          <template id="comparison-choice-template">
+            <li>
+              <label class="selection-card">
+                <input type="checkbox" data-action="select-offer" />
+                <span>
+                  <strong data-field="model">Saved mouse</strong>
+                  <small data-field="summary">Details not entered</small>
+                </span>
+              </label>
+            </li>
+          </template>
+
+          <template id="comparison-offer-template">
+            <section class="comparison-card">
+              <h4 data-field="heading">Offer</h4>
+              <dl>
+                <div><dt>Model / size</dt><dd data-field="model-size">Not entered</dd></div>
+                <div><dt>Condition / color</dt><dd data-field="condition-color">Not entered</dd></div>
+                <div><dt>Warranty</dt><dd data-field="warranty">Provider not entered</dd></div>
+                <div><dt>Item price</dt><dd data-field="item-price">Not entered</dd></div>
+                <div><dt>Delivery / fees</dt><dd data-field="delivery-fees">Not entered</dd></div>
+                <div><dt>Known amount</dt><dd data-field="known-amount">Incomplete</dd></div>
+              </dl>
+            </section>
+          </template>
+        </section>
+
+        <section
+          id="sample-view"
+          class="view"
+          data-view="sample"
+          aria-labelledby="sample-title"
+          hidden
+        >
+          <div class="back-row">
+            <button id="sample-back-button" class="back-button" type="button">
+              <span aria-hidden="true">&larr;</span> Back to saved offers
+            </button>
+          </div>
+          <div class="synthetic-banner">
+            <p class="eyebrow">Synthetic example</p>
+            <h2 id="sample-title">Invented prices for demonstration only</h2>
+            <p>This example is separate from your notebook and is never added to your saved history.</p>
+          </div>
+
+          <section class="sample-summary" aria-labelledby="sample-summary-title">
+            <h3 id="sample-summary-title">A complete comparison needs more detail</h3>
+            <p>
+              Offer A has no delivery cost entered. Offer B has no warranty provider entered. No
+              savings claim can be made.
+            </p>
+          </section>
+
+          <div class="comparison-offers sample-offers">
+            <section class="comparison-card">
+              <p class="card-source">Synthetic offer A</p>
+              <h3>Example Mouse A</h3>
+              <dl>
+                <div><dt>Model / size</dt><dd>Example Mouse A / Small</dd></div>
+                <div><dt>Condition / color</dt><dd>New / Graphite</dd></div>
+                <div><dt>Warranty</dt><dd>Manufacturer, 12 months</dd></div>
+                <div><dt>Item price</dt><dd>PKR 7,000</dd></div>
+                <div><dt>Delivery / fees</dt><dd>Not entered</dd></div>
+                <div><dt>Known amount</dt><dd>PKR 7,000 + delivery not entered</dd></div>
+              </dl>
+            </section>
+            <section class="comparison-card">
+              <p class="card-source">Synthetic offer B</p>
+              <h3>Example Mouse A</h3>
+              <dl>
+                <div><dt>Model / size</dt><dd>Example Mouse A / Small</dd></div>
+                <div><dt>Condition / color</dt><dd>New / Graphite</dd></div>
+                <div><dt>Warranty</dt><dd>Provider not entered</dd></div>
+                <div><dt>Item price</dt><dd>PKR 6,850</dd></div>
+                <div><dt>Delivery / fees</dt><dd>PKR 300 / none confirmed</dd></div>
+                <div><dt>Known amount</dt><dd>PKR 7,150 under entered conditions</dd></div>
+              </dl>
+            </section>
+          </div>
+          <p class="comparison-limitation">
+            Synthetic test data is not a current retailer offer and includes no purchase link.
+          </p>
+        </section>
+
+        <section id="data-view" class="view" data-view="data" aria-labelledby="data-title" hidden>
+          <p class="eyebrow">Stored on this device</p>
+          <h2 id="data-title">Data and notebook limits</h2>
+          <p class="section-intro">
+            Review, export or delete this extension&rsquo;s local shopping records. There is no cloud sync.
+          </p>
+
+          <section class="data-card" aria-labelledby="usage-title">
+            <h3 id="usage-title">Notebook usage</h3>
+            <dl class="usage-list">
+              <div><dt>Saved offers</dt><dd id="data-offer-count">0 of 25</dd></div>
+              <div><dt>Observations</dt><dd id="data-observation-count">0 of 500</dd></div>
+              <div><dt>Storage</dt><dd id="data-byte-count">Calculating&hellip;</dd></div>
+            </dl>
+            <progress
+              id="storage-meter"
+              max="5242880"
+              value="0"
+              aria-describedby="storage-meter-help"
+            >
+              0 bytes of 5 MiB
+            </progress>
+            <p id="storage-meter-help" class="field-help">
+              A 4 MiB warning appears before the 5 MiB application cap. Recovery space is reserved.
+            </p>
+          </section>
+
+          <section class="data-card" aria-labelledby="export-title">
+            <h3 id="export-title">Export a copy</h3>
+            <p>
+              Create a versioned JSON file containing your local notebook. Export does not delete
+              anything and this version cannot import the file.
+            </p>
+            <button id="export-button" class="button button-secondary" type="button">Export JSON</button>
+            <p id="export-status" class="message" role="status" aria-live="polite" hidden></p>
+          </section>
+
+          <section class="data-card danger-zone" aria-labelledby="delete-all-title">
+            <h3 id="delete-all-title">Delete local notebook</h3>
+            <p>Remove offers, observations and drafts saved by this extension in this browser profile.</p>
+            <button id="show-delete-all-button" class="button button-danger-quiet" type="button">
+              Delete all local data
+            </button>
+            <div id="delete-all-confirmation" class="inline-confirmation" hidden>
+              <p>
+                Delete all local shopping records and reset the notebook? JSON files you already
+                exported remain wherever you saved them.
+              </p>
+              <div class="button-group">
+                <button id="confirm-delete-all-button" class="button button-danger" type="button">
+                  Delete all local data
+                </button>
+                <button id="cancel-delete-all-button" class="button button-quiet" type="button">
+                  Cancel
+                </button>
+              </div>
+            </div>
+            <p id="delete-all-status" class="message" role="status" aria-live="polite" hidden></p>
+          </section>
+
+          <details class="notice-details data-notice">
+            <summary>Review the local data notice</summary>
+            <div class="notice-copy">
+              <p>
+                This notebook contains offer facts, reference links, observations and valid drafts
+                you enter. It does not automatically read pages or send the notebook to a server.
+              </p>
+              <p>
+                Opening a retailer link contacts that retailer through your browser. Avoid passwords,
+                payment details and unnecessary personal information.
+              </p>
+            </div>
+          </details>
+        </section>
+      </div>
+
+      <section id="recovery-view" class="view compact-view" aria-labelledby="recovery-title" hidden>
+        <p class="eyebrow">Local storage needs attention</p>
+        <h2 id="recovery-title">Your notebook could not open normally.</h2>
+        <p id="recovery-message">
+          A saved record could not be safely read. It was not silently removed.
+        </p>
+        <div class="button-group">
+          <button id="recovery-export-button" class="button button-secondary" type="button">
+            Export recovery data
+          </button>
+          <button id="recovery-delete-button" class="button button-danger-quiet" type="button">
+            Manage local data
+          </button>
+        </div>
+        <p id="recovery-status" class="message" role="status" aria-live="polite" hidden></p>
+      </section>
+
+      <footer class="app-footer">
+        <p>Manual and synthetic evidence only &middot; No automatic shop checks</p>
+        <noscript>
+          <p class="message message-error">
+            The local notebook could not start. JavaScript must be available in this extension.
+          </p>
+        </noscript>
+      </footer>
+    </main>
+  </body>
+</html>

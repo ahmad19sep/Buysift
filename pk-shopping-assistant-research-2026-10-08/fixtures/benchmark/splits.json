@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "provenance": "synthetic_owned",
+  "frozenAt": "2026-10-08",
+  "development": {
+    "file": "development.jsonl",
+    "sha256": "f36e755eb50ac2f2c630ecd559331a6625e6bd6998aa246801737b279a22c10f",
+    "records": 120,
+    "classes": {
+      "comparable": 48,
+      "mismatch": 48,
+      "insufficient_evidence": 24
+    },
+    "families": [
+      "Synthetic Aster D01",
+      "Synthetic Aster D02",
+      "Synthetic Aster D03",
+      "Synthetic Aster D04",
+      "Synthetic Aster D05",
+      "Synthetic Aster D06",
+      "Synthetic Aster D07",
+      "Synthetic Aster D08",
+      "Synthetic Aster D09",
+      "Synthetic Aster D10",
+      "Synthetic Aster D11",
+      "Synthetic Aster D12",
+      "Synthetic Aster D13",
+      "Synthetic Aster D14",
+      "Synthetic Aster D15",
+      "Synthetic Aster D16",
+      "Synthetic Aster D17",
+      "Synthetic Aster D18",
+      "Synthetic Aster D19",
+      "Synthetic Aster D20",
+      "Synthetic Aster D21",
+      "Synthetic Aster D22",
+      "Synthetic Aster D23",
+      "Synthetic Aster D24"
+    ]
+  },
+  "holdout": {
+    "file": "holdout.jsonl",
+    "sha256": "e9fc1279ccbb5fa68c4e8ee711cc136fb3c3e604f048ad50a5cd08e1c071ab70",
+    "records": 80,
+    "classes": {
+      "comparable": 32,
+      "mismatch": 32,
+      "insufficient_evidence": 16
+    },
+    "families": [
+      "Synthetic Aster H01",
+      "Synthetic Aster H02",
+      "Synthetic Aster H03",
+      "Synthetic Aster H04",
+      "Synthetic Aster H05",
+      "Synthetic Aster H06",
+      "Synthetic Aster H07",
+      "Synthetic Aster H08",
+      "Synthetic Aster H09",
+      "Synthetic Aster H10",
+      "Synthetic Aster H11",
+      "Synthetic Aster H12",
+      "Synthetic Aster H13",
+      "Synthetic Aster H14",
+      "Synthetic Aster H15",
+      "Synthetic Aster H16"
+    ]
+  }
+}

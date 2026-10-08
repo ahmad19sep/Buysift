@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "PK Shopping Assistant — Private Prototype",
+  "version": "0.1.0",
+  "description": "A private preview of a manual, local offer notebook for new branded wireless mice.",
+  "minimum_chrome_version": "155",
+  "permissions": ["storage"],
+  "action": {
+    "default_title": "PK Shopping Assistant",
+    "default_popup": "ui/popup/index.html"
+  },
+  "content_security_policy": {
+    "extension_pages": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; object-src 'none'; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'"
+  }
+}

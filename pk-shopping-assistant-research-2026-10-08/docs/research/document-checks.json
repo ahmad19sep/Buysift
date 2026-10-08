@@ -1,0 +1,220 @@
+{
+  "checked_at_utc": "2026-10-08T08:24:11.526535+00:00",
+  "scope": "Research-document integrity and packaging only. No extension/app build, installation, benchmark or infrastructure test.",
+  "status": "PASS",
+  "required_content_files": 34,
+  "markdown_files": 31,
+  "source_records": 94,
+  "source_id_mentions_checked": 425,
+  "local_markdown_links_checked": 231,
+  "fenced_blocks_checked": 7,
+  "complete_json_examples_parsed": 3,
+  "total_markdown_words": 51065,
+  "markdown_word_counts": {
+    "AGENTS.md": 470,
+    "README.md": 733,
+    "docs/00-decision-brief.md": 1269,
+    "docs/01-market-and-competition.md": 2299,
+    "docs/02-data-access.md": 2864,
+    "docs/03-product-requirements.md": 1781,
+    "docs/04-ux-spec.md": 1889,
+    "docs/05-architecture.md": 2183,
+    "docs/06-data-and-api-contracts.md": 3259,
+    "docs/07-price-integrity.md": 2014,
+    "docs/08-security-privacy-policy.md": 2342,
+    "docs/09-validation-and-growth.md": 2042,
+    "docs/10-business-and-costs.md": 2463,
+    "docs/11-testing-and-operations.md": 1697,
+    "docs/12-launch-and-roadmap.md": 1306,
+    "docs/13-build-backlog.md": 1180,
+    "docs/14-risks-and-open-questions.md": 1098,
+    "docs/research/coverage-map.md": 692,
+    "docs/research/evidence-register.md": 2578,
+    "docs/research/progress.md": 1480,
+    "docs/research/public-audit.md": 834,
+    "docs/research/sources.md": 9696,
+    "prompts/01-foundation.md": 524,
+    "prompts/02-domain-and-fixtures.md": 553,
+    "prompts/03-local-extension-slice.md": 604,
+    "prompts/04-eligible-retailer-adapter.md": 536,
+    "prompts/05-optional-backend.md": 536,
+    "prompts/06-comparison-and-history.md": 611,
+    "prompts/07-achievable-alerts.md": 542,
+    "prompts/08-release-hardening.md": 539,
+    "prompts/README.md": 451
+  },
+  "issues": [],
+  "inventory_excludes_this_self_referential_report": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 3910,
+      "sha256": "e846623a4748b50d714ec3b2b0512837c6c0f0606787c0bd71a5ecb8fe4105b4"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5985,
+      "sha256": "806a3fbbe7f40152247bf65a8013c1f461a60f09e26ab46562962406a36eaa8d"
+    },
+    {
+      "path": "docs/00-decision-brief.md",
+      "bytes": 9094,
+      "sha256": "b5fb4e0d87848d779ea9fb188602ae7f3d662028df5163cbaebbf2d9c0126da4"
+    },
+    {
+      "path": "docs/01-market-and-competition.md",
+      "bytes": 17120,
+      "sha256": "cb2ca493d80049c46a2dfe727d913c9f20defcc1410b36701a05bb2e72ba0838"
+    },
+    {
+      "path": "docs/02-data-access.md",
+      "bytes": 20632,
+      "sha256": "3d4b07629871365c136416baa66d0b6fe39c997fa07530503feb0fe7975a758b"
+    },
+    {
+      "path": "docs/03-product-requirements.md",
+      "bytes": 12723,
+      "sha256": "c701943cd1cd9b7a19eb9d2ff7b554aff35ee7823803bc05fa802fea369727d8"
+    },
+    {
+      "path": "docs/04-ux-spec.md",
+      "bytes": 11616,
+      "sha256": "9a3d65dc7c721083e0582b22f974442d23527e1c6c846280865ad8a09665eb95"
+    },
+    {
+      "path": "docs/05-architecture.md",
+      "bytes": 15347,
+      "sha256": "e97d0789fe65f84b6f62060fae1cc3d99b5198a05b08f8080bc85397e4ca400c"
+    },
+    {
+      "path": "docs/06-data-and-api-contracts.md",
+      "bytes": 25743,
+      "sha256": "ef227e591bbba19627388d5009915448156a9af1a1927d4dd67f0872baf62aef"
+    },
+    {
+      "path": "docs/07-price-integrity.md",
+      "bytes": 14140,
+      "sha256": "3cbb8d5f68dab1f3bb8240a40486799ee5e1f83d43ec992aaa95ac247aa3b833"
+    },
+    {
+      "path": "docs/08-security-privacy-policy.md",
+      "bytes": 16544,
+      "sha256": "927840e0aca5f35251b3178771240ed4e2bba529b9faa2e906d8a48c739f334d"
+    },
+    {
+      "path": "docs/09-validation-and-growth.md",
+      "bytes": 14553,
+      "sha256": "f73b995043549a75c4155ce56d328dec39500bb8df7c8259db52733e8111038a"
+    },
+    {
+      "path": "docs/10-business-and-costs.md",
+      "bytes": 16467,
+      "sha256": "3bbbdebfd6ed72404ef90037399728b770a1ebebbaa8ab602558443bf507dada"
+    },
+    {
+      "path": "docs/11-testing-and-operations.md",
+      "bytes": 12502,
+      "sha256": "cb65eacd705d7a17666d9ffd96b29338c667aa764936a24c29ad8144e27d51aa"
+    },
+    {
+      "path": "docs/12-launch-and-roadmap.md",
+      "bytes": 9750,
+      "sha256": "9d102afb0062314368e831b85c3f34e7c514453687ee1faacd341da31b1d1fd2"
+    },
+    {
+      "path": "docs/13-build-backlog.md",
+      "bytes": 8291,
+      "sha256": "284d2f9c0c0b18358495e005645edea07ea0473c6898e65c6bf9cb6e549a3f33"
+    },
+    {
+      "path": "docs/14-risks-and-open-questions.md",
+      "bytes": 8391,
+      "sha256": "e31f28d7ec7241e9cd209b65c0af9b4cd8bd713d5e9f5d67bee44e899bc28967"
+    },
+    {
+      "path": "docs/research/cost-model-results.json",
+      "bytes": 6082,
+      "sha256": "17842b6a8180e937bd676789c3c26e550ffca30753cac87c2b97c7895300b72d"
+    },
+    {
+      "path": "docs/research/cost_model_check.py",
+      "bytes": 6762,
+      "sha256": "2c68a94cea7dd72bda41f9f10cf68c2b5357369b2f2fdc726500a362efb99fe8"
+    },
+    {
+      "path": "docs/research/coverage-map.md",
+      "bytes": 6396,
+      "sha256": "ef18748cceafc6634641f3eba0b33ee9ecd3abfabd3e02371b3a4b0d000d5f02"
+    },
+    {
+      "path": "docs/research/evidence-register.md",
+      "bytes": 17332,
+      "sha256": "4b560f06430b544ad16fe7385c8c26d0c8e00acec47d12af0c8de9bcc8c267b0"
+    },
+    {
+      "path": "docs/research/progress.md",
+      "bytes": 11026,
+      "sha256": "6310990e8ed6e423812c11f6d3c82cf3a7978f507ba766cd2e976dc978ab9899"
+    },
+    {
+      "path": "docs/research/public-audit.md",
+      "bytes": 6158,
+      "sha256": "3fdb163fba8cf7b27aad4ccb8711e3be44a65cc1a941cb94fcbd19ce33dc0481"
+    },
+    {
+      "path": "docs/research/sources.json",
+      "bytes": 94381,
+      "sha256": "b712194530622bda85723d064028fd0755ccabd4c9ff8ba9dc14cee226843d7e"
+    },
+    {
+      "path": "docs/research/sources.md",
+      "bytes": 87224,
+      "sha256": "5d03d1a0027fc48b32b2e93783a09275e6d223668d9ebb754569139c57d0db95"
+    },
+    {
+      "path": "prompts/01-foundation.md",
+      "bytes": 4200,
+      "sha256": "dc1acb5b0905263490d9cbe5abb95b08a5588f922a4d8f84a5d2bc500f846ba3"
+    },
+    {
+      "path": "prompts/02-domain-and-fixtures.md",
+      "bytes": 4499,
+      "sha256": "4c8e31b75417c43a4711ef72cd852cf4f05b2f16bdc1a20e16ed3eae62957592"
+    },
+    {
+      "path": "prompts/03-local-extension-slice.md",
+      "bytes": 4705,
+      "sha256": "8941f93fd9c2f0e5a2e958159c3c25c2b054be94e437661f263ff939b891ce05"
+    },
+    {
+      "path": "prompts/04-eligible-retailer-adapter.md",
+      "bytes": 4253,
+      "sha256": "4fe0f29af89ef574c38df297f1d0fdd8e6d74841e375be357b48259268c3f2a8"
+    },
+    {
+      "path": "prompts/05-optional-backend.md",
+      "bytes": 4328,
+      "sha256": "6c348af93fb65d0892d5fa2cca32f8369079bee5fea746b516403b23613e5529"
+    },
+    {
+      "path": "prompts/06-comparison-and-history.md",
+      "bytes": 4603,
+      "sha256": "8d3fe426df83c2f95b2cd51c9007f8c46e6381f19050143e66031286db049082"
+    },
+    {
+      "path": "prompts/07-achievable-alerts.md",
+      "bytes": 4167,
+      "sha256": "6560cf8f11833038fd2288d33e916ab22cf38bb64d20afe0bf71c6cacbac7d23"
+    },
+    {
+      "path": "prompts/08-release-hardening.md",
+      "bytes": 4480,
+      "sha256": "9cead3c81e9eb74bf7c100fe04043850fde14e80f9c8a72fdb9a2c051d0701ee"
+    },
+    {
+      "path": "prompts/README.md",
+      "bytes": 3534,
+      "sha256": "a0c7ae052597de4bd44e83a472d7175003f6116b957110b1f43b582e198d34fc"
+    }
+  ],
+  "archive_verification": "The packaging command verifies CRC and exact uncompressed member bytes after creating the archive; see its successful execution in the handoff."
+}

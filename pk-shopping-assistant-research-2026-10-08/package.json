@@ -1,0 +1,25 @@
+{
+  "name": "pk-shopping-assistant",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Private, device-local wireless mouse offer notebook prototype.",
+  "type": "module",
+  "engines": {
+    "node": ">=24.19.0 <25",
+    "npm": ">=11 <12"
+  },
+  "packageManager": "npm@11.17.0",
+  "scripts": {
+    "typecheck": "tsc --project tsconfig.json && tsc --project tsconfig.test.json --noEmit",
+    "test": "node scripts/test.mjs",
+    "build": "node scripts/build.mjs",
+    "benchmark": "node scripts/benchmark.mjs development",
+    "benchmark:holdout": "node scripts/benchmark.mjs holdout"
+  },
+  "devDependencies": {
+    "@types/chrome": "0.3.4",
+    "@types/node": "24.19.1",
+    "esbuild": "0.28.2",
+    "typescript": "7.0.2"
+  }
+}

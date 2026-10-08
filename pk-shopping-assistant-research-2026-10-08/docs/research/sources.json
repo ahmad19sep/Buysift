@@ -1,0 +1,1618 @@
+{
+  "research_date": "2026-10-08",
+  "record_count": 94,
+  "records": [
+    {
+      "id": "M01",
+      "group": "Market and competition",
+      "publisher": "Google Chrome Web Store / Buyhatke",
+      "title": "Buyhatke: Price History & Tracker, Spend Lens",
+      "url": "https://chromewebstore.google.com/detail/buyhatke-price-history-tr/ojplmecpdpgccookcobabopnaifgidhf",
+      "publication_or_update_date": "Listing displays 2026-10-04; version 5.1.168",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Overview; Details; Privacy",
+      "classification": [
+        "VERIFIED FACT",
+        "COMPANY CLAIM"
+      ],
+      "evidence": "VERIFIED FACT: retrieved listing exists under ID ojplmecpdpgccookcobabopnaifgidhf, links buyhatke.com, and displays 1,000,000 users and 4.8 from 5.6K ratings. COMPANY CLAIM: history, comparison, coupon application, alerts, Lookalike and Spend Lens; affiliate disclosure.",
+      "limitations": "Store snapshot is not active users, Pakistani users, accuracy, installation testing or safety certification. Description alternates exact-product and similar-product wording for Lookalike.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "M02",
+      "group": "Market and competition",
+      "publisher": "Buyhatke",
+      "title": "About Us",
+      "url": "https://www.buyhatke.com/about",
+      "publication_or_update_date": "Not displayed",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "About Us; Who Are We",
+      "classification": [
+        "COMPANY CLAIM"
+      ],
+      "evidence": "COMPANY CLAIM: operator Buyhatke Internet Private Limited; India-oriented product, extension and mobile distribution. Page mentions both 100+ online stores and 1000+ stores.",
+      "limitations": "Corporate registration not independently searched. Conflicting store totals may describe different scopes; neither establishes live coverage or Pakistan support.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "M03",
+      "group": "Market and competition",
+      "publisher": "Google Chrome Web Store / Keepa GmbH",
+      "title": "Keepa - Amazon Price Tracker",
+      "url": "https://chromewebstore.google.com/detail/keepa-amazon-price-tracke/neebplgakaahbhdphmkckjjcegoiijjo",
+      "publication_or_update_date": "Listing displays 2026-10-06; version 5.70",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Overview; Details; Privacy",
+      "classification": [
+        "VERIFIED FACT",
+        "COMPANY CLAIM"
+      ],
+      "evidence": "VERIFIED FACT: listing identifies Keepa GmbH and ID neebplgakaahbhdphmkckjjcegoiijjo. COMPANY CLAIM: Amazon history, price/availability alerts and comparisons among named Amazon country domains. Description lists Amazon/Keepa access, cookies, declarativeNetRequestWithHostAccess and storage; eBay affiliate links disclosed.",
+      "limitations": "No installed behavior or manifest audit. Claimed product count is not independently verified; Amazon coverage does not establish Pakistani retailer coverage.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "M04",
+      "group": "Market and competition",
+      "publisher": "Google Chrome Web Store / PayPal Inc.",
+      "title": "PayPal Honey: Automated Coupons & Rewards",
+      "url": "https://chromewebstore.google.com/detail/honey-automated-coupons-r/bmnlcjabgnpnenekpadlanbbkooimhnj",
+      "publication_or_update_date": "Listing displays 2026-10-01; version 19.7.0",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Overview; Details; Privacy",
+      "classification": [
+        "VERIFIED FACT",
+        "COMPANY CLAIM"
+      ],
+      "evidence": "VERIFIED FACT: listing identifies PayPal Inc. and ID bmnlcjabgnpnenekpadlanbbkooimhnj. COMPANY CLAIM: checkout coupons, rewards, Droplist, history and Amazon seller comparison incorporating shipping and Prime status. Affiliate funding disclosed; data disclosures include web history and financial/payment information.",
+      "limitations": "13,000,000 store users and 17M+ marketing members are different metrics. Neither is a Pakistani adoption or price-accuracy measure; no installation performed.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "M05",
+      "group": "Market and competition",
+      "publisher": "PayPal Honey",
+      "title": "Honey on international sites",
+      "url": "https://help.joinhoney.com/article/51-does-honey-work-on-international-sites",
+      "publication_or_update_date": "2024-11-22",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Supported markets; determining site support",
+      "classification": [
+        "COMPANY CLAIM"
+      ],
+      "evidence": "COMPANY CLAIM: supported shopping sites include United States, Canada, Australia, United Kingdom and additional unspecified markets.",
+      "limitations": "Older help article; does not verify support for Daraz, Shophive or other Pakistani merchants. Do not infer universal or absent Pakistan support.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "M06",
+      "group": "Market and competition",
+      "publisher": "Capital One Shopping",
+      "title": "Help Center",
+      "url": "https://capitaloneshopping.com/help?active=115001147271-Shopping-trips",
+      "publication_or_update_date": "Not displayed",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "What countries; How to get/use; Data collection, privacy and permissions",
+      "classification": [
+        "COMPANY CLAIM"
+      ],
+      "evidence": "COMPANY CLAIM: full service at US addresses, increased functionality in Canada/UK/Australia, desktop extensions and mobile apps; selected variant comparison, coupons and gift-card rewards. Help discloses product-view/purchase monitoring and affiliate revenue. Official Chrome link contains ID nenlahapcbofgnanklpelkaejcehkggg.",
+      "limitations": "Pakistan functionality unknown. Official store redirect was refused by retrieval tool and was not bypassed; current store metadata/manifest not audited.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "M07",
+      "group": "Market and competition",
+      "publisher": "Google Chrome Web Store / Ebates Performance Marketing Inc., d/b/a Rakuten Rewards",
+      "title": "Rakuten: Get Cash Back For Shopping",
+      "url": "https://chromewebstore.google.com/detail/rakuten-get-cash-back-for/chhjbpecpncaggjpdakmflnfcopglcmi?hl=tw",
+      "publication_or_update_date": "Opened listing displays 2026-10-07; version 26.19.0",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Overview; Developer; Privacy",
+      "classification": [
+        "VERIFIED FACT",
+        "COMPANY CLAIM"
+      ],
+      "evidence": "VERIFIED FACT: listing identifies operator and ID chhjbpecpncaggjpdakmflnfcopglcmi. COMPANY CLAIM: activated cashback, coupons and lower-price search; merchant affiliate commissions fund rewards. Discloses web history, activity and website content.",
+      "limitations": "Search result showed October 5 while opened listing showed October 7; use opened snapshot with retrieval caveat. No reward, comparison or privacy behavior tested.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "M08",
+      "group": "Market and competition",
+      "publisher": "Rakuten Rewards",
+      "title": "Rakuten Terms & Conditions",
+      "url": "https://www.rakuten.com/help/article/terms-conditions-360002101608",
+      "publication_or_update_date": "Not established in examined excerpt",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "2.1 Services Account; 10 Payments",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "VERIFIED FACT: retrieved US-service terms restrict use to residents of the 50 United States or Washington D.C.; rewards require confirmation before payment.",
+      "limitations": "Applies to this US service, not every Rakuten business or country program. Not legal advice or a Pakistani founder affiliate-eligibility determination.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "M09",
+      "group": "Market and competition",
+      "publisher": "Farq",
+      "title": "Find best deal and price in Pakistan",
+      "url": "https://farq.pk/",
+      "publication_or_update_date": "Not displayed; copyright 2026 is not an update date",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Hero; coverage and freshness claims; footer",
+      "classification": [
+        "VERIFIED FACT",
+        "COMPANY CLAIM"
+      ],
+      "evidence": "VERIFIED FACT: public Pakistan-focused comparison site exists. COMPANY CLAIM: 340+ stores, 15-minute updates, history, alerts and current stock.",
+      "limitations": "Homepage counters, example offers, adoption and backend quality not independently verified. No exact extension-store ID or legal operator established.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "M10",
+      "group": "Market and competition",
+      "publisher": "Farq",
+      "title": "Frequently Asked Questions",
+      "url": "https://farq.pk/frequently-asked-questions",
+      "publication_or_update_date": "Not displayed",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Product comparison; Pricing and updates; Technical",
+      "classification": [
+        "COMPANY CLAIM"
+      ],
+      "evidence": "COMPANY CLAIM: item-price ranking excludes shipping; updates at least daily and more often for popular products; variants kept separate, partner feeds plus collection, stale/OOS removal, timestamps and user corrections.",
+      "limitations": "Refresh wording differs from universal-sounding homepage 15-minute claim. Claims are not functional proof, retailer permission or a verified matching benchmark.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "M11",
+      "group": "Market and competition",
+      "publisher": "Farq",
+      "title": "About Us",
+      "url": "https://farq.pk/about-us",
+      "publication_or_update_date": "Not displayed",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Get the best price; story; contact",
+      "classification": [
+        "COMPANY CLAIM"
+      ],
+      "evidence": "COMPANY CLAIM: shipping and stock aggregation, daily verification, variant separation and free shopper access; provides correction/contact route.",
+      "limitations": "About wording suggests checkout-total comparison whereas FAQ explicitly describes item-price ranking. Legal operator not named in examined page; founding story unverified.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "M12",
+      "group": "Market and competition",
+      "publisher": "Flashi",
+      "title": "Flashi - Pakistan's #1 Price Comparison Website",
+      "url": "https://flashi.pk/",
+      "publication_or_update_date": "Not displayed",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Search interface; premium banner; mobile app; statistics",
+      "classification": [
+        "VERIFIED FACT",
+        "COMPANY CLAIM"
+      ],
+      "evidence": "VERIFIED FACT: public search/URL interface and APK download link present. COMPANY CLAIM: 100+ Pakistani stores, premium at PKR250/month, alerts/history, 1000+ active users and savings counters.",
+      "limitations": "No APK downloaded or installed; price is advertised, not payment-tested. User/savings/rating counters are self-reported, not independent adoption evidence. Website is usable as a distribution surface; mobile behavior untested.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "M13",
+      "group": "Market and competition",
+      "publisher": "Flashi",
+      "title": "About Flashi",
+      "url": "https://flashi.pk/about",
+      "publication_or_update_date": "Not displayed",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Our Mission; Person Behind Flashi; Accuracy First",
+      "classification": [
+        "COMPANY CLAIM"
+      ],
+      "evidence": "COMPANY CLAIM: founder/developer Shahid Mukhtar in Rawalpindi; automated extraction of public listings, no-login basic search. One passage describes real-time collection, another daily refresh.",
+      "limitations": "Identity is self-description, not corporate verification. Public extraction capability is not permission; contradictory freshness wording remains unresolved.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "M14",
+      "group": "Market and competition",
+      "publisher": "Google Chrome Web Store / Shake Nep",
+      "title": "Pasaley | Daraz Price Tracker",
+      "url": "https://chromewebstore.google.com/detail/pasaley-daraz-price-track/bfnanpnikodnmncpnhdolkjdpjkkhlce?hl=en",
+      "publication_or_update_date": "2025-01-24; version 1.0.6",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Overview; Offered by; Privacy",
+      "classification": [
+        "VERIFIED FACT",
+        "COMPANY CLAIM"
+      ],
+      "evidence": "VERIFIED FACT: ID bfnanpnikodnmncpnhdolkjdpjkkhlce, offered by Shake Nep, listing snapshot 4,000 users and 4.2/45 ratings. COMPANY CLAIM: Daraz price tracking in Nepal and Pakistan. Discloses personally identifiable information, activity and website content.",
+      "limitations": "Counts aggregate markets and are not active Pakistani users. Old update date alone proves neither abandonment nor continuing backend accuracy.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "M15",
+      "group": "Market and competition",
+      "publisher": "Mozilla Add-ons / Pasaley",
+      "title": "Pasaley",
+      "url": "https://addons.mozilla.org/en-US/firefox/addon/pasaley/",
+      "publication_or_update_date": "2025-01-23; version 1.0.6",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "About; Permissions and data; More information",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "VERIFIED FACT: Mozilla listing for Pasaley exists. Advertised required data access includes Daraz Nepal, Pakistan, Bangladesh and Sri Lanka hosts; stated coverage in description is Nepal/Pakistan.",
+      "limitations": "Permissions wider than described active markets do not prove those countries work. Browser/mobile compatibility and installed behavior were not tested.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "M16",
+      "group": "Market and competition",
+      "publisher": "Google Chrome Web Store / developer mzaeemkhan+dev@gmail.com",
+      "title": "Daraz Smart Shopper",
+      "url": "https://chromewebstore.google.com/detail/daraz-smart-shopper/jopfjachkhigjfndkgfdpocimcolhapn?hl=en&ucbcb=1",
+      "publication_or_update_date": "2026-03-26; version 1.0.0",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Overview; Developer; Privacy",
+      "classification": [
+        "VERIFIED FACT",
+        "COMPANY CLAIM"
+      ],
+      "evidence": "VERIFIED FACT: independent listing ID jopfjachkhigjfndkgfdpocimcolhapn, 66 users and no ratings in retrieved snapshot. COMPANY CLAIM: Daraz.pk history from shared user data, alerts, comparison, seller/review scoring and predictions. Store disclosure includes activity and website content.",
+      "limitations": "Not established as Daraz-owned or endorsed. No install, scoring-validity, permission, data-flow or prediction-accuracy audit; no-tracking marketing does not substitute for disclosure review.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "M17",
+      "group": "Market and competition",
+      "publisher": "Dhundo",
+      "title": "Dhundo - Pakistan's Product Search Engine",
+      "url": "https://dhundo.store/",
+      "publication_or_update_date": "Not displayed",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Hero; About this page",
+      "classification": [
+        "VERIFIED FACT",
+        "COMPANY CLAIM"
+      ],
+      "evidence": "VERIFIED FACT: public Pakistan comparison/search website exists. COMPANY CLAIM: 136-store coverage and parallel store searches; homepage savings/search/buyer counters displayed.",
+      "limitations": "Coverage and savings not independently verified. No extension listing established. Self-described scraping infrastructure is not a source-access approval.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "M18",
+      "group": "Market and competition",
+      "publisher": "Dhundo",
+      "title": "Help Centre - How Dhundo Search and Pricing Work",
+      "url": "https://www.dhundo.store/help",
+      "publication_or_update_date": "Not displayed",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Search results; Accounts; Privacy; Common questions",
+      "classification": [
+        "COMPANY CLAIM"
+      ],
+      "evidence": "COMPANY CLAIM: operator Chrio Pvt Ltd; website works on mobile with no app; title-based cross-store matching, refresh on search, correction via contact. Describes paid reveal tokens and sponsored placements, while a later answer says following store links works without an account.",
+      "limitations": "Conflicting link-access descriptions require UI verification. Behavioral tracking disclosures are company statements, not independent privacy auditing; legal incorporation not independently checked.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "M19",
+      "group": "Market and competition",
+      "publisher": "PriceTracker.info",
+      "title": "Track Prices in Pakistan & Get Free Drop Alerts",
+      "url": "https://pricetracker.info/",
+      "publication_or_update_date": "Not displayed",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Footer; features; affiliate disclosure",
+      "classification": [
+        "COMPANY CLAIM"
+      ],
+      "evidence": "COMPANY CLAIM: ten Pakistani/international stores, email alerts and history; affiliate links may earn revenue; price data may lag up to 24 hours.",
+      "limitations": "Do not conflate with similarly named pricetrackr.in, pricetracker.wtf or barcode applications. Counts, history depth, alerts and prices not tested.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "M20",
+      "group": "Market and competition",
+      "publisher": "PriceTracker.info",
+      "title": "About PriceTracker and official mobile link",
+      "url": "https://pricetracker.info/about",
+      "publication_or_update_date": "Not displayed",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "About; mobile app link",
+      "classification": [
+        "VERIFIED FACT",
+        "COMPANY CLAIM"
+      ],
+      "evidence": "VERIFIED FACT: site's own mobile link /api/go/app redirects to Google Play package com.itworldpk.pricetracker. COMPANY CLAIM: free tracking/email alerts for listed stores.",
+      "limitations": "Link establishes intended product association, not ownership registration or operational accuracy.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "M21",
+      "group": "Market and competition",
+      "publisher": "Google Play / AR IT World",
+      "title": "PriceTracker - Drop Alerts",
+      "url": "https://play.google.com/store/apps/details?id=com.itworldpk.pricetracker",
+      "publication_or_update_date": "Conflicting retrieved variants: 2026-08-30 direct page; 2026-10-03 site-linked US page",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "About this app; Data safety; Developer",
+      "classification": [
+        "VERIFIED FACT",
+        "COMPANY CLAIM"
+      ],
+      "evidence": "VERIFIED FACT: package com.itworldpk.pricetracker identifies AR IT World/Abdul Ur Rehman in Pakistan. COMPANY CLAIM: 90-day history and push alerts. Contains ads; device-ID data collection/sharing declared.",
+      "limitations": "Direct India-localized retrieval showed 5+ downloads; redirected US view showed 10+. Do not present either as a settled current total or infer growth from differently cached/localized views. No installation.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "M22",
+      "group": "Market and competition",
+      "publisher": "TrendCompare",
+      "title": "TrendCompare - Pakistan fashion comparison",
+      "url": "https://www.trendcompare.pk/",
+      "publication_or_update_date": "Page claims snapshot 2026-10-08",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Hero; live snapshot; footer; extension link",
+      "classification": [
+        "COMPANY CLAIM"
+      ],
+      "evidence": "COMPANY CLAIM: fashion comparison with hourly history, Urdu/English discovery and operator TrendCompare (Private) Limited. Page links exact Chrome listing and reports 33 brands in one section, 23 elsewhere, 8+ in AI panel.",
+      "limitations": "Corporate identity and counters not independently audited. Differing product surfaces/timeframes might explain coverage counts; they are not one verified live denominator. Fashion alternatives need not be identical products.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "M23",
+      "group": "Market and competition",
+      "publisher": "Google Chrome Web Store / trendcompare.pk",
+      "title": "TrendCompare.pk — Price Compare",
+      "url": "https://chromewebstore.google.com/detail/trendcomparepk-%E2%80%94-price-co/dfpidboekphclmhnlfeibkhikahffmce",
+      "publication_or_update_date": "2026-04-24; version 1.0.3",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Overview; Developer; Privacy",
+      "classification": [
+        "VERIFIED FACT",
+        "COMPANY CLAIM"
+      ],
+      "evidence": "VERIFIED FACT: ID dfpidboekphclmhnlfeibkhikahffmce, linked trendcompare.pk, 14 users and one rating in snapshot. COMPANY CLAIM: on-page fashion comparison/history for 22 brands; website-content handling disclosed.",
+      "limitations": "Store count is neither whole-platform adoption nor proof of active use. No installation, history, variant or comparison audit.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "M24",
+      "group": "Market and competition",
+      "publisher": "Statcounter Global Stats",
+      "title": "Desktop vs Mobile vs Tablet Market Share Pakistan",
+      "url": "https://gs.statcounter.com/platform-market-share/desktop-mobile-tablet/pakistan",
+      "publication_or_update_date": "September 2026 data period",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Top summary table",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "VERIFIED FACT: retrieved September 2026 page-view share table reports desktop 50.61%, mobile 48.42%, tablet 0.97%.",
+      "limitations": "Sample of instrumented website page views, not households, people, online buyers or revenue. Includes laptops in desktop. Recent data may be revised; cannot estimate extension TAM from these shares.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "M25",
+      "group": "Market and competition",
+      "publisher": "Statcounter Global Stats",
+      "title": "Frequently Asked Questions",
+      "url": "https://gs.statcounter.com/faq",
+      "publication_or_update_date": "Not displayed",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Methodology; laptops; update/revision timing",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "VERIFIED FACT: methodology uses page views on participating sites, does not apply population weights, includes laptops with desktop, and permits revisions for 45 days after publication.",
+      "limitations": "Methodology is original publisher documentation; sampling coverage may differ from shopping-specific behavior. Do not call browser-share numbers a representative consumer survey.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "M26",
+      "group": "Market and competition",
+      "publisher": "Pakistan Bureau of Statistics",
+      "title": "HIES - Household Integrated Economic Survey",
+      "url": "https://www.pbs.gov.pk/hies/",
+      "publication_or_update_date": "2024-25 survey; final-release page dated 2026-01-02; this page update not displayed",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Key Indicators: Percentage households with computer/laptop/internet/mobile/smartphone, 2024-25 vs 2018-19",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "VERIFIED FACT: year-labeled 2024-25 table reports 11% households with desktop/laptop/tablet, 96% mobile/smartphone, and 70% internet; computer measure urban16%, rural7%.",
+      "limitations": "Household availability, including tablets, is not desktop shopping share or individual adoption. Search snippet selected older 2018-19 values 14%/95%; underlying year-labeled table used. Full social PDF too large to retrieve; presentation screenshots returned placeholders, so no visual-table audit claimed.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "M27",
+      "group": "Market and competition",
+      "publisher": "Gallup Pakistan / Gallup & Gilani Pakistan",
+      "title": "Online purchasing in the last six months - 16 December 2025 press release",
+      "url": "https://gallup.com.pk/wp/wp-content/uploads/2025/12/English-16-December-2025.pdf",
+      "publication_or_update_date": "2025-12-16; fieldwork 2025-11-17 to 2025-12-02",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "PDF page index1 (second PDF page): question, results and methodology",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "VERIFIED FACT: original release reports 8% yes, 91% no and 1% no answer for any online purchase in previous six months; 961 CATI respondents across urban/rural areas of four provinces.",
+      "limitations": "Poll incidence is not transaction frequency or mouse-category demand; national representativeness is publisher's methodological claim. Do not project to a 2026 shopper count; search relative publication age differed from printed date.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "M28",
+      "group": "Market and competition",
+      "publisher": "Gallup Pakistan / Gallup & Gilani Pakistan",
+      "title": "Platform used for most recent online purchase - 18 December 2025 press release",
+      "url": "https://gallup.com.pk/wp/wp-content/uploads/2025/12/English-18-December-2025.pdf",
+      "publication_or_update_date": "2025-12-18; fieldwork 2025-11-17 to 2025-12-02",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "PDF page index1 (second PDF page): question, results and methodology",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "VERIFIED FACT: original release reports Daraz52% and local online store16% for most recent purchase among respondents who purchased online in prior six months.",
+      "limitations": "Filtered subgroup count not given; overall 961 and stated overall error margin must not be assigned to this subgroup. Not 52% of all Pakistanis, current GMV share or proof of extension demand.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "M29",
+      "group": "Market and competition",
+      "publisher": "Google Chrome Help",
+      "title": "Install and manage extensions",
+      "url": "https://support.google.com/chrome/answer/2664769?hl=en",
+      "publication_or_update_date": "Not displayed",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Install an extension; Install on your phone",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "VERIFIED FACT: official guide describes desktop extensions; the phone action adds an extension to desktop, with confirmation on the computer. Work/school policies may block installations.",
+      "limitations": "Do not advertise a standard Chrome extension as running within mobile Chrome or a retailer's app. No mobile device/installation test performed.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "M30",
+      "group": "Market and competition",
+      "publisher": "Shophive",
+      "title": "Logitech M650 Signature Wireless & Bluetooth Mouse",
+      "url": "https://www.shophive.com/logitech-m650-signature-wireless-bluetooth-mouse/",
+      "publication_or_update_date": "Not displayed",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Product price, colors and More Information",
+      "classification": [
+        "OBSERVED IN TEST"
+      ],
+      "evidence": "OBSERVED IN TEST (public text retrieval): PKR8,199 item price, separate PKR742/month installment headline, retailer SKU S61194, White/Gray/Pink selection and one-year manufacturer-warranty statement; delivery language scoped to Lahore.",
+      "limitations": "No purchase, stock confirmation, variant selection, delivery quote or warranty fulfillment tested. Retailer SKU must not be mistaken for manufacturer part number; price not a persistent quote or access license.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "M31",
+      "group": "Market and competition",
+      "publisher": "Logitech",
+      "title": "Signature M650 Wireless Mice",
+      "url": "https://www.logitech.com/en-us/shop/p/m650-signature-wireless-mouse",
+      "publication_or_update_date": "Not displayed",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Size selector; The perfect fit for your hand",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "VERIFIED FACT: manufacturer's page distinguishes M650, M650 L and M650 L Left and multiple colors; model-family title alone does not identify one physical variant.",
+      "limitations": "US product information supports taxonomy, not Pakistani price, stock, warranty, authorization or local SKU mapping.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "M32",
+      "group": "Market and competition",
+      "publisher": "Federal Board of Revenue, Government of Pakistan",
+      "title": "Mobile Devices Regularization - DIRBS",
+      "url": "https://urdu.fbr.gov.pk/mobile-devices-regularization-dirbs/51149/131261",
+      "publication_or_update_date": "Not displayed; links a 2024 order and earlier rules",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "DIRBS description and PTA verification link",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "VERIFIED FACT: official information describes compliance/registration/blocking of devices on local mobile networks and links PTA device verification.",
+      "limitations": "Supports why handset comparisons need explicit status evidence; not a tax estimate, legal clearance or proof about any listing. Handsets are outside first category.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "M33",
+      "group": "Market and competition",
+      "publisher": "Farq",
+      "title": "TP-Link Archer AX55 AX3000 Dual Band Gigabit Wi-Fi 6 Router",
+      "url": "https://farq.pk/product/tp-link-archer-ax55-ax3000-dual-band-gigabit-wi-fi-6-router",
+      "publication_or_update_date": "Not displayed; chart labels changed between indexed/retrieved views",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Best price; Compare stores; Price Breakdown and Availability",
+      "classification": [
+        "OBSERVED IN TEST"
+      ],
+      "evidence": "OBSERVED IN TEST (public text retrieval): headline identifies PakByte PKR25,200 as best/lowest while same page's availability breakdown marks PakByte out of stock and EezePC PKR29,990 in stock.",
+      "limitations": "One purposively inspected server/search-rendered page outside chosen category. Establishes an internal display discrepancy in retrieved content; does not establish live backend, retailer price accuracy, overall error rate or false advertising.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "D01",
+      "group": "Data access and commercial rights",
+      "publisher": "Daraz Pakistan",
+      "title": "Terms and Conditions",
+      "url": "https://www.daraz.pk/terms-conditions/",
+      "publication_or_update_date": "Not displayed; terms say changes effective when posted",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "2E Licence to Access the Site; 2S Termination",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Personal-use licence excludes commercial reuse, listing/price collection and extraction tools without appropriate permission.",
+      "limitations": "Published contract text, not a determination of enforceability or clearance for any exact local-processing flow.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "D02",
+      "group": "Data access and commercial rights",
+      "publisher": "Daraz Open Platform documentation hosted by Alibaba",
+      "title": "Seller authorization introduction",
+      "url": "https://jaq-doc.alibaba.com/docs/doc.htm?articleId=120222&docType=1&treeId=754",
+      "publication_or_update_date": "Updated 2023-03-27, displayed on page",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Seller authorization introduction; authorization steps",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Seller business data access requires the seller's authorization and access token.",
+      "limitations": "Official mirror; primary open.daraz.com pages failed or returned loading. No credentials, account or API request tested. Example country fields contain inconsistencies; confirm current Pakistan contract.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "D03",
+      "group": "Data access and commercial rights",
+      "publisher": "Daraz Open Platform documentation hosted by Alibaba",
+      "title": "Daraz Open Platform Developer Agreement",
+      "url": "https://jaq-doc.alibaba.com/docs/doc.htm?articleId=120227&docType=1&treeId=754",
+      "publication_or_update_date": "Updated 2021-08-01, displayed on page",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "3.1 fees; 5.2 limited copies; 6.2 display/commingling; 7 restrictions; 14 termination",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Restrictive content licence with freshness and deletion obligations; not an unrestricted public catalog or history licence.",
+      "limitations": "Contains incongruous marketplace-domain examples. Applicability/current Pakistan contract must be confirmed. No contract accepted or access granted.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "D04",
+      "group": "Data access and commercial rights",
+      "publisher": "Daraz Pakistan",
+      "title": "Affiliate-program navigation and retrieved landing destination",
+      "url": "https://pages.daraz.pk/wow/i/pk/landingpage/daraz-affiliate-program?hybrid=1",
+      "publication_or_update_date": "Not displayed",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Affiliate navigation from site terms; landing page retrieval",
+      "classification": [
+        "OBSERVED IN TEST"
+      ],
+      "evidence": "Official affiliate navigation was present, but the link redirected to a generic homepage in public retrieval.",
+      "limitations": "Observation of retrieval only, not a logged-in or installed test. Does not establish direct program closure. Current Pakistan affiliate agreement and payout terms remain unverified.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "D05",
+      "group": "Data access and commercial rights",
+      "publisher": "PriceOye",
+      "title": "Terms & Condition",
+      "url": "https://priceoye.pk/terms",
+      "publication_or_update_date": "Not retrieved",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Public terms URL",
+      "classification": [
+        "UNKNOWN"
+      ],
+      "evidence": "Retrieval exposed only two image links rather than readable terms.",
+      "limitations": "Terms text unverified. No inference that restrictions or private licensing programs are absent.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "D06",
+      "group": "Data access and commercial rights",
+      "publisher": "PriceOye",
+      "title": "Fair Usage",
+      "url": "https://priceoye.pk/fair-usage",
+      "publication_or_update_date": "Not displayed",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Acceptable Use; Activities That May Lead to Account Restrictions",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Policy describes personal consumer use, account restrictions and misuse/automation affecting activity or platform integrity.",
+      "limitations": "Mostly consumer/account conduct. It does not explicitly establish either a public-page processing licence or a project-specific automation approval.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "D07",
+      "group": "Data access and commercial rights",
+      "publisher": "Shophive",
+      "title": "Help",
+      "url": "https://www.shophive.com/help",
+      "publication_or_update_date": "Not displayed; footer copyright not treated as policy date",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Help/policy and company navigation",
+      "classification": [
+        "OBSERVED IN TEST"
+      ],
+      "evidence": "Public support/policy navigation was readable; no scoped commercial catalog or affiliate grant established from this research.",
+      "limitations": "Absence in inspected pages/search is not proof no partner program exists. Several other direct Shophive requests failed.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "D08",
+      "group": "Data access and commercial rights",
+      "publisher": "Mega.pk",
+      "title": "Mega.pk Terms of Service",
+      "url": "https://www.mega.pk/terms_of_services.php",
+      "publication_or_update_date": "Not displayed",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "2 Product Information; 7 Intellectual Property; 9 Modifications; 12 Changes to Terms",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Site terms reserve content rights and say prices/availability may change; no public commercial data licence identified.",
+      "limitations": "Does not establish permission for collection, caching, history, or redistribution. Browser page title was Payment Methods but body heading identifies terms.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "D09",
+      "group": "Data access and commercial rights",
+      "publisher": "Mega.pk",
+      "title": "Homepage and apparent RSS navigation",
+      "url": "https://www.mega.pk/",
+      "publication_or_update_date": "Not displayed",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Footer RSS Feeds link; click result",
+      "classification": [
+        "OBSERVED IN TEST"
+      ],
+      "evidence": "The retrieved RSS navigation resolved to the homepage, not a validated feed.",
+      "limitations": "Public text retrieval behavior only. No RSS schema, access rights or update frequency verified.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "D10",
+      "group": "Data access and commercial rights",
+      "publisher": "FlexOffers",
+      "title": "Daraz (PK) Affiliate Program",
+      "url": "https://www.flexoffers.com/affiliate-programs/daraz-pk-affiliate-program/",
+      "publication_or_update_date": "Last update 2025-01-24, displayed on page",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Program availability notice near end; historical payout description",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "The page states that this program is not currently offered in its system, despite retained historical payout copy.",
+      "limitations": "Network listing, not the direct Daraz contract. Exclude as an eligible route and exclude historical commission rates from base economics.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "D11",
+      "group": "Data access and commercial rights",
+      "publisher": "Competition Commission of Pakistan",
+      "title": "Guidelines: Section 10 — Deceptive Marketing Practices",
+      "url": "https://cc.gov.pk/assets/images/guidlines/deceptive_marketing_guidelines_03_april%202023.pdf",
+      "publication_or_update_date": "2023-04-03, cover date",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Printed pp. 7, 10, 14–18: substantiation, comparison, disclosure, warranty, endorsements, e-commerce",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Regulator guidance covers evidence for claims/comparisons, material disclosures and endorsement connections.",
+      "limitations": "Guidelines explain application, not an approval of this product; current law and exact implementation require qualified review. PDF screenshots requested for printed pp. 10 and 16; no original empirical market data.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "D12",
+      "group": "Data access and commercial rights",
+      "publisher": "Senate of Pakistan",
+      "title": "Bill Summary: The Personal Data Protection Bill, 2023",
+      "url": "https://senate.gov.pk/en/billsummary.php?bid=1182",
+      "publication_or_update_date": "Notice 2023-02-03; introduction 2023-02-13; record update date not displayed",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Private Members' Bill; stage table and remarks",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "This specific bill's record states disposal following withdrawal from committee, not passage into law.",
+      "limitations": "Do not conflate this specific private member's bill with MoITT proposals or all later legislation. Nationwide data-protection-law status not comprehensively established.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "D13",
+      "group": "Data access and commercial rights",
+      "publisher": "Shophive",
+      "title": "Logitech Store in Pakistan",
+      "url": "https://www.shophive.com/store/logitech",
+      "publication_or_update_date": "Not displayed",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Public catalog cards: Logitech M171 Wireless Mouse; Logitech Wireless Mouse B175",
+      "classification": [
+        "COMPANY CLAIM"
+      ],
+      "evidence": "Relevant mouse listings make Shophive a concrete prospective data-partner discussion for the selected category.",
+      "limitations": "Category relevance only; stock, warranty, authenticity, authorization as a distributor, feed rights, and willingness not verified. Dynamic results differ from search snippets; no product dataset reused.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "D14",
+      "group": "Data access and commercial rights",
+      "publisher": "Daraz Open Platform documentation hosted by Alibaba",
+      "title": "List a product on Daraz",
+      "url": "https://jaq-doc.alibaba.com/docs/doc.htm?articleId=120317&docType=1&treeId=754",
+      "publication_or_update_date": "Updated 2021-09-27, displayed on page",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Category attributes; product creation example",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Tutorial concerns seller listing/management and illustrates product identity, SKU, warranty and price fields.",
+      "limitations": "Illustrative legacy schema is not a tested current Pakistan catalog API, endpoint authorization, coverage guarantee or licence for republication.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "D15",
+      "group": "Data access and commercial rights",
+      "publisher": "Naheed.pk",
+      "title": "Affiliate Program Overview — primary search result and failed full-page retrieval",
+      "url": "https://www.naheed.pk/affiliate/account/welcome",
+      "publication_or_update_date": "Not displayed in retrieved search result",
+      "date_context": "Date is the displayed publication/update, data period or explicitly qualified retrieval status; not assumed policy effective date.",
+      "access_date": "2026-10-08",
+      "section": "Search-indexed overview invitation; full-page retrieval unavailable",
+      "classification": [
+        "COMPANY CLAIM",
+        "UNKNOWN"
+      ],
+      "evidence": "Official-domain search result invites an affiliate/referral application; direct opening returned 403 Forbidden.",
+      "limitations": "Application lead only. Full terms, current account eligibility, extension traffic approval, rates, attribution, payout and catalog/history rights remain unverified. No login or application attempted. Search snippet not treated as a completed integration or contract.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T01",
+      "group": "Platform, security and operations",
+      "publisher": "Google Chrome",
+      "title": "The extension service worker lifecycle",
+      "url": "https://developer.chrome.com/docs/extensions/develop/concepts/service-workers/lifecycle",
+      "publication_or_update_date": "2023-05-02",
+      "date_context": "displayed page/recommendation date",
+      "access_date": "2026-10-08",
+      "section": "Idle and shutdown; persist data",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Event worker lifetime and persisted state.",
+      "limitations": "Page timestamp is not the effective date of every version-specific paragraph.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T02",
+      "group": "Platform, security and operations",
+      "publisher": "Google Chrome",
+      "title": "chrome.storage API",
+      "url": "https://developer.chrome.com/docs/extensions/reference/api/storage",
+      "publication_or_update_date": "2026-09-11",
+      "date_context": "displayed page/recommendation date",
+      "access_date": "2026-10-08",
+      "section": "Storage areas; setAccessLevel; quotas",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Local quota, access restrictions, sync/session behavior.",
+      "limitations": "Documentation reviewed; storage behavior not tested.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T03",
+      "group": "Platform, security and operations",
+      "publisher": "Google Chrome",
+      "title": "The activeTab permission",
+      "url": "https://developer.chrome.com/docs/extensions/develop/concepts/activeTab",
+      "publication_or_update_date": "2012-09-21",
+      "date_context": "displayed page/recommendation date",
+      "access_date": "2026-10-08",
+      "section": "Temporary permission; invoking activeTab",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "User-triggered access and origin-navigation revocation.",
+      "limitations": "Historical displayed date; browser version behavior requires testing.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T04",
+      "group": "Platform, security and operations",
+      "publisher": "Google Chrome",
+      "title": "chrome.scripting API",
+      "url": "https://developer.chrome.com/docs/extensions/reference/api/scripting",
+      "publication_or_update_date": "2026-09-11",
+      "date_context": "displayed page/recommendation date",
+      "access_date": "2026-10-08",
+      "section": "Manifest; targets; execution worlds",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "scripting plus activeTab or host access; isolated execution.",
+      "limitations": "No script injected during research.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T05",
+      "group": "Platform, security and operations",
+      "publisher": "Google Chrome",
+      "title": "chrome.sidePanel API",
+      "url": "https://developer.chrome.com/docs/extensions/reference/api/sidePanel",
+      "publication_or_update_date": "2026-09-11",
+      "date_context": "displayed page/recommendation date",
+      "access_date": "2026-10-08",
+      "section": "Permissions; availability; open",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Side-panel surface and user-gesture opening.",
+      "limitations": "Rejected as first-release surface; no installed UI test.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T06",
+      "group": "Platform, security and operations",
+      "publisher": "Google Chrome",
+      "title": "chrome.alarms API",
+      "url": "https://developer.chrome.com/docs/extensions/reference/api/alarms",
+      "publication_or_update_date": "2026-10-04",
+      "date_context": "displayed page/recommendation date",
+      "access_date": "2026-10-08",
+      "section": "Device sleep; persistence; create",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Sleep/missed events; persistence flag Chrome150+; delays.",
+      "limitations": "Do not apply newly documented fields to untested older browsers.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T07",
+      "group": "Platform, security and operations",
+      "publisher": "Google Chrome",
+      "title": "chrome.notifications API",
+      "url": "https://developer.chrome.com/docs/extensions/reference/api/notifications",
+      "publication_or_update_date": "2026-09-21",
+      "date_context": "displayed page/recommendation date",
+      "access_date": "2026-10-08",
+      "section": "Permissions; getPermissionLevel; create",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Browser notifications and user enablement check.",
+      "limitations": "No promise of delivery while browser is closed; not tested.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T08",
+      "group": "Platform, security and operations",
+      "publisher": "Google Chrome Web Store",
+      "title": "Quality guidelines",
+      "url": "https://developer.chrome.com/docs/webstore/program-policies/quality-guidelines",
+      "publication_or_update_date": "2024-07-10",
+      "date_context": "displayed page/recommendation date",
+      "access_date": "2026-10-08",
+      "section": "Single purpose; helpful browsing companion",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Narrow purpose and non-disruptive interface.",
+      "limitations": "Policy text, not approval of proposed product.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T09",
+      "group": "Platform, security and operations",
+      "publisher": "Google Chrome Web Store",
+      "title": "Use of Permissions",
+      "url": "https://developer.chrome.com/docs/webstore/program-policies/permissions",
+      "publication_or_update_date": "2022-11-01",
+      "date_context": "displayed page/recommendation date",
+      "access_date": "2026-10-08",
+      "section": "Minimum and necessary permissions",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "No permission collection for hypothetical future features.",
+      "limitations": "Policy text; actual manifest not built.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T10",
+      "group": "Platform, security and operations",
+      "publisher": "Google Chrome Web Store",
+      "title": "Updated Privacy Policy & Secure Handling Requirements",
+      "url": "https://developer.chrome.com/docs/webstore/program-policies/user-data-faq",
+      "publication_or_update_date": "2016-04-23",
+      "date_context": "displayed page/recommendation date",
+      "access_date": "2026-10-08",
+      "section": "Q3/Q9/Q14; Limited Use FAQ",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Local handling still disclosed; FAQ mentions encryption at rest.",
+      "limitations": "Displayed date is anomalously older than referenced later changes; not a reliable effective date.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T11",
+      "group": "Platform, security and operations",
+      "publisher": "Google Chrome Web Store",
+      "title": "Limited Use",
+      "url": "https://developer.chrome.com/docs/webstore/program-policies/limited-use",
+      "publication_or_update_date": "2022-11-01",
+      "date_context": "displayed page/recommendation date",
+      "access_date": "2026-10-08",
+      "section": "Permitted purposes, transfers and derived data",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Browsing-derived data stays subject to purpose and use restrictions.",
+      "limitations": "Consent does not waive prohibited uses.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T12",
+      "group": "Platform, security and operations",
+      "publisher": "Google Chrome Web Store",
+      "title": "Additional Requirements for Manifest V3",
+      "url": "https://developer.chrome.com/docs/webstore/program-policies/mv3-requirements/",
+      "publication_or_update_date": "2024-04-03",
+      "date_context": "displayed page/recommendation date",
+      "access_date": "2026-10-08",
+      "section": "Self-contained logic; allowed remote interactions",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Bundled logic; remote data cannot become executable commands.",
+      "limitations": "Documented exceptions exist but are unnecessary here.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T13",
+      "group": "Platform, security and operations",
+      "publisher": "Google Chrome Web Store",
+      "title": "Affiliate Ads",
+      "url": "https://developer.chrome.com/docs/webstore/program-policies/affiliate-ads",
+      "publication_or_update_date": "2025-03-11",
+      "date_context": "displayed page/recommendation date",
+      "access_date": "2026-10-08",
+      "section": "Disclosure; benefit; related action; violations",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Transparent tangible benefit plus related action; no hidden referrals.",
+      "limitations": "Comparison-only benefit is not presumed sufficient; merchant approval also required.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T14",
+      "group": "Platform, security and operations",
+      "publisher": "Google Chrome",
+      "title": "Register your developer account",
+      "url": "https://developer.chrome.com/docs/webstore/register",
+      "publication_or_update_date": "2024-02-13",
+      "date_context": "displayed page/recommendation date",
+      "access_date": "2026-10-08",
+      "section": "Registration; supported countries and regions",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Registration fee required; Pakistan listed as supported.",
+      "limitations": "Does not establish this founder's successful payment or approval.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T15",
+      "group": "Platform, security and operations",
+      "publisher": "Google Chrome / Kevin Bay",
+      "title": "Empower your team with expanded roles in the Developer Dashboard",
+      "url": "https://developer.chrome.com/blog/cws-role-expansion-developer-dashboard",
+      "publication_or_update_date": "2026-04-28",
+      "date_context": "displayed page/recommendation date",
+      "access_date": "2026-10-08",
+      "section": "Add and manage members for your publisher",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "New publisher requires $5 registration.",
+      "limitations": "Payment checkout, tax and bank charges not tested.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T16",
+      "group": "Platform, security and operations",
+      "publisher": "Cloudflare",
+      "title": "Workers limits",
+      "url": "https://developers.cloudflare.com/workers/platform/limits/",
+      "publication_or_update_date": "2026-09-05",
+      "date_context": "displayed page/recommendation date",
+      "access_date": "2026-10-08",
+      "section": "Account plan limits; CPU; daily requests; cron wall time",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Free request, CPU, subrequest and cron limits; failure codes.",
+      "limitations": "Shared account usage; no deployment benchmark.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T17",
+      "group": "Platform, security and operations",
+      "publisher": "Cloudflare",
+      "title": "D1 pricing",
+      "url": "https://developers.cloudflare.com/d1/platform/pricing/",
+      "publication_or_update_date": "2026-04-21",
+      "date_context": "displayed page/recommendation date",
+      "access_date": "2026-10-08",
+      "section": "Billing metrics; definitions; exhaustion FAQ",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Row quotas, index overhead, storage and exhaustion.",
+      "limitations": "Requests are not rows scanned; root cost model must include index writes.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T18",
+      "group": "Platform, security and operations",
+      "publisher": "Cloudflare",
+      "title": "D1 limits",
+      "url": "https://developers.cloudflare.com/d1/platform/limits/",
+      "publication_or_update_date": "2026-04-21",
+      "date_context": "displayed page/recommendation date",
+      "access_date": "2026-10-08",
+      "section": "Limits table; concurrency",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Free per-database cap, database count, restore period and queries.",
+      "limitations": "500MB/database is distinct from account storage total.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T19",
+      "group": "Platform, security and operations",
+      "publisher": "Cloudflare",
+      "title": "Workers pricing",
+      "url": "https://developers.cloudflare.com/workers/platform/pricing/",
+      "publication_or_update_date": "2026-10-02",
+      "date_context": "displayed page/recommendation date",
+      "access_date": "2026-10-08",
+      "section": "Free and Paid plan introduction",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Free default; Paid minimum $5/month; usage terms.",
+      "limitations": "Optional product costs and paid overages require separate accounting.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T20",
+      "group": "Platform, security and operations",
+      "publisher": "Cloudflare",
+      "title": "Workers product page",
+      "url": "https://www.cloudflare.com/products/workers/",
+      "publication_or_update_date": "Not displayed/established",
+      "date_context": "not resolved",
+      "access_date": "2026-10-08",
+      "section": "Build without boundaries",
+      "classification": [
+        "COMPANY CLAIM"
+      ],
+      "evidence": "Advertises starting free without a credit card.",
+      "limitations": "COMPANY CLAIM; signup and Pakistan account-specific availability not tested.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T21",
+      "group": "Platform, security and operations",
+      "publisher": "Cloudflare",
+      "title": "Self-Serve Subscription Agreement",
+      "url": "https://www.cloudflare.com/terms/",
+      "publication_or_update_date": "2025-09-12",
+      "date_context": "displayed page/recommendation date",
+      "access_date": "2026-10-08",
+      "section": "2.1; 2.2; 2.6; 2.7",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Entity use, quotas, free termination and acceptable-use obligations.",
+      "limitations": "No blanket non-commercial-only clause found; interpretation is not legal clearance.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T22",
+      "group": "Platform, security and operations",
+      "publisher": "Cloudflare",
+      "title": "Service-Specific Terms — Developer Platform",
+      "url": "https://www.cloudflare.com/service-specific-terms-developer-platform/",
+      "publication_or_update_date": "2026-09-28",
+      "date_context": "displayed page/recommendation date",
+      "access_date": "2026-10-08",
+      "section": "Cloudflare Developer Platform; Workers/D1",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Platform limits, content/license responsibilities and retention limits.",
+      "limitations": "Read alongside master agreement and selected product plan.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T23",
+      "group": "Platform, security and operations",
+      "publisher": "WXT maintainers",
+      "title": "WXT repository",
+      "url": "https://github.com/wxt-dev/wxt",
+      "publication_or_update_date": "Not displayed/established",
+      "date_context": "not resolved",
+      "access_date": "2026-10-08",
+      "section": "README; license",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Framework-agnostic MV3 tooling; MIT license.",
+      "limitations": "Repository metadata, not security or compatibility certification.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T24",
+      "group": "Platform, security and operations",
+      "publisher": "WXT maintainers",
+      "title": "WXT releases",
+      "url": "https://github.com/wxt-dev/wxt/releases",
+      "publication_or_update_date": "Not displayed/established",
+      "date_context": "not resolved",
+      "access_date": "2026-10-08",
+      "section": "Latest release label; 0.21 changes",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Retrieved release list labels wxt0.21.2 Latest.",
+      "limitations": "Date displays 28 Jul without year; immutable tagged fetch failed; latest may change.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T25",
+      "group": "Platform, security and operations",
+      "publisher": "WXT maintainers",
+      "title": "Upgrading WXT",
+      "url": "https://wxt.dev/guide/resources/upgrading.html",
+      "publication_or_update_date": "Not displayed/established",
+      "date_context": "not resolved",
+      "access_date": "2026-10-08",
+      "section": "0.20 to0.21 minimum tool versions",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Node>=22, TypeScript>=5.4; supported Vite peer ranges.",
+      "limitations": "Version-floor statements do not prove a particular dependency combination works.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T26",
+      "group": "Platform, security and operations",
+      "publisher": "OpenJS / Node.js",
+      "title": "Node.js releases",
+      "url": "https://nodejs.org/en/about/previous-releases",
+      "publication_or_update_date": "Not displayed/established",
+      "date_context": "not resolved",
+      "access_date": "2026-10-08",
+      "section": "Release schedule and branch status",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Node24 LTS and Node22 LTS; Node20 EOL.",
+      "limitations": "Choose a patched release at build time; environment not changed.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T27",
+      "group": "Platform, security and operations",
+      "publisher": "esbuild maintainers",
+      "title": "esbuild releases",
+      "url": "https://github.com/evanw/esbuild/releases",
+      "publication_or_update_date": "Not displayed/established",
+      "date_context": "not resolved",
+      "access_date": "2026-10-08",
+      "section": "Latest release",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Retrieved release list labels0.28.2 Latest.",
+      "limitations": "Date displays08 Aug without year; exact package engine metadata unavailable.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T28",
+      "group": "Platform, security and operations",
+      "publisher": "esbuild maintainers",
+      "title": "esbuild repository",
+      "url": "https://github.com/evanw/esbuild",
+      "publication_or_update_date": "Not displayed/established",
+      "date_context": "not resolved",
+      "access_date": "2026-10-08",
+      "section": "License; features",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "MIT license and TypeScript bundling support.",
+      "limitations": "No install or release build performed.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T29",
+      "group": "Platform, security and operations",
+      "publisher": "esbuild maintainers",
+      "title": "Content types",
+      "url": "https://esbuild.github.io/content-types/",
+      "publication_or_update_date": "Not displayed/established",
+      "date_context": "not resolved",
+      "access_date": "2026-10-08",
+      "section": "TypeScript",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Type erasure/transformation is separate from type checking.",
+      "limitations": "Requires separate compiler checks; version pairing untested.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T30",
+      "group": "Platform, security and operations",
+      "publisher": "Microsoft",
+      "title": "TypeScript repository",
+      "url": "https://github.com/microsoft/TypeScript",
+      "publication_or_update_date": "Not displayed/established",
+      "date_context": "not resolved",
+      "access_date": "2026-10-08",
+      "section": "License; installation",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Apache2.0 compiler source and official package direction.",
+      "limitations": "Transitive/package license review still needed.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T31",
+      "group": "Platform, security and operations",
+      "publisher": "Microsoft",
+      "title": "TypeScript releases",
+      "url": "https://github.com/microsoft/TypeScript/releases",
+      "publication_or_update_date": "Not displayed/established",
+      "date_context": "not resolved",
+      "access_date": "2026-10-08",
+      "section": "Latest release",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Retrieved release list labelsv7.0.2 Latest.",
+      "limitations": "Release-list label, not a tested dependency recommendation; asset dates vary.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T32",
+      "group": "Platform, security and operations",
+      "publisher": "W3C",
+      "title": "Web Content Accessibility Guidelines2.2",
+      "url": "https://www.w3.org/TR/WCAG22/",
+      "publication_or_update_date": "2024-12-12",
+      "date_context": "displayed page/recommendation date",
+      "access_date": "2026-10-08",
+      "section": "AA conformance; keyboard; contrast; focus; target size; status messages",
+      "classification": [
+        "VERIFIED FACT",
+        "ASSUMPTION"
+      ],
+      "evidence": "Appropriate proposed target is WCAG2.2 AA.",
+      "limitations": "Recommendation edition date; no conformance audit performed.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T33",
+      "group": "Platform, security and operations",
+      "publisher": "OpenJS / Node.js",
+      "title": "Node24 test runner documentation",
+      "url": "https://nodejs.org/docs/latest-v24.x/api/test.html",
+      "publication_or_update_date": "Not displayed/established",
+      "date_context": "not resolved",
+      "access_date": "2026-10-08",
+      "section": "Test runner; stability; execution",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Stable node:test runner for emitted JavaScript.",
+      "limitations": "DOM/browser behavior requires separate testing.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T34",
+      "group": "Platform, security and operations",
+      "publisher": "Supabase",
+      "title": "Pricing",
+      "url": "https://supabase.com/pricing",
+      "publication_or_update_date": "Not displayed/established",
+      "date_context": "not resolved",
+      "access_date": "2026-10-08",
+      "section": "Free plan comparison",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "500MB DB,5GB egress,2 active projects; inactivity pausing.",
+      "limitations": "Alternative only; signup, commercial terms and exhaustion details not fully qualified.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T35",
+      "group": "Platform, security and operations",
+      "publisher": "Supabase",
+      "title": "Terms of Service",
+      "url": "https://supabase.com/terms",
+      "publication_or_update_date": "Not displayed/established",
+      "date_context": "not resolved",
+      "access_date": "2026-10-08",
+      "section": "Use rights; commercial/non-commercial use; amendments",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Terms contemplate commercial customers.",
+      "limitations": "No free-tier-specific commercial assurance or account test.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T36",
+      "group": "Platform, security and operations",
+      "publisher": "Google Chrome Web Store",
+      "title": "Handling Requirements",
+      "url": "https://developer.chrome.com/docs/webstore/program-policies/data-handling",
+      "publication_or_update_date": "2022-11-01",
+      "date_context": "displayed page/recommendation date",
+      "access_date": "2026-10-08",
+      "section": "Secure handling; authentication/payment restrictions",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Secure user-data handling and modern encrypted transmission.",
+      "limitations": "Read alongside FAQ stronger at-rest wording.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T37",
+      "group": "Platform, security and operations",
+      "publisher": "Google Chrome Web Store",
+      "title": "Disclosure Requirements",
+      "url": "https://developer.chrome.com/docs/webstore/program-policies/disclosure-requirements",
+      "publication_or_update_date": "2022-11-01",
+      "date_context": "displayed page/recommendation date",
+      "access_date": "2026-10-08",
+      "section": "Prominent disclosure and affirmative consent",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Any user-data handling needs pre-install prominent disclosure and informed consent; later changes disclosed.",
+      "limitations": "Verify agreement of listing, pre-install notice, onboarding and actual behavior.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T38",
+      "group": "Platform, security and operations",
+      "publisher": "Google Chrome",
+      "title": "Message passing",
+      "url": "https://developer.chrome.com/docs/extensions/develop/concepts/messaging",
+      "publication_or_update_date": "2025-12-03",
+      "date_context": "displayed page/recommendation date",
+      "access_date": "2026-10-08",
+      "section": "Security considerations",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Content-script messages are less trustworthy than privileged extension contexts.",
+      "limitations": "Design applied to later adapters only.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T39",
+      "group": "Platform, security and operations",
+      "publisher": "Google Chrome",
+      "title": "Match patterns",
+      "url": "https://developer.chrome.com/docs/extensions/develop/concepts/match-patterns",
+      "publication_or_update_date": "2012-09-18",
+      "date_context": "displayed page/recommendation date",
+      "access_date": "2026-10-08",
+      "section": "Scheme, host and path; special cases",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Host permissions are origin-scoped; path is ignored.",
+      "limitations": "Historical displayed timestamp; exact manifest scopes remain empty in P0.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "T40",
+      "group": "Platform, security and operations",
+      "publisher": "Google Chrome",
+      "title": "Add a popup",
+      "url": "https://developer.chrome.com/docs/extensions/develop/ui/add-popup",
+      "publication_or_update_date": "2023-12-12",
+      "date_context": "displayed page date",
+      "access_date": "2026-10-08",
+      "section": "Popup opening and focus",
+      "classification": [
+        "VERIFIED FACT"
+      ],
+      "evidence": "Popup closes when browser focus moves outside it.",
+      "limitations": "Surface behavior was documented, not installed-tested.",
+      "method": "Public web text/source retrieval; underlying page opened where available. See limitations for failed/partial retrieval."
+    },
+    {
+      "id": "R01",
+      "group": "Bounded public-browser observations",
+      "publisher": "Farq",
+      "title": "M650 search results",
+      "url": "https://farq.pk/search?q=Logitech%20M650",
+      "publication_or_update_date": "Not displayed/established",
+      "date_context": "Observed approximately 07:45–07:57 UTC (12:45–12:57 Asia/Karachi), 8 October 2026.",
+      "access_date": "2026-10-08",
+      "section": "Search results after asynchronous loading",
+      "classification": [
+        "OBSERVED IN TEST"
+      ],
+      "evidence": "Public browser showed 12 product results and nine stores; results included different M650 variants and other products.",
+      "limitations": "Displayed counts not independently audited. Related search results do not establish an exact-match error.",
+      "method": "Public remote Chrome browser; visible search/navigation and reading only. No login, checkout or installation. R02–R06 later text retrieval failed."
+    },
+    {
+      "id": "R02",
+      "group": "Bounded public-browser observations",
+      "publisher": "Farq",
+      "title": "M650 graphite detail",
+      "url": "https://farq.pk/product/logitech-signature-m650-wireless-mouse-graphite",
+      "publication_or_update_date": "Not displayed/established",
+      "date_context": "Observed approximately 07:45–07:57 UTC (12:45–12:57 Asia/Karachi), 8 October 2026.",
+      "access_date": "2026-10-08",
+      "section": "Offer list, stock and price presentation",
+      "classification": [
+        "OBSERVED IN TEST"
+      ],
+      "evidence": "Four-store comparison showed one in-stock offer and TechArc item price PKR 7,000; also claimed free delivery.",
+      "limitations": "History graph was visible but not validated. No complete variant, checkout, shipping or stock verification.",
+      "method": "Public remote Chrome browser; visible search/navigation and reading only. No login, checkout or installation. R02–R06 later text retrieval failed."
+    },
+    {
+      "id": "R03",
+      "group": "Bounded public-browser observations",
+      "publisher": "TechArc",
+      "title": "Linked M650 graphite offer",
+      "url": "https://techarc.pk/logitech-signature-m650-wireless-mouse-graphite/?utm_source=farq",
+      "publication_or_update_date": "Not displayed/established",
+      "date_context": "Observed approximately 07:45–07:57 UTC (12:45–12:57 Asia/Karachi), 8 October 2026.",
+      "access_date": "2026-10-08",
+      "section": "Item title, price, SKU, warranty and stock/price banner",
+      "classification": [
+        "OBSERVED IN TEST"
+      ],
+      "evidence": "Displayed PKR 7,000, graphite M650, SKU 910-006262 and one-year warranty; banner requested price/stock confirmation.",
+      "limitations": "Retailer statements, no transaction or independent warranty/authorization validation. Shipping to a selected location not checked.",
+      "method": "Public remote Chrome browser; visible search/navigation and reading only. No login, checkout or installation. R02–R06 later text retrieval failed."
+    },
+    {
+      "id": "R04",
+      "group": "Bounded public-browser observations",
+      "publisher": "Farq",
+      "title": "M185 detail",
+      "url": "https://farq.pk/product/logitech-m185-wireless-mouse",
+      "publication_or_update_date": "Not displayed/established",
+      "date_context": "Observed approximately 07:45–07:57 UTC (12:45–12:57 Asia/Karachi), 8 October 2026.",
+      "access_date": "2026-10-08",
+      "section": "Best-price headline, offer list and stock breakdown",
+      "classification": [
+        "OBSERVED IN TEST"
+      ],
+      "evidence": "Best-price headline PKR 2,900 from Galaxy.pk; both listed offers out of stock, breakdown zero in stock.",
+      "limitations": "Internal presentation discrepancy only; no linked retailer stock verification and no general error-rate inference.",
+      "method": "Public remote Chrome browser; visible search/navigation and reading only. No login, checkout or installation. R02–R06 later text retrieval failed."
+    },
+    {
+      "id": "R05",
+      "group": "Bounded public-browser observations",
+      "publisher": "Flashi",
+      "title": "M650 search results",
+      "url": "https://flashi.pk/?q=Logitech+M650",
+      "publication_or_update_date": "Not displayed/established",
+      "date_context": "Observed approximately 07:45–07:57 UTC (12:45–12:57 Asia/Karachi), 8 October 2026.",
+      "access_date": "2026-10-08",
+      "section": "Search cards, range and stock label",
+      "classification": [
+        "OBSERVED IN TEST"
+      ],
+      "evidence": "Three cards showed M650 L grey PKR 8,930, M650 white PKR 8,930 and M650 graphite PKR 9,999; white offer labeled in stock.",
+      "limitations": "Different variants in search are not proof of exact-match merging. Claimed saving across result range not accepted as realized saving.",
+      "method": "Public remote Chrome browser; visible search/navigation and reading only. No login, checkout or installation. R02–R06 later text retrieval failed."
+    },
+    {
+      "id": "R06",
+      "group": "Bounded public-browser observations",
+      "publisher": "Naheed",
+      "title": "Linked white M650 offer",
+      "url": "https://www.naheed.pk/logitech-signature-wireless-mouse-white-m650",
+      "publication_or_update_date": "Not displayed/established",
+      "date_context": "Observed approximately 07:45–07:57 UTC (12:45–12:57 Asia/Karachi), 8 October 2026.",
+      "access_date": "2026-10-08",
+      "section": "Product identity, price and availability",
+      "classification": [
+        "OBSERVED IN TEST"
+      ],
+      "evidence": "Displayed white M650 at PKR 8,930 and explicitly out of stock, disagreeing with Flashi stock label while item amounts agreed.",
+      "limitations": "One contemporaneous stock-label disagreement; real inventory/cause unresolved. Full equivalence and checkout costs not tested.",
+      "method": "Public remote Chrome browser; visible search/navigation and reading only. No login, checkout or installation. R02–R06 later text retrieval failed."
+    }
+  ]
+}

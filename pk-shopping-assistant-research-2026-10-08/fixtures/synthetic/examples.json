@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "provenance": "synthetic_owned",
+  "notice": "Fictional test data; no market evidentiary value.",
+  "examples": [
+    {
+      "id": "synthetic-complete-a",
+      "retailer": "Fictional Cedar Shop",
+      "url": "https://cedar.example.invalid/products/aster-one-s",
+      "model": "Aster One S",
+      "mpn": "SYN-ASTER-S",
+      "itemMinor": 700000,
+      "shippingMinor": 30000,
+      "conclusion": "Complete synthetic delivered total for one stated context"
+    },
+    {
+      "id": "synthetic-unknown-delivery-b",
+      "retailer": "Fictional Willow Shop",
+      "url": "https://willow.example.invalid/products/aster-one-s",
+      "model": "Aster One S",
+      "mpn": "SYN-ASTER-S",
+      "itemMinor": 680000,
+      "shippingMinor": null,
+      "conclusion": "Delivery remains unknown; no delivered ranking"
+    },
+    {
+      "id": "synthetic-mismatch-c",
+      "retailer": "Fictional Indigo Shop",
+      "url": "https://indigo.example.invalid/products/aster-one-l",
+      "model": "Aster One L",
+      "mpn": "SYN-ASTER-L",
+      "itemMinor": 650000,
+      "shippingMinor": 25000,
+      "conclusion": "Different model; no claimed savings against Aster One S"
+    }
+  ]
+}
