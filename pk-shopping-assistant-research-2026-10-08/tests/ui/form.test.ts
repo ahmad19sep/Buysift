@@ -2,11 +2,14 @@ import { strict as assert } from 'node:assert';
 import { test } from 'node:test';
 
 import {
+  OFFER_FORM_FIELD_NAMES,
   buildManualOffer,
   describeKnownPrice,
   emptyOfferForm,
   formFieldsFromConfirmed,
+  previewPriceText,
 } from '../../src/ui/popup/form.js';
+import { DRAFT_FIELD_NAMES } from '../../src/storage/types.js';
 
 function idFactory(start = 1): () => string {
   let next = start;
@@ -18,6 +21,7 @@ function completeFields(): ReturnType<typeof emptyOfferForm> {
     ...emptyOfferForm(),
     brand: 'Fictional Northstar',
     model: 'Aster One S',
+    mpnMode: 'known',
     mpn: 'SYN-ASTER-S',
     size: 'small_medium',
     handedness: 'ambidextrous',
@@ -25,6 +29,7 @@ function completeFields(): ReturnType<typeof emptyOfferForm> {
     region: 'PK test region',
     receiverOrPack: 'Bluetooth and USB receiver; single mouse',
     retailer: 'Fictional Cedar Shop',
+    sellerMode: 'known',
     seller: 'Fictional Cedar Seller',
     url: 'https://cedar.example.invalid/products/aster-one-s?utm_source=test#ignored',
     itemPrice: 'Rs 7,000',
@@ -37,7 +42,8 @@ function completeFields(): ReturnType<typeof emptyOfferForm> {
     shippingMode: 'amount',
     shippingAmount: '300',
     taxMode: 'included',
-    feesMode: 'none',
+    feesComplete: 'yes',
+    codFeeMode: 'none',
     discountMode: 'none',
     locationScope: 'Karachi',
     paymentContext: 'standard',
@@ -78,7 +84,7 @@ test('complete manual form creates linked validated records and an immutable obs
   assert.equal(result.needsDetails, false);
   assert.equal(result.confirmed.offer.id, result.observation.offerId);
   assert.equal(result.confirmed.variant.id, result.observation.identitySnapshot.id);
-  assert.equal(result.confirmed.accessRecord.id, result.observation.accessRecordId);
+  assert.equal(result.confirmed.access.id, result.observation.accessRecordId);
   assert.equal(result.observation.sourceKind, 'manual');
   assert.equal(result.observation.checkedAt, null);
   assert.equal(result.observation.parserVersion, null);
@@ -90,14 +96,15 @@ test('complete manual form creates linked validated records and an immutable obs
 
 test('unknowns remain explicit and prevent a complete delivered-price conclusion', () => {
   const fields = completeFields();
-  fields.mpn = '';
-  fields.size = '';
-  fields.handedness = '';
-  fields.seller = '';
+  fields.mpnMode = 'unknown';
+  fields.size = 'unknown';
+  fields.handedness = 'unknown';
+  fields.sellerMode = 'unknown';
   fields.warrantyMode = 'unknown';
   fields.shippingMode = 'unknown';
   fields.taxMode = 'unknown';
-  fields.feesMode = 'unknown';
+  fields.feesComplete = '';
+  fields.codFeeMode = 'unknown';
   fields.discountMode = 'unknown';
   fields.locationScope = '';
   fields.paymentContext = '';
@@ -163,3 +170,44 @@ test('editing identity creates a new revision while a price-only observation kee
   assert.equal(third.observation.variantRevision, 2);
 });
 
+
+test('a known COD fee without the completeness confirmation keeps the delivered total unknown', () => {
+  const fields = completeFields();
+  fields.feesComplete = '';
+  fields.codFeeMode = 'amount';
+  fields.codFeeAmount = '150';
+  const incomplete = buildManualOffer(fields, options());
+  assert.equal(incomplete.ok, true);
+  if (!incomplete.ok) return;
+  assert.equal(incomplete.observation.price.mandatoryFees.state, 'known');
+  assert.match(describeKnownPrice(incomplete.observation.price), /mandatory fees not entered/);
+
+  fields.feesComplete = 'yes';
+  const complete = buildManualOffer(fields, options());
+  assert.equal(complete.ok, true);
+  if (!complete.ok) return;
+  assert.equal(describeKnownPrice(complete.observation.price), 'PKR 7,450 delivered under entered conditions');
+  const restored = formFieldsFromConfirmed(complete.confirmed, complete.observation);
+  assert.equal(restored.feesComplete, 'yes');
+  assert.equal(restored.codFeeMode, 'amount');
+  assert.equal(restored.codFeeAmount, '150.00');
+});
+
+test('hidden seller and part-number text is ignored unless the user chose to enter it', () => {
+  const fields = completeFields();
+  fields.sellerMode = 'unknown';
+  fields.mpnMode = 'unknown';
+  const result = buildManualOffer(fields, options());
+  assert.equal(result.ok, true);
+  if (!result.ok) return;
+  assert.equal(result.confirmed.seller.label.state, 'unknown');
+  assert.equal(result.confirmed.variant.mpn.state, 'unknown');
+});
+
+test('form field names, draft field names and the price preview stay aligned', () => {
+  assert.deepEqual([...OFFER_FORM_FIELD_NAMES], [...DRAFT_FIELD_NAMES]);
+  assert.deepEqual(Object.keys(emptyOfferForm()).sort(), [...DRAFT_FIELD_NAMES].sort());
+  assert.match(previewPriceText(emptyOfferForm()), /Enter an item price/);
+  assert.match(previewPriceText({ ...emptyOfferForm(), itemPrice: '7,000.005' }), /no more than 2 decimal places/);
+  assert.equal(previewPriceText(completeFields()), 'PKR 7,300 delivered under entered conditions');
+});

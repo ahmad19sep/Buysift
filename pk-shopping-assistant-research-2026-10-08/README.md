@@ -2,7 +2,7 @@
 
 **Research date: 8 October 2026. Status: research complete for the accessible desk/public-interface scope; field validation and launch gates remain open.**
 
-**Implementation update, 8 October 2026:** Foundation and domain/fixtures (stages 01–02) are implemented following separate requests. The project now has a private popup shell, verified build tools, pure domain rules and a frozen synthetic benchmark. Offer entry and persistence are not implemented yet. See the [foundation](docs/research/test-results/2026-10-08-foundation.md) and [domain](docs/research/test-results/2026-10-08-domain-and-fixtures.md) verification reports.
+**Implementation update, 8 October 2026:** Foundation, domain/fixtures and the local extension slice (stages 01–03) are implemented following separate requests. The private popup now offers manual offer entry with separate drafts, a saved shortlist, provisional comparison of up to three offers, personal observation history, JSON export, deletion and read-only recovery, all stored only in `chrome.storage.local`. See the [foundation](docs/research/test-results/2026-10-08-foundation.md), [domain](docs/research/test-results/2026-10-08-domain-and-fixtures.md) and [local slice](docs/research/test-results/2026-10-08-local-extension-slice.md) verification reports. An installed Chrome 155 test has not been performed.
 
 ## Read this first
 
@@ -47,13 +47,13 @@ Source access dates are not publication/effective dates. Statistics retain their
 
 ## Next action
 
-Review the narrow experiment and the source-access gate. Customer/task research and merchant permission remain consequential. Foundation and domain/fixtures are complete; the **next software milestone** is [03 — Local extension slice](prompts/03-local-extension-slice.md). Completing local rules does not unlock live sources or public distribution.
+Review the narrow experiment and the source-access gate. Customer/task research and merchant permission remain consequential. Foundation, domain/fixtures and the local extension slice are complete; the **next software milestone** is the local lane of [06 — Comparison and history](prompts/06-comparison-and-history.md). Completing local rules does not unlock live sources or public distribution.
 
 Retailer adapters, a hosted feed service, public comparison/history, affiliates and background alerts cannot be unlocked just by reaching their prompt number. Each prompt lists its own prerequisites and stop conditions.
 
 ## Delivered versus not performed
 
-The following describes the original research run. Subsequent implementation and actual checks are recorded separately in the [foundation](docs/research/test-results/2026-10-08-foundation.md) and [domain](docs/research/test-results/2026-10-08-domain-and-fixtures.md) reports.
+The following describes the original research run. Subsequent implementation and actual checks are recorded separately in the [foundation](docs/research/test-results/2026-10-08-foundation.md), [domain](docs/research/test-results/2026-10-08-domain-and-fixtures.md) and [local slice](docs/research/test-results/2026-10-08-local-extension-slice.md) reports.
 
 Delivered: source-backed findings, bounded public-interface observations, specifications, study instruments, calculations, source/evidence registers, a roadmap and future implementation prompts. The arithmetic and document checks are research verification.
 
@@ -75,4 +75,4 @@ On PowerShell, `npm.cmd` can be used for these commands. Keep optional dependenc
 
 `npm test` rebuilds the package, compiles tests to `.test-dist/` and runs Node's test runner against explicit file paths. `npm run benchmark` evaluates only the 120 synthetic development pairs. `npm run benchmark:holdout` is an explicit post-freeze command for the separate 80-case holdout; do not add it to routine tests. `npm run build` replaces only generated `dist/` and copies the manifest, popup HTML/CSS and bundled JavaScript. `node_modules/`, `dist/` and `.test-dist/` are ignored by Git. The selected development target is Chrome 155; the detected Chrome version is 155.0.8059.40, but the extension has not been installed or tested in it.
 
-The shell requests only `storage`, restricts its access to trusted extension contexts and writes no shopping records. It has no offer-entry controls and does not yet call the domain modules. Storage, forms and the manual notebook flow belong to stage 03. Retailer adapters and publication remain separately gated.
+The popup requests only `storage` and restricts its access to trusted extension contexts. It writes nothing until the local notice is accepted, and it never fetches entered URLs; opening a shop link is an explicit user action. Shopping records stay in this browser profile until the user deletes them. P0 supports one editing window. Retailer adapters and publication remain separately gated.

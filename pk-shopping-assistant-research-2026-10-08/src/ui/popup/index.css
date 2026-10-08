@@ -1102,3 +1102,25 @@ progress::-webkit-progress-value {
     border: 1px solid CanvasText;
   }
 }
+
+.text-link {
+  margin-right: 0.5rem;
+  color: var(--brand-strong);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.text-link:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.observation-list li[data-revision="earlier"] {
+  color: var(--muted);
+}
+
+.section-heading > .button {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}

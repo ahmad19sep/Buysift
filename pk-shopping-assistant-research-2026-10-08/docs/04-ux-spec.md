@@ -1,6 +1,6 @@
 # User experience specification
 
-**Status: PROPOSED; no interface implemented or accessibility conformance measured.** Read [requirements](03-product-requirements.md), [integrity](07-price-integrity.md) and [security](08-security-privacy-policy.md). Relevant sources: [M31], [T02–T04], [T32], [T40].
+**Status: PROPOSED; the P0 popup was implemented in stage 03 (see the [local slice report](research/test-results/2026-10-08-local-extension-slice.md)); accessibility conformance has not been measured.** Read [requirements](03-product-requirements.md), [integrity](07-price-integrity.md) and [security](08-security-privacy-policy.md). Relevant sources: [M31], [T02–T04], [T32], [T40].
 
 ## One primary surface
 

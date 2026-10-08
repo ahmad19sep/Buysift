@@ -13,11 +13,11 @@ import {
   ValidationError,
 } from '../../domain/index.js';
 import type {
-  AccessRecord,
   Condition,
   Eligibility,
   Evidence,
   Handedness,
+  MandatoryFees,
   Money,
   MouseSize,
   Observation,
@@ -31,53 +31,16 @@ import type {
   Variant,
   Warranty,
 } from '../../domain/index.js';
+import { DRAFT_FIELD_NAMES } from '../../storage/types.js';
+import type { ConfirmedOffer } from '../../storage/types.js';
 
-export const OFFER_FORM_FIELD_NAMES = [
-  'brand',
-  'model',
-  'mpn',
-  'size',
-  'handedness',
-  'color',
-  'region',
-  'receiverOrPack',
-  'retailer',
-  'seller',
-  'url',
-  'itemPrice',
-  'condition',
-  'warrantyMode',
-  'warrantyProvider',
-  'warrantyKind',
-  'warrantyMonths',
-  'warrantyScope',
-  'shippingMode',
-  'shippingAmount',
-  'taxMode',
-  'taxAmount',
-  'feesMode',
-  'feesAmount',
-  'discountMode',
-  'discountAmount',
-  'discountConditions',
-  'locationScope',
-  'paymentContext',
-  'eligibility',
-  'eligibilityDetails',
-  'stock',
-] as const;
+export const OFFER_FORM_FIELD_NAMES = DRAFT_FIELD_NAMES;
 
 export type OfferFormFieldName = typeof OFFER_FORM_FIELD_NAMES[number];
 export type OfferFormFields = Record<OfferFormFieldName, string>;
 
-export interface ConfirmedManualOffer {
-  product: Product;
-  variant: Variant;
-  retailer: Retailer;
-  seller: Seller;
-  offer: Offer;
-  accessRecord: AccessRecord;
-}
+/** The form produces exactly the confirmed records that the local notebook persists. */
+export type ConfirmedManualOffer = ConfirmedOffer;
 
 export interface ManualOfferBuildOptions {
   createId: () => string;
@@ -109,17 +72,19 @@ export function emptyOfferForm(): OfferFormFields {
   return {
     brand: '',
     model: '',
+    mpnMode: 'unknown',
     mpn: '',
-    size: '',
-    handedness: '',
+    size: 'unknown',
+    handedness: 'unknown',
     color: '',
     region: '',
     receiverOrPack: '',
     retailer: '',
+    sellerMode: 'unknown',
     seller: '',
     url: '',
     itemPrice: '',
-    condition: 'new',
+    condition: 'unknown',
     warrantyMode: 'unknown',
     warrantyProvider: '',
     warrantyKind: 'manufacturer',
@@ -129,13 +94,14 @@ export function emptyOfferForm(): OfferFormFields {
     shippingAmount: '',
     taxMode: 'unknown',
     taxAmount: '',
-    feesMode: 'unknown',
-    feesAmount: '',
+    feesComplete: '',
+    codFeeMode: 'unknown',
+    codFeeAmount: '',
     discountMode: 'unknown',
     discountAmount: '',
     discountConditions: '',
     locationScope: '',
-    paymentContext: '',
+    paymentContext: 'unknown',
     eligibility: 'unknown',
     eligibilityDetails: '',
     stock: 'unknown',
@@ -224,16 +190,18 @@ function priceFromFields(fields: OfferFormFields, item: Money, issues: FormIssue
     if (amount !== null) tax = known({ includedInItem: false, additional: amount });
   }
 
+  // A COD fee alone does not establish the complete fee list; only the explicit checkbox does.
   let mandatoryFees: PriceComponents['mandatoryFees'] = unknown('Mandatory payment or handling fees not entered.');
-  if (fields.feesMode === 'none') mandatoryFees = known({ items: [], complete: true });
-  if (fields.feesMode === 'amount') {
-    const amount = parseAmount(fields.feesAmount, 'feesAmount', issues, false);
-    if (amount !== null) {
-      mandatoryFees = known({
-        items: [{ kind: 'other', label: 'Required fee entered by you', amount }],
-        complete: true,
-      });
+  const feesComplete = fields.feesComplete === 'yes';
+  if (feesComplete || fields.codFeeMode === 'none' || fields.codFeeMode === 'amount') {
+    const items: MandatoryFees['items'] = [];
+    let valid = true;
+    if (fields.codFeeMode === 'amount') {
+      const amount = parseAmount(fields.codFeeAmount, 'codFeeAmount', issues, false);
+      if (amount === null) valid = false;
+      else items.push({ kind: 'cod', label: 'COD fee entered by you', amount });
     }
+    if (valid) mandatoryFees = known({ items, complete: feesComplete });
   }
 
   let additionalDiscount: PriceComponents['additionalDiscount'] = unknown('Additional discount not entered.');
@@ -327,7 +295,7 @@ function fieldForPath(path: string): OfferFormFieldName {
     ['price.item', 'itemPrice'],
     ['price.shipping', 'shippingAmount'],
     ['price.tax', 'taxAmount'],
-    ['price.mandatoryFees', 'feesAmount'],
+    ['price.mandatoryFees', 'codFeeAmount'],
     ['price.additionalDiscount', 'discountAmount'],
     ['price.locationScope', 'locationScope'],
     ['price.paymentContext', 'paymentContext'],
@@ -376,7 +344,7 @@ export function buildManualOffer(
       retailer: options.existing.retailer.id,
       seller: options.existing.seller.id,
       offer: options.existing.offer.id,
-      access: options.existing.accessRecord.id,
+      access: options.existing.access.id,
     };
 
   try {
@@ -390,7 +358,9 @@ export function buildManualOffer(
       id: ids.variant,
       productId: ids.product,
       model,
-      mpn: textEvidence(fields.mpn, 'Manufacturer part number not entered.'),
+      mpn: fields.mpnMode === 'known'
+        ? textEvidence(fields.mpn, 'Manufacturer part number not entered.')
+        : unknown('Manufacturer part number not entered.'),
       gtin: unknown('GTIN not entered.'),
       size: enumEvidence<MouseSize>(fields.size, ['small_medium', 'large'], 'Mouse size not entered.'),
       handedness: enumEvidence<Handedness>(
@@ -438,7 +408,7 @@ export function buildManualOffer(
     const sellerDraft: Seller = {
       id: ids.seller,
       retailerId: ids.retailer,
-      label: textEvidence(fields.seller, 'Seller not entered.'),
+      label: fields.sellerMode === 'known' ? textEvidence(fields.seller, 'Seller not entered.') : unknown('Seller not entered.'),
       retailerSellerId: null,
     };
     const offerDraft: Offer = {
@@ -470,8 +440,8 @@ export function buildManualOffer(
       offerDraft.contextRevision += 1;
     }
     const offer = validateOffer(offerDraft);
-    const accessRecord = validateAccessRecord(
-      options.existing?.accessRecord ?? createLocalAccessRecord(ids.access, 'personal_manual'),
+    const access = validateAccessRecord(
+      options.existing?.access ?? createLocalAccessRecord(ids.access, 'personal_manual'),
     );
     const price = priceFromFields(fields, item, issues);
     if (price === null || issues.length > 0) return { ok: false, issues };
@@ -490,7 +460,7 @@ export function buildManualOffer(
       sellerSnapshot: seller,
       offerContextSnapshot: offer,
       sourceKind: 'manual',
-      accessRecordId: accessRecord.id,
+      accessRecordId: access.id,
       observedAt,
       receivedAt: observedAt,
       checkedAt: null,
@@ -504,13 +474,17 @@ export function buildManualOffer(
         : 'unknown',
       status: 'accepted',
       replacesObservationId: null,
-    }, accessRecord);
+    }, access);
 
     const summary = summarizePriceComponents(validatedPrice);
     const needsDetails = variant.mpn.state === 'unknown'
       || variant.size.state === 'unknown'
       || variant.handedness.state === 'unknown'
+      || variant.color.state === 'unknown'
+      || variant.region.state === 'unknown'
+      || variant.receiverOrPack.state === 'unknown'
       || seller.label.state === 'unknown'
+      || (offer.warranty.state === 'known' && offer.warranty.value.scope.state === 'unknown')
       || offer.condition.state === 'unknown'
       || offer.warranty.state === 'unknown'
       || offer.eligibility === 'unknown'
@@ -520,7 +494,7 @@ export function buildManualOffer(
     fields.url = offer.canonicalUrl;
     return {
       ok: true,
-      confirmed: { product, variant, retailer, seller, offer, accessRecord },
+      confirmed: { product, variant, retailer, seller, offer, access },
       observation,
       sanitizedFields: fields,
       needsDetails,
@@ -534,17 +508,19 @@ export function formFieldsFromConfirmed(confirmed: ConfirmedManualOffer, observa
   const fields = emptyOfferForm();
   fields.brand = confirmed.product.brand;
   fields.model = confirmed.variant.model;
+  fields.mpnMode = confirmed.variant.mpn.state;
   fields.mpn = confirmed.variant.mpn.state === 'known' ? confirmed.variant.mpn.value : '';
-  fields.size = confirmed.variant.size.state === 'known' ? confirmed.variant.size.value : '';
-  fields.handedness = confirmed.variant.handedness.state === 'known' ? confirmed.variant.handedness.value : '';
+  fields.size = confirmed.variant.size.state === 'known' ? confirmed.variant.size.value : 'unknown';
+  fields.handedness = confirmed.variant.handedness.state === 'known' ? confirmed.variant.handedness.value : 'unknown';
   fields.color = confirmed.variant.color.state === 'known' ? confirmed.variant.color.value : '';
   fields.region = confirmed.variant.region.state === 'known' ? confirmed.variant.region.value : '';
   fields.receiverOrPack = confirmed.variant.receiverOrPack.state === 'known' ? confirmed.variant.receiverOrPack.value : '';
   fields.retailer = confirmed.retailer.label;
+  fields.sellerMode = confirmed.seller.label.state;
   fields.seller = confirmed.seller.label.state === 'known' ? confirmed.seller.label.value : '';
   fields.url = confirmed.offer.canonicalUrl;
   fields.itemPrice = (observation.price.item.amountMinor / 100).toFixed(2);
-  fields.condition = confirmed.offer.condition.state === 'known' ? confirmed.offer.condition.value : '';
+  fields.condition = confirmed.offer.condition.state === 'known' ? confirmed.offer.condition.value : 'unknown';
   if (confirmed.offer.warranty.state === 'known') {
     fields.warrantyMode = 'details';
     fields.warrantyProvider = confirmed.offer.warranty.value.provider;
@@ -563,9 +539,15 @@ export function formFieldsFromConfirmed(confirmed: ConfirmedManualOffer, observa
     fields.taxAmount = (observation.price.tax.value.additional.amountMinor / 100).toFixed(2);
   }
   if (observation.price.mandatoryFees.state === 'known') {
-    const total = observation.price.mandatoryFees.value.items.reduce((sum, fee) => sum + fee.amount.amountMinor, 0);
-    fields.feesMode = total === 0 ? 'none' : 'amount';
-    fields.feesAmount = (total / 100).toFixed(2);
+    const fees = observation.price.mandatoryFees.value;
+    const cod = fees.items.filter(fee => fee.kind === 'cod');
+    fields.feesComplete = fees.complete ? 'yes' : '';
+    if (cod.length > 0) {
+      fields.codFeeMode = 'amount';
+      fields.codFeeAmount = (cod.reduce((sum, fee) => sum + fee.amount.amountMinor, 0) / 100).toFixed(2);
+    } else {
+      fields.codFeeMode = 'none';
+    }
   }
   if (observation.price.additionalDiscount.state === 'known'
   ) {
@@ -575,7 +557,7 @@ export function formFieldsFromConfirmed(confirmed: ConfirmedManualOffer, observa
     fields.discountConditions = discount.conditions.join('; ');
   }
   fields.locationScope = observation.price.locationScope.state === 'known' ? observation.price.locationScope.value : '';
-  fields.paymentContext = observation.price.paymentContext.state === 'known' ? observation.price.paymentContext.value : '';
+  fields.paymentContext = observation.price.paymentContext.state === 'known' ? observation.price.paymentContext.value : 'unknown';
   fields.eligibility = confirmed.offer.eligibility;
   fields.eligibilityDetails = confirmed.offer.eligibilityDetails.join('; ');
   fields.stock = observation.stock;
@@ -599,10 +581,26 @@ export function describeKnownPrice(price: PriceComponents): string {
     tax: 'tax',
     mandatory_fees: 'mandatory fees',
     additional_discount: 'additional discount',
-    location_scope: 'location',
-    payment_context: 'payment context',
+    location_scope: 'delivery area',
+    payment_context: 'payment method',
     item: 'item price',
   };
   const missing = summary.missing.map(entry => labels[entry] ?? entry).join(', ');
   return `${item} + ${missing || 'details'} not entered`;
+}
+
+/** Live review text for the form; it never creates records and reports field problems instead. */
+export function previewPriceText(rawFields: Readonly<Record<string, string>>): string {
+  const fields = normalizeOfferFormFields(rawFields);
+  const issues: FormIssue[] = [];
+  if (fields.itemPrice.trim().length === 0) return 'Enter an item price to review the known amount and missing components.';
+  const item = parseAmount(fields.itemPrice, 'itemPrice', issues, true);
+  if (item === null) return issues[0]?.message ?? 'Enter a valid item price.';
+  const price = priceFromFields(fields, item, issues);
+  if (price === null) return issues[0]?.message ?? 'Check the price details.';
+  try {
+    return describeKnownPrice(validatePriceComponents(price));
+  } catch {
+    return 'Check the price details.';
+  }
 }

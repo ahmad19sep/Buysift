@@ -1,21 +1,19 @@
-const statusElement = document.getElementById('preview-status');
+import { ChromeStorageArea, LocalNotebook } from '../../storage/index.js';
+import { PopupApp } from './app.js';
 
-async function initializePreview(): Promise<void> {
-  if (!(statusElement instanceof HTMLParagraphElement)) {
-    return;
-  }
-
+async function startPopup(): Promise<void> {
   try {
-    await chrome.storage.local.setAccessLevel({ accessLevel: 'TRUSTED_CONTEXTS' });
-    statusElement.textContent = 'Preview ready.';
-    statusElement.dataset.state = 'ready';
+    await new PopupApp(new LocalNotebook(new ChromeStorageArea())).start();
   } catch {
-    statusElement.textContent =
-      'Local storage setup failed. Close and reopen this preview to try again.';
-    statusElement.dataset.state = 'error';
-  } finally {
-    statusElement.setAttribute('aria-busy', 'false');
+    const message = document.getElementById('recovery-message');
+    if (message !== null) message.textContent = 'The local notebook could not start. Close and reopen the popup to try again.';
+    for (const id of ['loading-view', 'onboarding-view', 'declined-view', 'notebook-shell']) {
+      const element = document.getElementById(id);
+      if (element !== null) element.hidden = true;
+    }
+    const recovery = document.getElementById('recovery-view');
+    if (recovery !== null) recovery.hidden = false;
   }
 }
 
-void initializePreview();
+void startPopup();

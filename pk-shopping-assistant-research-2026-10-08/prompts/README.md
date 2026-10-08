@@ -1,6 +1,6 @@
 # Implementation prompts
 
-**Status: research output, with subsequent implementation updates on 8 October 2026.** Stages 01–02 were executed after separate implementation requests; their outcomes are recorded in the [foundation](../docs/research/test-results/2026-10-08-foundation.md) and [domain](../docs/research/test-results/2026-10-08-domain-and-fixtures.md) reports. Stages 03–08 have not been executed. Each prompt becomes implementation instructions when the founder requests the relevant stage and its dependencies are met.
+**Status: research output, with subsequent implementation updates on 8 October 2026.** Stages 01–03 were executed after separate implementation requests; their outcomes are recorded in the [foundation](../docs/research/test-results/2026-10-08-foundation.md), [domain](../docs/research/test-results/2026-10-08-domain-and-fixtures.md) and [local slice](../docs/research/test-results/2026-10-08-local-extension-slice.md) reports. Stages 04–08 have not been executed. Each prompt becomes implementation instructions when the founder requests the relevant stage and its dependencies are met.
 
 Copy one complete prompt into the coding session whose workspace contains this document pack. Start by reading the project `AGENTS.md`. Preserve existing files and reconcile any conflicting specifications before edits. Resolve dependency versions from current official provenance at implementation time; this research's release observations are not a lockfile.
 
@@ -8,10 +8,10 @@ Copy one complete prompt into the coding session whose workspace contains this d
 |---|---|---|
 | 01 | [Foundation](01-foundation.md) | Completed; typecheck, four package-policy tests and build passed; installed-browser verification remains pending |
 | 02 | [Domain and fixtures](02-domain-and-fixtures.md) | Completed; 35 tests passed and the 120-case synthetic development benchmark matched all authored labels; holdout not executed |
-| 03 | [Local extension slice](03-local-extension-slice.md) | Next eligible milestone; domain rules are available, storage/UI not started |
+| 03 | [Local extension slice](03-local-extension-slice.md) | Completed; 63 tests, benchmark and build passed; scripted Chromium 141 smoke test passed; installed Chrome 155 and accessibility checks pending |
 | 04 | [Eligible retailer adapter](04-eligible-retailer-adapter.md) | **BLOCKED:** no source grant demonstrated |
 | 05 | [Optional backend](05-optional-backend.md) | **BLOCKED:** no qualifying feed/service decision |
-| 06 | [Comparison and history](06-comparison-and-history.md) | Local lane can follow 03 directly; live lane remains blocked |
+| 06 | [Comparison and history](06-comparison-and-history.md) | Next eligible milestone (local lane); live lane remains blocked |
 | 07 | [Achievable alerts](07-achievable-alerts.md) | **DEFERRED:** not part of P0 |
 | 08 | [Release hardening](08-release-hardening.md) | Private lane follows local slice/history; public lane needs all public gates |
 

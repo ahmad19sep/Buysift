@@ -1,7 +1,6 @@
 import {
   MAX_OBSERVATIONS,
   MAX_ORDINARY_DATA_BYTES,
-  MAX_SAVED_OFFERS,
   STORAGE_CONTROL_RESERVE_BYTES,
   STORAGE_HARD_LIMIT_BYTES,
   STORAGE_WARNING_BYTES,
@@ -19,6 +18,7 @@ import {
 } from './types.js';
 import type {
   ConsentRecordV1,
+  DeleteAllControlV1,
   InitializationResult,
   MigrationControlV1,
   NotebookExportV1,
@@ -317,6 +317,8 @@ export class LocalNotebook {
       const timestamp = validateUtc(this.now(), 'updatedAt');
       const observations = [...(existing?.observations ?? [])];
       if (observation !== null) observations.push(observation);
+      // The envelope validator also bounds this list; report it as the user-facing limit, not a format error.
+      if (observations.length > MAX_OBSERVATIONS) throw capacityError(['observation_limit']);
       const candidate = validateEnvelopeV1({
         schemaVersion: STORAGE_SCHEMA_VERSION,
         offerId: id,
@@ -377,8 +379,9 @@ export class LocalNotebook {
       const entries = await this.readAll();
       const { envelopes, issues } = this.readEnvelopes(entries);
       const initializationIssues = this.initialization?.issues ?? [];
+      // One quarantine entry per stored key; the initialization diagnosis takes precedence.
       const allIssues = [...initializationIssues, ...issues].filter((issue, index, array) =>
-        array.findIndex(candidate => candidate.key === issue.key && candidate.message === issue.message) === index);
+        array.findIndex(candidate => candidate.key === issue.key) === index);
       const quarantined = allIssues
         .filter(issue => Object.hasOwn(entries, issue.key))
         .map(issue => ({ key: issue.key, value: clone(entries[issue.key]), issue: clone(issue) }));
@@ -610,13 +613,18 @@ export class LocalNotebook {
   }
 
   private async deleteAllUnsafe(operationId: string, resetConsent: boolean): Promise<StorageCapacity> {
-    const control: RecoveryControlV1 = validateControl({
+    const existing = await this.readAll();
+    if (this.deleteAllTargets(existing, resetConsent).length === 0) {
+      // Nothing to remove: declining on first use or deleting an empty notebook writes nothing.
+      return this.publicCapacity(this.capacityFromEntries(existing));
+    }
+    const control = validateControl({
       schemaVersion: STORAGE_SCHEMA_VERSION,
       operationId,
       type: 'delete_all',
       phase: 'prepared',
       resetConsent,
-    });
+    }) as DeleteAllControlV1;
     await this.write({ [CONTROL_KEY]: control }, 'delete_failed', 'Deletion could not be prepared.');
     try {
       await this.resumeDeleteAll(control);
@@ -629,11 +637,16 @@ export class LocalNotebook {
     return this.publicCapacity(this.capacityFromEntries(await this.readAll()));
   }
 
-  private async resumeDeleteAll(control: Extract<RecoveryControlV1, { type: 'delete_all' }>): Promise<void> {
-    const entries = await this.readAll();
+  private deleteAllTargets(entries: Readonly<Record<string, unknown>>, resetConsent: boolean): string[] {
     const targets = Object.keys(entries).filter(key => key.startsWith(OFFER_KEY_PREFIX)
       || key.startsWith(MIGRATION_STAGE_KEY_PREFIX) || key.startsWith('draft:'));
-    if (control.resetConsent && entries[CONSENT_KEY] !== undefined) targets.push(CONSENT_KEY);
+    if (resetConsent && entries[CONSENT_KEY] !== undefined) targets.push(CONSENT_KEY);
+    return targets;
+  }
+
+  private async resumeDeleteAll(control: DeleteAllControlV1): Promise<void> {
+    const entries = await this.readAll();
+    const targets = this.deleteAllTargets(entries, control.resetConsent);
     if (targets.length > 0) await this.remove(targets, 'delete_failed', 'The local records could not be deleted.');
     const verification = await this.readAll();
     const remaining = targets.filter(key => verification[key] !== undefined);

@@ -142,6 +142,13 @@
             Your 500 saved observations are full. Export or delete entries before recording another.
           </p>
 
+          <p id="saved-comparison-limit" class="message message-warning" role="status" hidden>
+            You can compare up to three offers. Remove one before selecting another.
+          </p>
+          <p id="draft-waiting-message" class="message message-info" role="status" hidden>
+            An unfinished offer draft is saved on this device. Choose &ldquo;Add an offer&rdquo; to continue it.
+          </p>
+
           <div id="empty-notebook" class="empty-state">
             <h3>No offers saved yet.</h3>
             <p>Add an offer yourself or try the clearly labeled synthetic sample.</p>
@@ -207,21 +214,21 @@
                 <label for="retailer-label">Shop or marketplace <span aria-hidden="true">*</span></label>
                 <input
                   id="retailer-label"
-                  name="retailerLabel"
+                  name="retailer"
                   type="text"
                   maxlength="180"
                   required
                   aria-describedby="retailer-label-help retailer-label-error"
                 />
                 <p id="retailer-label-help" class="field-help">For example, the retailer name shown to you.</p>
-                <p id="retailer-label-error" class="field-error" data-field-error="retailerLabel" hidden></p>
+                <p id="retailer-label-error" class="field-error" data-field-error="retailer" hidden></p>
               </div>
 
               <div class="field">
                 <label for="product-url">Public product link <span aria-hidden="true">*</span></label>
                 <input
                   id="product-url"
-                  name="productUrl"
+                  name="url"
                   type="url"
                   inputmode="url"
                   maxlength="2048"
@@ -232,12 +239,12 @@
                 <p id="product-url-help" class="field-help">
                   Use an HTTPS product page. Personal query details are removed before saving.
                 </p>
-                <p id="product-url-error" class="field-error" data-field-error="productUrl" hidden></p>
+                <p id="product-url-error" class="field-error" data-field-error="url" hidden></p>
               </div>
 
               <div class="field">
                 <label for="seller-state">Seller</label>
-                <select id="seller-state" name="sellerState" aria-describedby="seller-state-help">
+                <select id="seller-state" name="sellerMode" aria-describedby="seller-state-help">
                   <option value="unknown">Seller not entered</option>
                   <option value="known">Enter the seller</option>
                 </select>
@@ -249,12 +256,12 @@
                 <label for="seller-label">Seller name</label>
                 <input
                   id="seller-label"
-                  name="sellerLabel"
+                  name="seller"
                   type="text"
                   maxlength="180"
                   aria-describedby="seller-label-error"
                 />
-                <p id="seller-label-error" class="field-error" data-field-error="sellerLabel" hidden></p>
+                <p id="seller-label-error" class="field-error" data-field-error="seller" hidden></p>
               </div>
             </fieldset>
 
@@ -295,7 +302,7 @@
                 <div class="details-content">
                   <div class="field">
                     <label for="mpn-state">Manufacturer part number</label>
-                    <select id="mpn-state" name="mpnState">
+                    <select id="mpn-state" name="mpnMode">
                       <option value="unknown">Not entered</option>
                       <option value="known">Enter a part number</option>
                     </select>
@@ -341,7 +348,7 @@
                     <label for="receiver-pack">Receiver or pack</label>
                     <input
                       id="receiver-pack"
-                      name="receiverPack"
+                      name="receiverOrPack"
                       type="text"
                       maxlength="180"
                       placeholder="Not entered"
@@ -368,9 +375,9 @@
 
               <div class="field">
                 <label for="warranty-state">Warranty</label>
-                <select id="warranty-state" name="warrantyState" aria-describedby="warranty-help">
+                <select id="warranty-state" name="warrantyMode" aria-describedby="warranty-help">
                   <option value="unknown">Provider not entered</option>
-                  <option value="known">Enter warranty details</option>
+                  <option value="details">Enter warranty details</option>
                 </select>
                 <p id="warranty-help" class="field-help">Warranty provider and type can change whether offers are equivalent.</p>
               </div>
@@ -472,7 +479,7 @@
                 <div class="details-content">
                   <div class="field">
                     <label for="shipping-state">Delivery cost</label>
-                    <select id="shipping-state" name="shippingState">
+                    <select id="shipping-state" name="shippingMode">
                       <option value="unknown">Not entered</option>
                       <option value="free">Free, explicitly confirmed</option>
                       <option value="amount">Enter an amount</option>
@@ -493,7 +500,7 @@
 
                   <div class="field">
                     <label for="tax-state">Tax</label>
-                    <select id="tax-state" name="taxState">
+                    <select id="tax-state" name="taxMode">
                       <option value="unknown">Not entered</option>
                       <option value="included">Included in item price</option>
                       <option value="additional">Additional tax amount</option>
@@ -514,7 +521,7 @@
 
                   <div class="field">
                     <label class="check-row" for="fees-complete">
-                      <input id="fees-complete" name="feesComplete" type="checkbox" />
+                      <input id="fees-complete" name="feesComplete" type="checkbox" value="yes" />
                       <span>I entered every mandatory fee, including none</span>
                     </label>
                     <p class="field-help">Leave unchecked when the fee list is not confirmed complete.</p>
@@ -523,7 +530,7 @@
                   <div class="field-grid">
                     <div class="field">
                       <label for="cod-fee-state">COD fee</label>
-                      <select id="cod-fee-state" name="codFeeState">
+                      <select id="cod-fee-state" name="codFeeMode">
                         <option value="unknown">Not entered</option>
                         <option value="none">None, confirmed</option>
                         <option value="amount">Enter an amount</option>
@@ -545,7 +552,7 @@
 
                   <div class="field">
                     <label for="discount-state">Additional discount</label>
-                    <select id="discount-state" name="discountState">
+                    <select id="discount-state" name="discountMode">
                       <option value="unknown">Not confirmed</option>
                       <option value="none">None, confirmed</option>
                       <option value="amount">Enter a separate discount</option>
@@ -676,6 +683,13 @@
               <dd data-detail="recorded-at">Time unavailable</dd>
             </div>
           </dl>
+
+          <p class="card-meta">
+            <a id="offer-detail-link" class="text-link" target="_blank" rel="noopener noreferrer" hidden>
+              Open the shop page
+            </a>
+            <span id="offer-detail-link-note">Opening the link contacts that shop through your browser.</span>
+          </p>
 
           <section class="attention-panel" aria-labelledby="attention-title">
             <h3 id="attention-title">Details needing attention</h3>

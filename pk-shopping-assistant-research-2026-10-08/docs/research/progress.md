@@ -30,6 +30,18 @@ These are synthetic rule-regression results, not real merchant evidence, indepen
 
 Next eligible software milestone: [03 — Local extension slice](../../prompts/03-local-extension-slice.md). Do not automatically advance; adapter, backend, alerts and public release gates remain open.
 
+## Subsequent implementation — local extension slice completed
+
+Stage 03, [Local extension slice](../../prompts/03-local-extension-slice.md), had been started in an earlier session without a progress entry. It left storage, form and popup-markup files that did not typecheck and used three conflicting field-name schemes. On 8 October 2026 the user asked to continue from where it stopped. That authorized finishing stage 03 only.
+
+The existing work was kept and repaired. Draft, form and HTML names now share one list. Fee completeness follows the contracts, and the popup controller now connects onboarding/consent, manual offer entry with separate draft states, saved list, detail/history, comparison of at most three offers, JSON export, deletion and read-only recovery. Storage fixes made this session: declining on first use writes nothing, a 501st observation reports the observation limit, and each quarantined key is exported once.
+
+Actual outcomes: `npm run typecheck` passed. `npm test` passed 63 tests with zero failures (4 package-policy, 31 domain/fixture, 14 storage lifecycle, 8 form, 1 selection, 5 view-model). `npm run benchmark` reproduced all 120 development labels, and `npm run build` passed with the same four-file storage-only package. These ran on Node 22.22.0/npm 10.9.4 in a Linux container, outside the declared Node 24 engines. A scripted headless Chromium 141 smoke test ran on a scratch copy with only the minimum Chrome version lowered. It exercised decline, accept, drafts across reopen, validation, save, observation, comparison rejection, export, deletion, recovery and offline saving, with zero non-extension requests and zero page errors. Details and limits are in the [local slice report](test-results/2026-10-08-local-extension-slice.md).
+
+NOT EXECUTED: installed Chrome 155 toolbar-popup testing, real focus-loss closure, screen-reader/contrast/zoom checks, real-profile quota tests and the sealed holdout. No live source, permission, account, service, spend, outreach, deployment or publication was added.
+
+Next eligible software milestone: [06 — Comparison and history](../../prompts/06-comparison-and-history.md), local lane only. Do not advance automatically.
+
 ## Inputs and operating boundaries
 
 The supplied brief, master prompt, pasted prompt text and ZIP archive were inspected from the provided local copies. Existing inputs were preserved. The brief's founder context was treated as the scenario for this separate research project; no unrelated personal account profile or memory was used or updated.
@@ -92,8 +104,8 @@ Final document checks cover required files, local Markdown targets and source an
 | --- | --- | --- |
 | 1 | Validate the narrow job against normal shopping behavior. | Real qualified participants, consent, task outcomes/critical errors, effort and actual future purchase occasions, using [the study instruments](../09-validation-and-growth.md). |
 | 1 | Obtain sustainable data access for any live integration. | Signed or otherwise verifiable scoped permission, exact methods/fields/uses/retention/costs, representative sample and a revocation contact. |
-| 1 | Continue the selected private prototype one milestone at a time. | Foundation and domain/fixtures are complete; storage and the manual popup remain the next stage. |
-| 2 | Complete installed-browser and private-slice verification. | Build, domain tests and synthetic development benchmark passed. Actual Chrome installation, storage lifecycle, accessibility and sealed holdout checks remain pending. |
+| 1 | Continue the selected private prototype one milestone at a time. | Foundation, domain/fixtures and the local extension slice are complete; local comparison/history (prompt 06) is next. |
+| 2 | Complete installed-browser and private-slice verification. | Build, domain/storage/UI tests, the synthetic development benchmark and a scripted Chromium 141 smoke test passed. Installed Chrome 155 popup, accessibility and sealed holdout checks remain pending. |
 | 2 | Resolve public release privacy/protection and operational details. | Named operator/support contact, reviewable implementation, protection/key-management decision, accurate notices, source grants, release and budget gates. |
 | 3 | Verify business inputs. | Approved traffic and exact SKU rates, qualifying benefit/flow, attribution/reversal terms, payout route/threshold/settlement and real willingness to pay. |
 | 3 | Qualify a backend only if needed. | Licensed public facts and measured row/CPU/egress/storage usage; selected rate/budget mechanism and recoverable operations. |
@@ -101,6 +113,6 @@ Final document checks cover required files, local Markdown targets and source an
 
 ## Continuation point
 
-Read [the decision brief](../00-decision-brief.md) and [access gate](../02-data-access.md) first. Foundation and domain/fixtures have been completed in subsequent tasks; the next eligible prompt is [03 — Local extension slice](../../prompts/03-local-extension-slice.md). Follow **01 → 02 → 03 → 06 → 08** for the private local lane; the numbered adapter, backend and alert prompts remain gated independently. Reverify changing technical dependencies/policies before relying on them.
+Read [the decision brief](../00-decision-brief.md) and [access gate](../02-data-access.md) first. Foundation, domain/fixtures and the local extension slice have been completed in subsequent tasks; the next eligible prompt is [06 — Comparison and history](../../prompts/06-comparison-and-history.md), local lane. Follow **01 → 02 → 03 → 06 → 08** for the private local lane; the numbered adapter, backend and alert prompts remain gated independently. Reverify changing technical dependencies/policies before relying on them.
 
 The founder can reject, narrow or stop the experiment. Completing the documentation establishes a reviewable plan; it does not establish customer value, a legal integration or a viable startup.

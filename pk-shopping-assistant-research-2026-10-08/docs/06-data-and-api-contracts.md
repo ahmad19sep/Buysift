@@ -1,6 +1,6 @@
 # Data and API contracts
 
-**Status: DRAFT SPECIFICATION with a subsequent local-domain implementation.** Stage 02 implemented and tested the P0 types, validation, comparison, price, history, provenance and limit rules described here; persistence/UI and every HTTP endpoint remain unimplemented. See the [domain report](research/test-results/2026-10-08-domain-and-fixtures.md). P0 is local only; every HTTP endpoint below is **conditional P2**. Do not scaffold a server from this document before the access and product gates pass. Sources for platform/access constraints: [D01–D09], [T01–T04], [T16–T18] in [sources](research/sources.md). Domain rules are proposed project decisions.
+**Status: DRAFT SPECIFICATION with a subsequent local-domain implementation.** Stage 02 implemented and tested the P0 types, validation, comparison, price, history, provenance and limit rules described here; stage 03 implemented the local persistence envelope, draft, control/recovery and migration protocol with the popup UI. Every HTTP endpoint remains unimplemented. See the [domain](research/test-results/2026-10-08-domain-and-fixtures.md) and [local slice](research/test-results/2026-10-08-local-extension-slice.md) reports. P0 is local only; every HTTP endpoint below is **conditional P2**. Do not scaffold a server from this document before the access and product gates pass. Sources for platform/access constraints: [D01–D09], [T01–T04], [T16–T18] in [sources](research/sources.md). Domain rules are proposed project decisions.
 
 ## Entity boundaries
 
