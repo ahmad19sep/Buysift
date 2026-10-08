@@ -1,5 +1,7 @@
 import {
+  ACTIVE_HISTORY_WINDOW_MS,
   compareOffers,
+  deduplicateOperations,
   summarizeHistory,
   summarizePriceComponents,
 } from '../../domain/index.js';
@@ -44,13 +46,38 @@ export function isSavedOffer(envelope: OfferEnvelopeV1): envelope is SavedOffer 
   return envelope.confirmed !== null;
 }
 
-/** The most recently observed accepted entry; ties keep the later saved entry. */
+/** IDs of entries that a later correction replaced. They stay stored and visible but leave summaries. */
+export function correctedIds(envelope: OfferEnvelopeV1): Set<string> {
+  return new Set(envelope.observations.flatMap(observation =>
+    observation.replacesObservationId === null ? [] : [observation.replacesObservationId]));
+}
+
+/** Entries that still count: every saved entry except ones replaced by a correction. */
+export function activeObservations(envelope: OfferEnvelopeV1): Observation[] {
+  const corrected = correctedIds(envelope);
+  return envelope.observations.filter(observation => !corrected.has(observation.id));
+}
+
+/** The most recently observed active entry; ties keep the later saved entry. */
 export function latestObservation(envelope: SavedOffer): Observation {
-  let latest = envelope.observations[0] as Observation;
-  for (const observation of envelope.observations) {
+  const active = activeObservations(envelope);
+  let latest = (active[0] ?? envelope.observations[0]) as Observation;
+  for (const observation of active) {
     if (Date.parse(observation.observedAt) >= Date.parse(latest.observedAt)) latest = observation;
   }
   return latest;
+}
+
+/** A correction may change only price and availability, so the entry must use the current details. */
+export function canCorrect(envelope: SavedOffer, observation: Observation): boolean {
+  if (correctedIds(envelope).has(observation.id)) return false;
+  const { product, variant, retailer, seller, offer } = envelope.confirmed;
+  if (observation.variantRevision !== variant.identityRevision || observation.offerContextRevision !== offer.contextRevision) {
+    return false;
+  }
+  return JSON.stringify([observation.productSnapshot, observation.identitySnapshot, observation.retailerSnapshot,
+    observation.sellerSnapshot, observation.offerContextSnapshot])
+    === JSON.stringify([product, variant, retailer, seller, offer]);
 }
 
 export function formatRecordedAt(iso: string): string {
@@ -239,30 +266,60 @@ export function stockText(observation: Observation): string {
   return STOCK_LABELS[observation.stock] ?? 'Availability not confirmed.';
 }
 
+export type HistoryEntryStatus =
+  | 'daily_sample'
+  | 'same_day'
+  | 'corrected'
+  | 'earlier_details'
+  | 'older'
+  | 'future'
+  | 'duplicate';
+
 export interface HistoryEntryView {
+  observationId: string;
   text: string;
+  status: HistoryEntryStatus;
+  statusText: string;
   earlier: boolean;
+  correctable: boolean;
 }
 
 export interface HistoryView {
   summary: string;
+  facts: string[];
   entries: HistoryEntryView[];
 }
 
-/** Lists the user's own entries; it never fills gaps or claims a lowest-ever price. */
+const STATUS_TEXT: Record<HistoryEntryStatus, string> = {
+  daily_sample: 'Counted as this day’s sample',
+  same_day: 'Same day — a later entry is that day’s sample',
+  corrected: 'Corrected by a later entry — kept, not counted',
+  earlier_details: 'Earlier identity or terms — a separate series, not counted',
+  older: 'Older than 90 days — still stored, not counted',
+  future: 'Time is in the future — not counted',
+  duplicate: 'Repeated save of the same entry — not counted',
+};
+
+function karachiDate(iso: string): string {
+  return new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Karachi', day: 'numeric', month: 'short', year: 'numeric' })
+    .format(Date.parse(iso));
+}
+
+function shortDate(dateKey: string): string {
+  return new Intl.DateTimeFormat('en-GB', { timeZone: 'UTC', day: 'numeric', month: 'short' })
+    .format(Date.parse(`${dateKey}T00:00:00Z`));
+}
+
+/**
+ * The user's own entries only: no filled gaps, no trend from one point, no "lowest ever".
+ * Summaries use active entries of the current identity/terms revision, item price basis,
+ * the rolling 90-day window and one sample per Asia/Karachi day.
+ */
 export function historyView(envelope: SavedOffer, now: Date): HistoryView {
   const { variant, offer } = envelope.confirmed;
-  const sorted = [...envelope.observations].sort((left, right) => Date.parse(right.observedAt) - Date.parse(left.observedAt));
-  const entries = sorted.map(observation => {
-    const earlier = observation.variantRevision !== variant.identityRevision
-      || observation.offerContextRevision !== offer.contextRevision;
-    const prefix = earlier ? 'Earlier details · ' : '';
-    return {
-      text: `${prefix}${formatRecordedAt(observation.observedAt)} · Item ${formatPkr(observation.price.item)} · ${priceConclusion(observation.price)} · ${stockText(observation)}`,
-      earlier,
-    };
-  });
-  const summary = summarizeHistory(envelope.observations, {
+  const corrected = correctedIds(envelope);
+  const active = activeObservations(envelope);
+  const summary = summarizeHistory(active, {
     offerId: offer.id,
     variantRevision: variant.identityRevision,
     offerContextRevision: offer.contextRevision,
@@ -270,25 +327,64 @@ export function historyView(envelope: SavedOffer, now: Date): HistoryView {
     locationScope: null,
     paymentContext: null,
   }, now);
-  if (envelope.observations.length === 0) return { summary: 'No observations yet.', entries };
-  const parts: string[] = [];
+  const sampleIds = new Set(summary.samples.map(sample => sample.observationId));
+  const unique = new Set(deduplicateOperations(envelope.observations).map(observation => observation.id));
+  const byId = new Map(envelope.observations.map(observation => [observation.id, observation]));
+  const nowMs = now.getTime();
+
+  const sorted = [...envelope.observations].sort((left, right) =>
+    Date.parse(right.observedAt) - Date.parse(left.observedAt) || Date.parse(right.receivedAt) - Date.parse(left.receivedAt));
+  const entries = sorted.map((observation): HistoryEntryView => {
+    const earlier = observation.variantRevision !== variant.identityRevision
+      || observation.offerContextRevision !== offer.contextRevision;
+    const observedMs = Date.parse(observation.observedAt);
+    let status: HistoryEntryStatus;
+    if (!unique.has(observation.id)) status = 'duplicate';
+    else if (corrected.has(observation.id)) status = 'corrected';
+    else if (earlier) status = 'earlier_details';
+    else if (observedMs > nowMs) status = 'future';
+    else if (observedMs < nowMs - ACTIVE_HISTORY_WINDOW_MS) status = 'older';
+    else if (sampleIds.has(observation.id)) status = 'daily_sample';
+    else status = 'same_day';
+    const replaced = observation.replacesObservationId === null ? undefined : byId.get(observation.replacesObservationId);
+    const correction = replaced === undefined
+      ? ''
+      : ` · Correction of the ${formatRecordedAt(replaced.observedAt)} entry (was item ${formatPkr(replaced.price.item)}, saved ${formatRecordedAt(observation.receivedAt)})`;
+    return {
+      observationId: observation.id,
+      text: `${formatRecordedAt(observation.observedAt)} · Item ${formatPkr(observation.price.item)} · ${priceConclusion(observation.price)} · ${stockText(observation)}${correction}`,
+      status,
+      statusText: STATUS_TEXT[status],
+      earlier,
+      correctable: canCorrect(envelope, observation),
+    };
+  });
+
   const count = envelope.observations.length;
-  parts.push(`${count} observation${count === 1 ? '' : 's'} saved`);
-  if (summary.dailyCount > 0 && summary.firstObservedAt !== null && summary.lastObservedAt !== null) {
-    parts.push(`${summary.dailyCount} day${summary.dailyCount === 1 ? '' : 's'} with current details in the 90-day window`);
-    parts.push(`last recorded ${formatRecordedAt(summary.lastObservedAt)}`);
+  const facts: string[] = [];
+  const first = [...envelope.observations].sort((left, right) => Date.parse(left.observedAt) - Date.parse(right.observedAt))[0];
+  if (first !== undefined) facts.push(`First recorded: ${formatRecordedAt(first.observedAt)}`);
+  if (summary.lastObservedAt !== null) facts.push(`Last counted entry: ${formatRecordedAt(summary.lastObservedAt)}`);
+  facts.push(`Saved entries: ${count}${corrected.size > 0 ? ` (${corrected.size} corrected)` : ''}`);
+  facts.push(`Counted daily samples: ${summary.dailyCount} (one per Pakistan day, last 90 days, current details)`);
+  facts.push('Price basis: item price only, as you entered it');
+  if (summary.dailyCount >= 3) {
+    const lowest = summary.samples.reduce((min, sample) => sample.amount.amountMinor < min.amount.amountMinor ? sample : min);
+    const firstSample = summary.samples[0] as typeof summary.samples[number];
+    const lastSample = summary.samples[summary.samples.length - 1] as typeof summary.samples[number];
+    facts.push(`Lowest in your ${summary.dailyCount} saved comparable daily samples (${shortDate(firstSample.date)}–${shortDate(lastSample.date)}): ${formatPkr(lowest.amount)} on ${karachiDate(lowest.observedAt)}`);
   }
-  if (summary.dailyCount < 3) parts.push('Not enough comparable observations to assess this price');
-  if (summary.excludedContextCount > 0) {
-    parts.push(`${summary.excludedContextCount} recorded under earlier identity or offer details`);
+  const gaps = summary.gaps.slice(-3);
+  for (const gap of gaps) {
+    facts.push(`No entry on ${gap.missingDays} day${gap.missingDays === 1 ? '' : 's'} between ${shortDate(gap.afterDate)} and ${shortDate(gap.beforeDate)} — nothing is assumed for those days`);
   }
-  if (summary.olderCount > 0) parts.push(`${summary.olderCount} older than 90 days, still stored`);
-  if (summary.futureCount > 0) parts.push(`${summary.futureCount} with a future time, excluded`);
-  if (summary.gaps.length > 0) {
-    const gap = summary.gaps[summary.gaps.length - 1] as typeof summary.gaps[number];
-    parts.push(`no observation recorded between ${gap.afterDate} and ${gap.beforeDate}`);
-  }
-  return { summary: `${parts.join(' · ')}.`, entries };
+  if (summary.gaps.length > gaps.length) facts.push(`${summary.gaps.length - gaps.length} earlier gaps are not listed`);
+
+  let headline: string;
+  if (count === 1) headline = '1 observation. One entry cannot show a trend.';
+  else if (summary.dailyCount < 3) headline = `${count} observations. Not enough comparable observations to assess this price.`;
+  else headline = `${count} observations across ${summary.dailyCount} days with the current details.`;
+  return { summary: headline, facts, entries };
 }
 
 export function snapshotFor(envelope: SavedOffer): ComparableOfferSnapshot {
@@ -299,6 +395,11 @@ export function snapshotFor(envelope: SavedOffer): ComparableOfferSnapshot {
 
 export interface ComparisonOfferView {
   heading: string;
+  source: string;
+  seller: string;
+  regionPack: string;
+  eligibility: string;
+  recorded: string;
   modelSize: string;
   conditionColor: string;
   warranty: string;
@@ -314,6 +415,13 @@ export interface ComparisonView {
 }
 
 const OFFER_LETTERS = ['A', 'B', 'C'] as const;
+
+const ELIGIBILITY_SHORT: Record<string, string> = {
+  public: 'Anyone under the entered conditions',
+  conditional: 'Requires a stated condition',
+  personalized: 'Personalized price',
+  unknown: 'Not entered',
+};
 
 function deliveryFeesText(price: PriceComponents): string {
   const delivery = price.shipping.state === 'known' ? moneyOrNone(price.shipping.value, 'Free') : 'Not entered';
@@ -416,14 +524,26 @@ export function comparisonView(envelopes: readonly SavedOffer[]): ComparisonView
       ? CONDITION_LABELS[confirmed.offer.condition.value] ?? confirmed.offer.condition.value
       : 'Condition not entered';
     const color = confirmed.variant.color.state === 'known' ? confirmed.variant.color.value : 'color not entered';
+    const observation = latestObservation(entry.envelope);
+    const region = confirmed.variant.region.state === 'known' ? confirmed.variant.region.value : 'region not entered';
+    const pack = confirmed.variant.receiverOrPack.state === 'known'
+      ? confirmed.variant.receiverOrPack.value
+      : 'receiver/pack not entered';
     return {
       heading: `Offer ${entry.letter} · ${confirmed.retailer.label}`,
+      source: 'Entered by you · provisional',
+      seller: confirmed.seller.label.state === 'known' ? confirmed.seller.label.value : 'Seller not entered',
+      regionPack: `${region} / ${pack}`,
+      eligibility: confirmed.offer.eligibility === 'conditional' && confirmed.offer.eligibilityDetails.length > 0
+        ? `Requires: ${confirmed.offer.eligibilityDetails.join('; ')}`
+        : ELIGIBILITY_SHORT[confirmed.offer.eligibility] ?? 'Not entered',
+      recorded: `${formatRecordedAt(observation.observedAt)} · not automatically checked`,
       modelSize: `${confirmed.product.brand} ${confirmed.variant.model} / ${size}`,
       conditionColor: `${condition} / ${color}`,
       warranty: warrantyText(confirmed),
       itemPrice: summaryPrice.item === null ? 'Not entered' : formatPkr(summaryPrice.item),
       deliveryFees: deliveryFeesText(price),
-      knownAmount: `${priceConclusion(price)} · ${stockText(latestObservation(entry.envelope))}`,
+      knownAmount: `${priceConclusion(price)} · ${stockText(observation)}`,
     };
   });
   return { summary, differences, offers };

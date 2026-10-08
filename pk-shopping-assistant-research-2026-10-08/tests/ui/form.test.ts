@@ -211,3 +211,23 @@ test('form field names, draft field names and the price preview stay aligned', (
   assert.match(previewPriceText({ ...emptyOfferForm(), itemPrice: '7,000.005' }), /no more than 2 decimal places/);
   assert.equal(previewPriceText(completeFields()), 'PKR 7,300 delivered under entered conditions');
 });
+
+test('a correction keeps the original observation time and links the replaced entry', () => {
+  const first = buildManualOffer(completeFields(), options(1));
+  assert.equal(first.ok, true);
+  if (!first.ok) return;
+  const fields = formFieldsFromConfirmed(first.confirmed, first.observation);
+  fields.itemPrice = '6,900';
+  const corrected = buildManualOffer(fields, {
+    ...options(300),
+    existing: first.confirmed,
+    observedAt: new Date('2026-10-07T07:00:00.000Z'),
+    replacesObservationId: first.observation.id,
+  });
+  assert.equal(corrected.ok, true);
+  if (!corrected.ok) return;
+  assert.equal(corrected.observation.observedAt, '2026-10-07T07:00:00.000Z');
+  assert.equal(corrected.observation.receivedAt, '2026-10-08T07:00:00.000Z');
+  assert.equal(corrected.observation.replacesObservationId, first.observation.id);
+  assert.deepEqual(corrected.confirmed, first.confirmed, 'a price-only correction keeps the same revisions');
+});

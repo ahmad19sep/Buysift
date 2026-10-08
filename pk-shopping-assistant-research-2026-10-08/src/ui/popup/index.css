@@ -1124,3 +1124,30 @@ progress::-webkit-progress-value {
   flex: 0 0 auto;
   white-space: nowrap;
 }
+
+.history-facts {
+  margin: 0.5rem 0 0.75rem;
+  padding-left: 1.1rem;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.history-facts li + li {
+  margin-top: 0.2rem;
+}
+
+.observation-status {
+  display: block;
+  margin-top: 0.15rem;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.observation-list .button-small {
+  margin-top: 0.35rem;
+}
+
+fieldset:disabled {
+  opacity: 0.65;
+}

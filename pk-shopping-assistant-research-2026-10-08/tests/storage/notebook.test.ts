@@ -280,3 +280,41 @@ test('trusted-context or read failures open read-only recovery instead of guessi
   unreadable.failReads = true;
   assert.equal((await notebook(unreadable).initialize()).state, 'recovery_read_only');
 });
+
+test('a correction links to an earlier entry, keeps the original and cannot repeat or dangle', async () => {
+  const { book } = await consented();
+  const ids = idFactory(3000);
+  const input = syntheticSave(ids);
+  const saved = await book.saveOffer(input);
+  const original = saved.envelope.observations[0]!;
+
+  const operationId = ids();
+  const correction = {
+    ...input.observation,
+    id: ids(),
+    operationId,
+    receivedAt: '2026-10-08T08:00:00.000Z',
+    replacesObservationId: original.id,
+    price: { ...input.observation.price, item: { amountMinor: 690_000, currency: 'PKR' as const, minorUnit: 2 as const } },
+  };
+  const corrected = await book.saveOffer({ confirmed: input.confirmed, observation: correction, operationId, draft: null });
+  assert.equal(corrected.envelope.observations.length, 2);
+  assert.deepEqual(corrected.envelope.observations[0], original, 'the corrected entry is unchanged');
+  assert.equal(corrected.capacity.observationCount, 2, 'corrections consume capacity');
+
+  const again = ids();
+  await rejectsWith(book.saveOffer({
+    confirmed: input.confirmed,
+    observation: { ...correction, id: ids(), operationId: again },
+    operationId: again,
+    draft: null,
+  }), 'invalid_record');
+
+  const dangling = ids();
+  await rejectsWith(book.saveOffer({
+    confirmed: input.confirmed,
+    observation: { ...correction, id: ids(), operationId: dangling, replacesObservationId: ids() },
+    operationId: dangling,
+    draft: null,
+  }), 'invalid_record');
+});

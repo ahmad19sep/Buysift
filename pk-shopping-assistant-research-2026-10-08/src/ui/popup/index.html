@@ -206,7 +206,12 @@
               <ul id="form-error-list"></ul>
             </div>
 
-            <fieldset class="form-section">
+            <p id="correction-note" class="message message-info" hidden>
+              A correction changes only the price and availability of one saved entry. The original
+              entry is kept and marked as corrected. Use Edit to change identity or offer terms.
+            </p>
+
+            <fieldset class="form-section" data-locks-in-correction>
               <legend>Offer source</legend>
               <p class="fieldset-help">Use public product details only. Do not enter account or checkout links.</p>
 
@@ -265,7 +270,7 @@
               </div>
             </fieldset>
 
-            <fieldset class="form-section">
+            <fieldset class="form-section" data-locks-in-correction>
               <legend>Mouse identity</legend>
               <p class="fieldset-help">Identity details appear before any price comparison.</p>
 
@@ -360,7 +365,7 @@
               </details>
             </fieldset>
 
-            <fieldset class="form-section">
+            <fieldset class="form-section" data-locks-in-correction>
               <legend>Offer terms</legend>
 
               <div class="field">
@@ -705,12 +710,16 @@
             <button id="detail-compare-button" class="button button-secondary" type="button">
               Add to comparison
             </button>
+            <button id="another-shop-button" class="button button-secondary" type="button">
+              Add this mouse from another shop
+            </button>
           </div>
 
           <section class="history-panel" aria-labelledby="history-title">
             <h3 id="history-title">Your saved observations</h3>
             <p id="history-summary">No observations yet.</p>
-            <ol id="observation-list" class="observation-list"></ol>
+            <ul id="history-facts" class="history-facts"></ul>
+            <ol id="observation-list" class="observation-list" aria-label="Saved observations, newest first"></ol>
             <p id="history-limitation" class="field-help">
               These are your entries. Shop prices may have changed.
             </p>
@@ -803,12 +812,17 @@
             <section class="comparison-card">
               <h4 data-field="heading">Offer</h4>
               <dl>
+                <div><dt>Source</dt><dd data-field="source">Entered by you</dd></div>
                 <div><dt>Model / size</dt><dd data-field="model-size">Not entered</dd></div>
+                <div><dt>Seller</dt><dd data-field="seller">Not entered</dd></div>
+                <div><dt>Region / receiver or pack</dt><dd data-field="region-pack">Not entered</dd></div>
                 <div><dt>Condition / color</dt><dd data-field="condition-color">Not entered</dd></div>
                 <div><dt>Warranty</dt><dd data-field="warranty">Provider not entered</dd></div>
                 <div><dt>Item price</dt><dd data-field="item-price">Not entered</dd></div>
                 <div><dt>Delivery / fees</dt><dd data-field="delivery-fees">Not entered</dd></div>
+                <div><dt>Who can use this price</dt><dd data-field="eligibility">Not entered</dd></div>
                 <div><dt>Known amount</dt><dd data-field="known-amount">Incomplete</dd></div>
+                <div><dt>Recorded</dt><dd data-field="recorded">Time unavailable</dd></div>
               </dl>
             </section>
           </template>

@@ -119,8 +119,8 @@ test('history lists real entries only and marks earlier-revision observations', 
   assert.equal(view.entries.length, 2);
   assert.equal(view.entries[0]?.earlier, false);
   assert.equal(view.entries[1]?.earlier, true);
-  assert.match(view.summary, /2 observations saved/);
-  assert.match(view.summary, /Not enough comparable observations/);
-  assert.match(view.summary, /1 recorded under earlier identity/);
-  assert.doesNotMatch(view.summary, /lowest ever/i);
+  assert.equal(view.summary, '2 observations. Not enough comparable observations to assess this price.');
+  assert.equal(view.entries[1]?.status, 'earlier_details');
+  assert.ok(view.facts.some(fact => fact.startsWith('Counted daily samples: 1')));
+  assert.ok(!view.facts.some(fact => /lowest ever/i.test(fact)));
 });

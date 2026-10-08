@@ -1,6 +1,6 @@
 # Implementation prompts
 
-**Status: research output, with subsequent implementation updates on 8 October 2026.** Stages 01–03 were executed after separate implementation requests; their outcomes are recorded in the [foundation](../docs/research/test-results/2026-10-08-foundation.md), [domain](../docs/research/test-results/2026-10-08-domain-and-fixtures.md) and [local slice](../docs/research/test-results/2026-10-08-local-extension-slice.md) reports. Stages 04–08 have not been executed. Each prompt becomes implementation instructions when the founder requests the relevant stage and its dependencies are met.
+**Status: research output, with subsequent implementation updates on 8 October 2026.** Stages 01–03 and the local lane of 06 were executed after separate implementation requests; their outcomes are recorded in the [foundation](../docs/research/test-results/2026-10-08-foundation.md), [domain](../docs/research/test-results/2026-10-08-domain-and-fixtures.md), [local slice](../docs/research/test-results/2026-10-08-local-extension-slice.md) and [local comparison/history](../docs/research/test-results/2026-10-08-comparison-and-history-local.md) reports. Stages 04, 05, 07, 08 and the live lane of 06 have not been executed. Each prompt becomes implementation instructions when the founder requests the relevant stage and its dependencies are met.
 
 Copy one complete prompt into the coding session whose workspace contains this document pack. Start by reading the project `AGENTS.md`. Preserve existing files and reconcile any conflicting specifications before edits. Resolve dependency versions from current official provenance at implementation time; this research's release observations are not a lockfile.
 
@@ -11,7 +11,7 @@ Copy one complete prompt into the coding session whose workspace contains this d
 | 03 | [Local extension slice](03-local-extension-slice.md) | Completed; 63 tests, benchmark and build passed; scripted Chromium 141 smoke test passed; installed Chrome 155 and accessibility checks pending |
 | 04 | [Eligible retailer adapter](04-eligible-retailer-adapter.md) | **BLOCKED:** no source grant demonstrated |
 | 05 | [Optional backend](05-optional-backend.md) | **BLOCKED:** no qualifying feed/service decision |
-| 06 | [Comparison and history](06-comparison-and-history.md) | Next eligible milestone (local lane); live lane remains blocked |
+| 06 | [Comparison and history](06-comparison-and-history.md) | Local lane completed (71 tests, benchmark, build, scripted browser run); live lane remains blocked |
 | 07 | [Achievable alerts](07-achievable-alerts.md) | **DEFERRED:** not part of P0 |
 | 08 | [Release hardening](08-release-hardening.md) | Private lane follows local slice/history; public lane needs all public gates |
 

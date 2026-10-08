@@ -1,5 +1,6 @@
 import { MAX_OBSERVATIONS, MAX_SAVED_OFFERS, STORAGE_HARD_LIMIT_BYTES } from '../../domain/index.js';
 import { LocalNotebook, StorageError, serializeNotebookExport } from '../../storage/index.js';
+import type { Observation } from '../../domain/index.js';
 import type { InitializationResult, OfferDraft, StorageCapacity } from '../../storage/index.js';
 import {
   OFFER_FORM_FIELD_NAMES,
@@ -13,6 +14,7 @@ import type { FormIssue, OfferFormFieldName, OfferFormFields } from './form.js';
 import { updateComparisonSelection } from './selection.js';
 import {
   attentionSummary,
+  canCorrect,
   componentsText,
   comparisonView,
   formatBytes,
@@ -29,12 +31,14 @@ import type { SavedOffer } from './view-model.js';
 import { formatPkr } from './form.js';
 
 type Route = 'saved' | 'offer-form' | 'offer-detail' | 'compare' | 'sample' | 'data';
-type FormMode = 'new' | 'edit' | 'observe';
+type FormMode = 'new' | 'edit' | 'observe' | 'correct';
 
 interface FormSession {
   mode: FormMode;
   offerId: string;
   existing: SavedOffer | null;
+  /** The entry a correction replaces; only set in correct mode. */
+  target: Observation | null;
   operationId: string;
   saving: boolean;
 }
@@ -211,6 +215,16 @@ export class PopupApp {
       button.addEventListener('click', () => this.route(button.dataset.route as Route));
     }
     byId('add-offer-button', HTMLButtonElement).addEventListener('click', () => this.openForm('new', null));
+    byId('another-shop-button', HTMLButtonElement).addEventListener('click', () => {
+      const offer = this.findOffer(this.currentOfferId);
+      if (offer !== undefined) this.openForm('new', null, offer);
+    });
+    byId('observation-list', HTMLOListElement).addEventListener('click', event => {
+      const button = event.target instanceof Element ? event.target.closest<HTMLButtonElement>('[data-action="correct-observation"]') : null;
+      const offer = this.findOffer(this.currentOfferId);
+      const target = offer?.observations.find(observation => observation.id === button?.dataset.observationId);
+      if (offer !== undefined && target !== undefined && canCorrect(offer, target)) this.openForm('correct', offer, null, target);
+    });
     byId('open-sample-button', HTMLButtonElement).addEventListener('click', () => this.route('sample'));
     byId('sample-back-button', HTMLButtonElement).addEventListener('click', () => this.route('saved'));
 
@@ -385,7 +399,7 @@ export class PopupApp {
 
   // ---------- offer form ----------
 
-  private openForm(mode: FormMode, existing: SavedOffer | null): void {
+  private openForm(mode: FormMode, existing: SavedOffer | null, identityFrom: SavedOffer | null = null, target: Observation | null = null): void {
     if (this.readOnly) return;
     let offerId: string;
     let fields: OfferFormFields;
@@ -395,32 +409,56 @@ export class PopupApp {
       offerId = waiting?.offerId ?? this.uuid();
       fields = waiting === undefined ? emptyOfferForm() : normalizeOfferFormFields(waiting.draft.fields);
       restoredAt = waiting?.draft.updatedAt ?? null;
+      if (identityFrom !== null) {
+        if (waiting !== undefined) {
+          this.announce('Finish or cancel the unfinished offer draft first. It has been opened.');
+        } else {
+          // Copy only the mouse identity so the second shop's offer can match it exactly.
+          const source = formFieldsFromConfirmed(identityFrom.confirmed, latestObservation(identityFrom));
+          for (const name of ['brand', 'model', 'mpnMode', 'mpn', 'size', 'handedness', 'color', 'region', 'receiverOrPack'] as const) {
+            fields[name] = source[name];
+          }
+        }
+      }
+    } else if (mode === 'correct' && target !== null) {
+      offerId = existing.offerId;
+      fields = formFieldsFromConfirmed(existing.confirmed, target);
     } else {
       offerId = existing.offerId;
       const base = formFieldsFromConfirmed(existing.confirmed, latestObservation(existing));
       fields = existing.draft === null ? base : { ...base, ...normalizeOfferFormFields({ ...base, ...existing.draft.fields }) };
       restoredAt = existing.draft?.updatedAt ?? null;
     }
-    this.form = { mode, offerId, existing, operationId: this.uuid(), saving: false };
+    this.form = { mode, offerId, existing, target: mode === 'correct' ? target : null, operationId: this.uuid(), saving: false };
     this.offerForm.reset();
     byId('offer-id', HTMLInputElement).value = offerId;
     this.writeFields(fields);
     this.clearFormErrors();
+    const correcting = mode === 'correct';
+    for (const fieldset of this.offerForm.querySelectorAll<HTMLFieldSetElement>('fieldset[data-locks-in-correction]')) {
+      fieldset.disabled = correcting;
+    }
+    byId('correction-note', HTMLParagraphElement).hidden = !correcting;
     const titles: Record<FormMode, [string, string]> = {
       new: ['Add a manual offer', 'Save offer'],
       edit: ['Edit saved offer', 'Save changes'],
       observe: ['Record a new observation', 'Save observation'],
+      correct: ['Correct a saved entry', 'Save correction'],
     };
     byId('offer-form-title', HTMLHeadingElement).textContent = titles[mode][0];
     const save = byId('save-offer-button', HTMLButtonElement);
     save.textContent = titles[mode][1];
     save.disabled = false;
-    this.setDraftStatus(
-      restoredAt === null ? 'idle' : 'saved',
-      restoredAt === null
-        ? 'Valid draft changes are saved separately. Wait for “Saved” before closing.'
-        : `Restored your draft saved ${formatRecordedAt(restoredAt)}.`,
-    );
+    if (correcting && target !== null) {
+      this.setDraftStatus('idle', `Correcting the entry recorded ${formatRecordedAt(target.observedAt)}. Corrections are not saved as drafts.`);
+    } else {
+      this.setDraftStatus(
+        restoredAt === null ? 'idle' : 'saved',
+        restoredAt === null
+          ? 'Valid draft changes are saved separately. Wait for “Saved” before closing.'
+          : `Restored your draft saved ${formatRecordedAt(restoredAt)}.`,
+      );
+    }
     this.updateConditionals();
     this.updatePreview();
     this.route('offer-form');
@@ -489,6 +527,10 @@ export class PopupApp {
     if (this.form === null || this.form.saving) return;
     this.updateConditionals();
     this.updatePreview();
+    if (this.form.mode === 'correct') {
+      this.setDraftStatus('idle', 'Unsaved correction. Corrections are not saved as drafts.');
+      return;
+    }
     if (this.draftTimer !== null) clearTimeout(this.draftTimer);
     this.setDraftStatus('idle', 'Unsaved changes. Valid draft changes are saved separately.');
     this.draftTimer = setTimeout(() => void this.saveDraftNow(), DRAFT_DELAY_MS);
@@ -522,7 +564,7 @@ export class PopupApp {
 
   private async backFromForm(): Promise<void> {
     const session = this.form;
-    if (session !== null && this.draftTimer !== null) {
+    if (session !== null && session.mode !== 'correct' && this.draftTimer !== null) {
       const saved = await this.saveDraftNow();
       if (!saved) return;
     }
@@ -535,6 +577,10 @@ export class PopupApp {
     const session = this.form;
     if (session === null) return;
     this.leaveForm();
+    if (session.mode === 'correct') {
+      if (session.existing !== null) this.openDetail(session.existing.offerId);
+      return;
+    }
     try {
       await this.notebook.clearDraft(session.offerId);
       this.announce('Draft discarded. Saved offers were not changed.');
@@ -596,6 +642,9 @@ export class PopupApp {
       newOfferId: session.offerId,
       operationId: session.operationId,
       ...(existing === null ? {} : { existing: existing.confirmed }),
+      ...(session.target === null
+        ? {}
+        : { observedAt: new Date(session.target.observedAt), replacesObservationId: session.target.id }),
     });
     if (!result.ok) {
       this.showFormErrors(result.issues);
@@ -603,6 +652,11 @@ export class PopupApp {
       return;
     }
     this.clearFormErrors();
+    if (session.mode === 'correct' && existing !== null
+      && JSON.stringify(result.confirmed) !== JSON.stringify(existing.confirmed)) {
+      this.setDraftStatus('error', 'A correction can change only price and availability. Use Edit for other details.');
+      return;
+    }
     // An edit whose price and availability match the latest entry is a metadata fix, not a new observation.
     let observation = result.observation;
     let metadataOnly = false;
@@ -618,7 +672,8 @@ export class PopupApp {
     try {
       await this.notebook.saveOffer({
         confirmed: result.confirmed,
-        draft: null,
+        // A correction leaves any separate edit draft for this offer untouched.
+        draft: session.mode === 'correct' ? existing?.draft ?? null : null,
         observation: metadataOnly ? null : observation,
         operationId: session.operationId,
       });
@@ -627,7 +682,9 @@ export class PopupApp {
       this.leaveForm();
       await this.refreshSafely();
       this.openDetail(observation.offerId);
-      this.announce(metadataOnly ? 'Changes saved on this device.' : 'Saved on this device.');
+      this.announce(session.mode === 'correct'
+        ? 'Correction saved on this device. The original entry is kept and marked as corrected.'
+        : metadataOnly ? 'Changes saved on this device.' : 'Saved on this device.');
     } catch (error) {
       session.saving = false;
       save.disabled = false;
@@ -682,10 +739,32 @@ export class PopupApp {
 
     const history = historyView(offer, new Date());
     byId('history-summary', HTMLParagraphElement).textContent = history.summary;
+    byId('history-facts', HTMLUListElement).replaceChildren(...history.facts.map(text => {
+      const item = document.createElement('li');
+      item.textContent = text;
+      return item;
+    }));
     byId('observation-list', HTMLOListElement).replaceChildren(...history.entries.map(entry => {
       const item = document.createElement('li');
-      item.textContent = entry.text;
       item.dataset.revision = entry.earlier ? 'earlier' : 'current';
+      item.dataset.status = entry.status;
+      const body = document.createElement('div');
+      body.textContent = entry.text;
+      const status = document.createElement('span');
+      status.className = 'observation-status';
+      status.textContent = entry.statusText;
+      body.append(status);
+      item.append(body);
+      if (entry.correctable && !this.readOnly) {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'button button-small button-quiet';
+        button.dataset.action = 'correct-observation';
+        button.dataset.observationId = entry.observationId;
+        button.textContent = 'Correct';
+        button.setAttribute('aria-label', `Correct the entry recorded ${entry.text.split(' · ')[0] ?? ''}`);
+        item.append(button);
+      }
       return item;
     }));
 
@@ -693,6 +772,8 @@ export class PopupApp {
     byId('delete-offer-confirmation', HTMLDivElement).hidden = true;
     byId('delete-offer-status', HTMLParagraphElement).hidden = true;
     byId('edit-offer-button', HTMLButtonElement).disabled = this.readOnly;
+    byId('another-shop-button', HTMLButtonElement).disabled = this.readOnly
+      || (this.capacity?.offerCount ?? 0) >= MAX_SAVED_OFFERS;
     byId('record-observation-button', HTMLButtonElement).disabled = this.readOnly
       || (this.capacity?.observationCount ?? 0) >= MAX_OBSERVATIONS;
     this.renderDetailCompareButton();
@@ -773,6 +854,11 @@ export class PopupApp {
     byId('comparison-offers', HTMLDivElement).replaceChildren(...view.offers.map(offer => {
       const fragment = offerTemplate.content.cloneNode(true) as DocumentFragment;
       setText(fragment, '[data-field="heading"]', offer.heading);
+      setText(fragment, '[data-field="source"]', offer.source);
+      setText(fragment, '[data-field="seller"]', offer.seller);
+      setText(fragment, '[data-field="region-pack"]', offer.regionPack);
+      setText(fragment, '[data-field="eligibility"]', offer.eligibility);
+      setText(fragment, '[data-field="recorded"]', offer.recorded);
       setText(fragment, '[data-field="model-size"]', offer.modelSize);
       setText(fragment, '[data-field="condition-color"]', offer.conditionColor);
       setText(fragment, '[data-field="warranty"]', offer.warranty);

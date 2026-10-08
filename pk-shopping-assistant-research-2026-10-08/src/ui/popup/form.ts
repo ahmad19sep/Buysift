@@ -48,6 +48,9 @@ export interface ManualOfferBuildOptions {
   existing?: ConfirmedManualOffer;
   newOfferId?: string;
   operationId?: string;
+  /** For a correction: keeps the corrected entry's original observation time. */
+  observedAt?: Date;
+  replacesObservationId?: string;
 }
 
 export interface FormIssue {
@@ -446,7 +449,8 @@ export function buildManualOffer(
     const price = priceFromFields(fields, item, issues);
     if (price === null || issues.length > 0) return { ok: false, issues };
     const validatedPrice = validatePriceComponents(price);
-    const observedAt = options.now().toISOString();
+    const receivedAt = options.now().toISOString();
+    const observedAt = options.observedAt?.toISOString() ?? receivedAt;
     const operationId = options.operationId ?? options.createId();
     const observation = validateObservationAgainstAccess({
       id: options.createId(),
@@ -462,7 +466,7 @@ export function buildManualOffer(
       sourceKind: 'manual',
       accessRecordId: access.id,
       observedAt,
-      receivedAt: observedAt,
+      receivedAt,
       checkedAt: null,
       sourceGeneratedAt: null,
       timeBasis: 'manual_entry',
@@ -473,7 +477,7 @@ export function buildManualOffer(
         ? fields.stock as Stock
         : 'unknown',
       status: 'accepted',
-      replacesObservationId: null,
+      replacesObservationId: options.replacesObservationId ?? null,
     }, access);
 
     const summary = summarizePriceComponents(validatedPrice);

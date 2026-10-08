@@ -230,17 +230,22 @@ export class LocalNotebook {
       let existing: OfferEnvelopeV1 | null = null;
       if (existingRaw !== undefined) existing = validateEnvelopeV1(existingRaw, id, key);
       const timestamp = validateUtc(this.now(), 'updatedAt');
-      const candidate = validateEnvelopeV1({
-        schemaVersion: STORAGE_SCHEMA_VERSION,
-        offerId: id,
-        createdAt: existing?.createdAt ?? timestamp,
-        updatedAt: timestamp,
-        localPurposeVersion: LOCAL_PURPOSE_DECLARATION_VERSION,
-        confirmed: existing?.confirmed ?? null,
-        draft,
-        observations: existing?.observations ?? [],
-        operationIds: existing?.operationIds ?? [],
-      }, id);
+      let candidate: OfferEnvelopeV1;
+      try {
+        candidate = validateEnvelopeV1({
+          schemaVersion: STORAGE_SCHEMA_VERSION,
+          offerId: id,
+          createdAt: existing?.createdAt ?? timestamp,
+          updatedAt: timestamp,
+          localPurposeVersion: LOCAL_PURPOSE_DECLARATION_VERSION,
+          confirmed: existing?.confirmed ?? null,
+          draft,
+          observations: existing?.observations ?? [],
+          operationIds: existing?.operationIds ?? [],
+        }, id);
+      } catch (error) {
+        throw new StorageError('invalid_draft', 'The draft could not be combined with the saved offer.', [storageMessage(error)]);
+      }
       const candidateEntries = { ...entries, [key]: candidate };
       const before = this.capacityFromEntries(entries);
       const after = this.capacityFromEntries(candidateEntries);
@@ -319,17 +324,23 @@ export class LocalNotebook {
       if (observation !== null) observations.push(observation);
       // The envelope validator also bounds this list; report it as the user-facing limit, not a format error.
       if (observations.length > MAX_OBSERVATIONS) throw capacityError(['observation_limit']);
-      const candidate = validateEnvelopeV1({
-        schemaVersion: STORAGE_SCHEMA_VERSION,
-        offerId: id,
-        createdAt: existing?.createdAt ?? timestamp,
-        updatedAt: timestamp,
-        localPurposeVersion: LOCAL_PURPOSE_DECLARATION_VERSION,
-        confirmed,
-        draft,
-        observations,
-        operationIds: [...(existing?.operationIds ?? []), operationId],
-      }, id);
+      let candidate: OfferEnvelopeV1;
+      try {
+        candidate = validateEnvelopeV1({
+          schemaVersion: STORAGE_SCHEMA_VERSION,
+          offerId: id,
+          createdAt: existing?.createdAt ?? timestamp,
+          updatedAt: timestamp,
+          localPurposeVersion: LOCAL_PURPOSE_DECLARATION_VERSION,
+          confirmed,
+          draft,
+          observations,
+          operationIds: [...(existing?.operationIds ?? []), operationId],
+        }, id);
+      } catch (error) {
+        // For example a second correction of the same entry: reject before any write.
+        throw new StorageError('invalid_record', 'The saved offer would not be valid.', [storageMessage(error)]);
+      }
       const candidateEntries = { ...entries, [key]: candidate };
       const before = this.capacityFromEntries(entries);
       const after = this.capacityFromEntries(candidateEntries);

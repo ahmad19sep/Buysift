@@ -164,6 +164,7 @@ function validateObservationList(value: unknown, access: ConfirmedOffer['access'
   }
   const ids = new Set<string>();
   const operationIds = new Set<string>();
+  const replaced = new Set<string>();
   return value.map((entry, index) => {
     if (access === null) invalid(path, 'draft-only envelopes cannot contain observations');
     try {
@@ -172,6 +173,17 @@ function validateObservationList(value: unknown, access: ConfirmedOffer['access'
       if (observation.sourceKind !== 'manual') invalid(`${path}[${index}].sourceKind`, 'saved notebook observations must be manual');
       if (ids.has(observation.id)) invalid(`${path}[${index}].id`, 'duplicates an observation ID');
       if (operationIds.has(observation.operationId)) invalid(`${path}[${index}].operationId`, 'duplicates an operation ID');
+      if (observation.status !== 'accepted') invalid(`${path}[${index}].status`, 'saved notebook observations stay accepted; corrections link instead');
+      if (observation.replacesObservationId !== null) {
+        // A correction links to one earlier entry in the same offer; the corrected entry is kept unchanged.
+        if (!ids.has(observation.replacesObservationId)) {
+          invalid(`${path}[${index}].replacesObservationId`, 'must reference an earlier observation of this offer');
+        }
+        if (replaced.has(observation.replacesObservationId)) {
+          invalid(`${path}[${index}].replacesObservationId`, 'an observation can be corrected only once');
+        }
+        replaced.add(observation.replacesObservationId);
+      }
       ids.add(observation.id);
       operationIds.add(observation.operationId);
       return observation;
